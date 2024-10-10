@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: abenajib <abenajib@student.42.fr>              +#+  +:+       +#+    */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/24 19:32:33 by abenajib            #+#    #+#           */
-/*   Updated: 2024/09/24 19:32:33 by abenajib           ###   ########.fr     */
-/*                                                                            */
-/* ************************************************************************** */
-
 // ptr ==> Starting address of memory to be filled
 // x   ==> Value to be filled
 // n   ==> Number of bytes to be filled starting from ptr to be filled
@@ -17,7 +5,7 @@
 
 void	*ft_memset(void *ptr, int x, size_t n)
 {
-	unsigned char *str;
+	unsigned char	*str;
 
 	str = (unsigned char *)ptr;
 	while (*str && n > 0)
