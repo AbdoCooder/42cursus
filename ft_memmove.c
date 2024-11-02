@@ -1,29 +1,24 @@
-/**
- * ft_memmove - Copies 'n' bytes from memory area 'src' to memory area 'dest'.
- *				The memory areas may overlap: copying is done in a safe manner.
- *
- * @dest: The destination memory area.
- * @src: The source memory area.
- * @n: The number of bytes to copy.
- *
- * The function handles overlapping memory by determining whether to copy
- * forwards or backwards:
- * - If the destination is after the source in memory, it copies backwards
- *   to prevent overwriting the source before copying is done.
- * - Otherwise, it copies forwards.
- *
- * Return: A pointer to the destination memory area 'dest'.
- */
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/22 17:48:53 by abenajib          #+#    #+#             */
+/*   Updated: 2024/10/29 19:44:36 by abenajib         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-#include <string.h>
+#include "libft.h"
 
 void	*ft_memmove(void *dest, const void *src, size_t n)
 {
 	unsigned char	*d;
 	unsigned char	*s;
 
-	d = (unsigned char)dest;
-	s = (unsigned char)src;
+	d = (unsigned char *)dest;
+	s = (unsigned char *)src;
 	if (d == s || n == 0)
 		return (dest);
 	if (d > s)

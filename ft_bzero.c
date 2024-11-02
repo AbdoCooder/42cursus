@@ -1,18 +1,16 @@
-#include <string.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/22 16:13:34 by abenajib          #+#    #+#             */
+/*   Updated: 2024/10/22 16:14:08 by abenajib         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-void	*ft_memset(void *ptr, int x, size_t n)
-{
-	unsigned char	*str;
-
-	str = (unsigned char *)ptr;
-	while (*str && n > 0)
-	{
-		*str = (unsigned char)x;
-		n--;
-		str++;
-	}
-	return (ptr);
-}
+#include "libft.h"
 
 void	ft_bzero(void *s, size_t n)
 {

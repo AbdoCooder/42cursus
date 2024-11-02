@@ -1,34 +1,23 @@
-// ptr ==> Starting address of memory to be filled
-// x   ==> Value to be filled
-// n   ==> Number of bytes to be filled starting from ptr to be filled
-#include <string.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/22 15:58:48 by abenajib          #+#    #+#             */
+/*   Updated: 2024/10/22 18:17:56 by abenajib         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-void	*ft_memset(void *ptr, int x, size_t n)
+#include "libft.h"
+
+void	*ft_memset(void *b, int c, size_t len)
 {
-	unsigned char	*str;
+	unsigned char	*ptr;
 
-	str = (unsigned char *)ptr;
-	while (*str && n > 0)
-	{
-		*str = (unsigned char)x;
-		n--;
-		str++;
-	}
-	return (ptr);
+	ptr = (unsigned char *)b;
+	while (len--)
+		*ptr++ = (unsigned char)c;
+	return (b);
 }
-/*
-// C program to demonstrate working of ft_memset()
-#include <stdio.h>
-#include <string.h>
-
-int main()
-{
-	char	str[50] = "GeeksForGeeks is for programming geeks.";
-	printf("\nBefore ft_memset(): %s\n", str);
-
-	ft_memset(str + 13, '.', 300*sizeof(char));
-
-	printf("After  ft_memset(): %s\n", str);
-	return 0;
-}
-*/
