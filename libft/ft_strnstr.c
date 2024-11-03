@@ -6,7 +6,7 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 09:38:40 by abenajib          #+#    #+#             */
-/*   Updated: 2024/10/26 10:58:29 by abenajib         ###   ########.fr       */
+/*   Updated: 2024/11/03 22:04:52 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 	size_t	j;
 	size_t	temp;
 
+	if (!haystack && len == 0 && needle)
+		return (0);
 	i = 0;
 	j = 0;
 	temp = 0;

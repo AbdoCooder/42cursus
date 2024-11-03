@@ -6,7 +6,7 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 19:55:57 by abenajib          #+#    #+#             */
-/*   Updated: 2024/11/02 15:34:44 by abenajib         ###   ########.fr       */
+/*   Updated: 2024/11/03 22:02:41 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,10 @@ size_t	ft_strlcat(char *dest, const char *src, size_t size)
 	size_t	s_len;
 	size_t	i;
 
-	d_len = ft_strlen(dest);
 	s_len = ft_strlen(src);
+	if (src && size == 0 && !dest)
+		return (s_len);
+	d_len = ft_strlen(dest);
 	if (size <= d_len)
 		return (size + s_len);
 	i = 0;
