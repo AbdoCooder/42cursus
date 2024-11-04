@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstadd_back_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abdocooder <abdocooder@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 19:19:28 by abenajib          #+#    #+#             */
-/*   Updated: 2024/10/31 15:24:33 by abenajib         ###   ########.fr       */
+/*   Updated: 2024/11/04 16:51:52 by abdocooder       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
