@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abdocooder <abdocooder@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 15:34:01 by abenajib          #+#    #+#             */
-/*   Updated: 2024/11/03 22:14:31 by abenajib         ###   ########.fr       */
+/*   Updated: 2024/11/06 21:41:58 by abdocooder       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_putstr_fd(char *s, int fd)
 {
-	if (fd < 0 || !s)
+	if (!s)
 		return ;
 	while (*s)
 	{

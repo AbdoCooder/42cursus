@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abdocooder <abdocooder@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 17:44:20 by abenajib          #+#    #+#             */
-/*   Updated: 2024/11/03 17:00:24 by abenajib         ###   ########.fr       */
+/*   Updated: 2024/11/06 21:48:27 by abdocooder       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,40 +14,22 @@
 
 void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
-	unsigned char	*psrc;
-	unsigned char	*pdest;
+	unsigned char		*d;
+	const unsigned char	*s;
 
-	if (!dest && !src)
-		return (NULL);
-	psrc = (unsigned char *)src;
-	pdest = (unsigned char *)dest;
+	if (dest == src)
+		return (dest);
+	d = (unsigned char *)dest;
+	s = (const unsigned char *)src;
 	while (n--)
-		*pdest++ = *psrc++;
+		*d++ = *s++;
 	return (dest);
 }
-//test overlapping
-/*
-#include <stdio.h>
-#include <string.h>
-#include "libft.h"
-
-int main()
-{
-	char s[] = "zxcvbnm";
-	char *d = (s + 2);
-	printf("C_memmove   - %s\n", memmove(d, s, 4));
-
-	char s1[] = "zxcvbnm";
-	char *d1 = (s + 2);
-	printf("ft_memmove  - %s\n", ft_memmove(d1, s1, 4));
-	printf("------------------------\n");
-
-	char s3[] = "zxcvbnm";
-	char *d3 = (s3 + 2);
-	printf("C_memcpy   - %s\n", ft_memcpy(d3, s3, 4));
-
-	char s4[] = "zxcvbnm";
-	char *d4 = (s4 + 2);
-	printf("ft_memcpy  - %s\n", ft_memcpy(d4, s4, 4));
-	return 0;
-}*/
+// #include <stdio.h>
+// #include <string.h>
+// int main()
+// {
+// 	char *s3 = "zxcvbnm";
+// 	ft_memcpy(s3, s3, 5);
+// 	return 0;
+// }
