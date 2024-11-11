@@ -6,31 +6,38 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 15:47:42 by abenajib          #+#    #+#             */
-/*   Updated: 2024/11/11 15:40:04 by abenajib         ###   ########.fr       */
+/*   Updated: 2024/11/11 18:37:36 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-int	ft_putnbr_fd(int n, int fd)
+int	ft_numsize(int num)
 {
-	int	len;
-	int check;
+	int	count;
 
-	len = 0;
-	check = 0;
+	count = 0;
+	while (num > 0)
+	{
+		num /= 10;
+		count++;
+	}
+	return (count);
+}
+
+int	ft_putnbr_fd(int nb, int fd)
+{
+	int	n;
+
+	n = nb;
 	if (n == -2147483648)
 	{
-		check = ft_putstr_fd("-2147483648", fd);
-		if(check == -1)
-			return (-1);
+		ft_putstr_fd("-2147483648", fd);
 		return (11);
 	}
 	if (n < 0)
 	{
-		check = ft_putchar_fd('-', fd);
-		if(check == -1)
-			return (-1);
+		ft_putchar_fd('-', fd);
 		n = -n;
 	}
 	if (n > 9)
@@ -40,10 +47,13 @@ int	ft_putnbr_fd(int n, int fd)
 	}
 	else
 	{
-		check = ft_putchar_fd(n + '0', fd);
-		if(check == -1)
-			return (-1);
-		len++;
+		ft_putchar_fd(n + '0', fd);
 	}
-	return (len);
+	return (ft_numsize(nb));
 }
+// #include <stdio.h>
+// int main()
+// {
+// 	int n = ft_putnbr_fd(45, 1);
+// 	printf("\n%d\n", n);
+// }
