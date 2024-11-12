@@ -6,7 +6,7 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 15:32:13 by abenajib          #+#    #+#             */
-/*   Updated: 2024/11/12 12:11:38 by abenajib         ###   ########.fr       */
+/*   Updated: 2024/11/12 13:41:32 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ int	ft_puthex(unsigned int num, char c)
 		len += ft_putchar_fd(hex_upp[num % 16], 1);
 	return (len);
 }
-int main()
-{
-	ft_puthex(91561, 'X');
-	ft_putchar_fd('\n', 1);
-	ft_puthex(91561, 'x');
-	return 0;
-}
+// int main()
+// {
+// 	ft_puthex(91561, 'X');
+// 	ft_putchar_fd('\n', 1);
+// 	ft_puthex(91561, 'x');
+// 	return 0;
+// }

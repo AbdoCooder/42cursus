@@ -6,7 +6,7 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 13:15:44 by abenajib          #+#    #+#             */
-/*   Updated: 2024/11/12 13:34:27 by abenajib         ###   ########.fr       */
+/*   Updated: 2024/11/12 13:41:23 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	ft_format(va_list args, char c)
 
 int	ft_printf(const char *str, ...)
 {
-	int	counter;
+	int		counter;
 	va_list	args;
 
 	va_start(args, str);
