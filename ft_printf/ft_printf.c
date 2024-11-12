@@ -6,11 +6,11 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 13:15:44 by abenajib          #+#    #+#             */
-/*   Updated: 2024/11/12 13:41:23 by abenajib         ###   ########.fr       */
+/*   Updated: 2024/11/12 13:42:56 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 #include <stdarg.h>
 
 int	ft_format(va_list args, char c)

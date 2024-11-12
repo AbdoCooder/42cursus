@@ -6,11 +6,11 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 15:32:13 by abenajib          #+#    #+#             */
-/*   Updated: 2024/11/12 13:41:32 by abenajib         ###   ########.fr       */
+/*   Updated: 2024/11/12 13:43:07 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 int	ft_puthex(unsigned int num, char c)
 {
