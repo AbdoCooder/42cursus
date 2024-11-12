@@ -6,36 +6,59 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 13:15:44 by abenajib          #+#    #+#             */
-/*   Updated: 2024/11/11 22:06:41 by abenajib         ###   ########.fr       */
+/*   Updated: 2024/11/12 13:34:27 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 #include <stdarg.h>
 
+int	ft_format(va_list args, char c)
+{
+	int	counter;
+
+	counter = 0;
+	if (c == 'd' || c == 'i')
+		counter += ft_putnbr_fd(va_arg(args, int), 1);
+	else if (c == 'c')
+		counter += ft_putchar_fd(va_arg(args, int), 1);
+	else if (c == 's')
+		counter += ft_putstr_fd(va_arg(args, char *), 1);
+	else if (c == 'p')
+		counter += ft_puthex(va_arg(args, unsigned int), 'x');
+	else if (c == 'u')
+		counter += ft_putunint_fd(va_arg(args, unsigned int), 1);
+	else if (c == 'x')
+		counter += ft_puthex(va_arg(args, unsigned int), 'x');
+	else if (c == 'X')
+		counter += ft_puthex(va_arg(args, unsigned int), 'X');
+	else
+		return (0);
+	return (counter);
+}
+
 int	ft_printf(const char *str, ...)
 {
-	int		printed;
+	int	counter;
 	va_list	args;
 
 	va_start(args, str);
-	printed = 0;
+	counter = 0;
 	if (write (1, "", 0) == -1)
 		return (-1);
 	while (*str)
 	{
-		if (*str != '%')
-		{
-			ft_putchar_fd(*str, 1);
-			str++;
-		}
+		if (*str == '%')
+			counter += ft_format(args, *(str + 1));
+		else
+			counter += ft_putchar_fd(*str, 1);
+		str++;
 	}
 	va_end(args);
-	return (printed);
+	return (counter);
 }
 // #include <stdio.h>
-
 // int	main()
 // {
-// 	return (ft_printf("\t", 5));
+// 	printf("%r", 48);
 // }
