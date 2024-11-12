@@ -6,7 +6,7 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 13:15:44 by abenajib          #+#    #+#             */
-/*   Updated: 2024/11/12 13:42:56 by abenajib         ###   ########.fr       */
+/*   Updated: 2024/11/12 15:38:58 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,20 +18,20 @@ int	ft_format(va_list args, char c)
 	int	counter;
 
 	counter = 0;
-	if (c == 'd' || c == 'i')
+	if (c == '%')
+		counter += ft_putchar_fd('%', 1);
+	else if (c == 'd' || c == 'i')
 		counter += ft_putnbr_fd(va_arg(args, int), 1);
 	else if (c == 'c')
 		counter += ft_putchar_fd(va_arg(args, int), 1);
 	else if (c == 's')
 		counter += ft_putstr_fd(va_arg(args, char *), 1);
 	else if (c == 'p')
-		counter += ft_puthex(va_arg(args, unsigned int), 'x');
+		counter += ft_puthex(va_arg(args, unsigned long long), c);
+	else if (c == 'x' || c == 'X')
+		counter += ft_puthex(va_arg(args, unsigned int), c);
 	else if (c == 'u')
 		counter += ft_putunint_fd(va_arg(args, unsigned int), 1);
-	else if (c == 'x')
-		counter += ft_puthex(va_arg(args, unsigned int), 'x');
-	else if (c == 'X')
-		counter += ft_puthex(va_arg(args, unsigned int), 'X');
 	else
 		return (0);
 	return (counter);
@@ -49,7 +49,10 @@ int	ft_printf(const char *str, ...)
 	while (*str)
 	{
 		if (*str == '%')
+		{
 			counter += ft_format(args, *(str + 1));
+			str++;
+		}
 		else
 			counter += ft_putchar_fd(*str, 1);
 		str++;
@@ -57,8 +60,9 @@ int	ft_printf(const char *str, ...)
 	va_end(args);
 	return (counter);
 }
-// #include <stdio.h>
-// int	main()
-// {
-// 	printf("%r", 48);
-// }
+#include <stdio.h>
+int main()
+{
+	printf("\n%d\n", ft_printf("%d", 1));
+	return 0;
+}

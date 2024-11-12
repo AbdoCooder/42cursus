@@ -6,13 +6,13 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 15:47:42 by abenajib          #+#    #+#             */
-/*   Updated: 2024/11/12 13:43:18 by abenajib         ###   ########.fr       */
+/*   Updated: 2024/11/12 13:45:04 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_numsize(unsigned int num)
+static int	ft_numsize(unsigned int num)
 {
 	int	count;
 

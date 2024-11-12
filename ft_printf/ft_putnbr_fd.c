@@ -6,17 +6,17 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 15:47:42 by abenajib          #+#    #+#             */
-/*   Updated: 2024/11/12 13:43:11 by abenajib         ###   ########.fr       */
+/*   Updated: 2024/11/12 15:38:16 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_numsize(int num)
+static int	ft_numsize(int num)
 {
 	int	count;
 
-	count = 0;
+	count = 1;
 	while (num > 0)
 	{
 		num /= 10;

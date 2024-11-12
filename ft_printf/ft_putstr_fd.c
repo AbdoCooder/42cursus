@@ -6,7 +6,7 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 15:34:01 by abenajib          #+#    #+#             */
-/*   Updated: 2024/11/12 13:43:14 by abenajib         ###   ########.fr       */
+/*   Updated: 2024/11/12 14:02:31 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,10 @@ int	ft_putstr_fd(char *s, int fd)
 	int	len;
 
 	if (!s)
-		return (0);
+	{
+		write(1, "(null)", 6);
+		return (6);
+	}
 	len = 0;
 	while (*s)
 	{
