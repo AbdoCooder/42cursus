@@ -6,7 +6,7 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 13:15:44 by abenajib          #+#    #+#             */
-/*   Updated: 2024/11/12 15:38:58 by abenajib         ###   ########.fr       */
+/*   Updated: 2024/11/12 16:41:05 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,12 @@ int	ft_printf(const char *str, ...)
 	va_end(args);
 	return (counter);
 }
-#include <stdio.h>
-int main()
-{
-	printf("\n%d\n", ft_printf("%d", 1));
-	return 0;
-}
+// #include <stdio.h>
+// int main()
+// {
+// 	int c = printf("%u\n", -10);
+// 	printf("printf=%d\n", c);
+// 	int ft = ft_printf("%u\n", -10);
+// 	printf("ft_printf=%d\n", ft);
+// 	return 0;
+// }

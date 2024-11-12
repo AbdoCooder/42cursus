@@ -6,7 +6,7 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 15:47:42 by abenajib          #+#    #+#             */
-/*   Updated: 2024/11/12 13:45:04 by abenajib         ###   ########.fr       */
+/*   Updated: 2024/11/12 16:01:55 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ static int	ft_numsize(unsigned int num)
 {
 	int	count;
 
-	count = 0;
-	while (num > 0)
+	count = (num == 0);
+	while (num != 0)
 	{
 		num /= 10;
 		count++;
@@ -39,6 +39,7 @@ int	ft_putunint_fd(unsigned int nb, int fd)
 		ft_putchar_fd(n + '0', fd);
 	return (ft_numsize(nb));
 }
+
 // #include <stdio.h>
 // int main()
 // {
