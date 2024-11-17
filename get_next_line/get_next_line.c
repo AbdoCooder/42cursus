@@ -6,78 +6,87 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 12:20:46 by abenajib          #+#    #+#             */
-/*   Updated: 2024/11/15 22:47:51 by abenajib         ###   ########.fr       */
+/*   Updated: 2024/11/17 15:34:26 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static char	*read_and_join(int fd, char **buffer, char *additional)
+static char	*lineset(char *line)
+{
+	char	*left;
+	ssize_t	i;
+
+	if (!line)
+		return (NULL);
+	i = 0;
+	while (line[i] != '\n' && line[i] != '\0')
+		i++;
+	if (line[i] == '\0')
+		return (NULL);
+	left = ft_substr(line, i + 1, ft_strlen(line) - i - 1);
+	if (!left)
+		return (NULL);
+	if (!(*left))
+	{
+		free(left);
+		left = NULL;
+	}
+	line[i + 1] = '\0';
+	return (left);
+}
+
+static char	*extract_line(int fd, char *staticbuffer, char *buffer)
 {
 	ssize_t	bytesread;
-	char	*temp;
+	char	*tmp;
 
-	bytesread = read(fd, additional, BUFFER_SIZE);
-	if (bytesread <= 0)
+	bytesread = 1;
+	while (bytesread > 0)
 	{
-		free(additional);
-		return (NULL);
+		bytesread = read(fd, buffer, BUFFER_SIZE);
+		if (bytesread == -1)
+		{
+			free(staticbuffer);
+			return (NULL);
+		}
+		else if (bytesread == 0)
+			break ;
+		buffer[bytesread] = '\0';
+		if (!staticbuffer)
+			staticbuffer = ft_strdup("");
+		tmp = staticbuffer;
+		staticbuffer = ft_strjoin(tmp, buffer);
+		free(tmp);
+		tmp = NULL;
+		if (ft_strchr(buffer, '\n'))
+			break ;
 	}
-	additional[bytesread] = '\0';
-	temp = *buffer;
-	*buffer = ft_strjoin(*buffer, additional);
-	free(temp);
-	return (*buffer);
-}
-
-static char	*process_line(char **buffer, ssize_t newline)
-{
-	char	*line;
-	char	*temp;
-
-	line = ft_substr(*buffer, 0, newline + 1);
-	temp = *buffer;
-	*buffer = ft_update_buffer(*buffer, newline);
-	free(temp);
-	return (line);
-}
-
-static char	*handle_eof_case(char **buffer, char *additional)
-{
-	char	*line;
-
-	free(additional);
-	if (*buffer && **buffer)
-	{
-		line = ft_strdup(*buffer);
-		free(*buffer);
-		*buffer = NULL;
-		return (line);
-	}
-	free(*buffer);
-	*buffer = NULL;
-	return (NULL);
+	return (staticbuffer);
 }
 
 char	*get_next_line(int fd)
 {
-	static char	*buffer;
-	char		*additional;
-	ssize_t		newline;
+	static char	*staticbuffer;
+	char		*line;
+	char		*buffer;
 
-	if (BUFFER_SIZE <= 0 || fd < 0)
-		return (NULL);
-	additional = malloc(BUFFER_SIZE + 1);
-	if (!additional)
-		return (NULL);
-	newline = ft_find_newline(buffer);
-	while (newline == -1)
+	buffer = (char *)malloc(BUFFER_SIZE + 1);
+	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 	{
-		buffer = read_and_join(fd, &buffer, additional);
-		if (!buffer)
-			return (handle_eof_case(&buffer, additional));
-		newline = ft_find_newline(buffer);
+		free(staticbuffer);
+		free(buffer);
+		staticbuffer = NULL;
+		buffer = NULL;
+		return (NULL);
 	}
-	free(additional);
-	return (process_line(&buffer, newline));
+	if (!buffer)
+		return (NULL);
+	line = extract_line(fd, staticbuffer, buffer);
+	free(buffer);
+	buffer = NULL;
+	if (!line)
+		return (NULL);
+	staticbuffer = lineset(line);
+	return (line);
 }

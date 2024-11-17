@@ -6,7 +6,7 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 12:36:02 by abenajib          #+#    #+#             */
-/*   Updated: 2024/11/15 22:46:10 by abenajib         ###   ########.fr       */
+/*   Updated: 2024/11/17 13:29:29 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,23 +35,6 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	}
 	substr[i] = '\0';
 	return (substr);
-}
-
-char	*ft_strchr(const char *s, int c)
-{
-	int	i;
-
-	i = 0;
-	while (s[i])
-	{
-		if ((char)c == s[i])
-			return ((char *)(s + i));
-		i++;
-	}
-	if ((char)c == '\0')
-		return ((char *)(s + i));
-	else
-		return (NULL);
 }
 
 char	*ft_strdup(const char *src)
@@ -112,4 +95,22 @@ size_t	ft_strlen(const char *s)
 	while (s[count])
 		count++;
 	return (count);
+}
+
+char	*ft_strchr(char *str, int c)
+{
+	unsigned int	i;
+	char			character;
+
+	character = (char) c;
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == character)
+			return ((char *) &str[i]);
+		i++;
+	}
+	if (str[i] == character)
+		return ((char *) &str[i]);
+	return (NULL);
 }
