@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 11:19:02 by abenajib          #+#    #+#             */
-/*   Updated: 2024/11/21 11:01:30 by abenajib         ###   ########.fr       */
+/*   Updated: 2024/11/21 10:46:01 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,6 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	i = 0;
 	if (len > s_len - start)
 		len = s_len - start;
-	if (len < 0)
-		return (NULL);
 	substr = malloc(len + 1);
 	if (!substr)
 		return (NULL);

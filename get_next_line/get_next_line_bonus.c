@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 11:18:30 by abenajib          #+#    #+#             */
-/*   Updated: 2024/11/21 11:16:59 by abenajib         ###   ########.fr       */
+/*   Updated: 2024/11/21 11:17:31 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,21 +55,21 @@ void	read_join(int fd, char **sbuff)
 
 char	*get_next_line(int fd)
 {
-	static char	*sbuff;
+	static char	*sbuff[10240];
 	char		*line;
 	char		*tmp2;
 	ssize_t		num;
 
 	if (fd < 0 || BUFFER_SIZE < 0 || read(fd, 0, 0) < 0)
-		return (free(sbuff), sbuff = NULL, NULL);
-	if (ft_strlen(sbuff, '\n') == -1)
-		read_join(fd, &sbuff);
-	line = ft_substr(sbuff, 0, ft_strlen2(sbuff, '\n') + 1);
+		return (free(sbuff[fd]), sbuff[fd] = NULL, NULL);
+	if (ft_strlen(sbuff[fd], '\n') == -1)
+		read_join(fd, &sbuff[fd]);
+	line = ft_substr(sbuff[fd], 0, ft_strlen2(sbuff[fd], '\n') + 1);
 	if (!line)
-		return (free(line), free(sbuff), sbuff = NULL, NULL);
-	tmp2 = sbuff;
-	num = ft_strlen2(sbuff, '\n') + 1;
-	sbuff = ft_substr(sbuff, num, ft_strlen2(sbuff, '\0'));
+		return (free(line), free(sbuff[fd]), sbuff[fd] = NULL, NULL);
+	tmp2 = sbuff[fd];
+	num = ft_strlen2(sbuff[fd], '\n') + 1;
+	sbuff[fd] = ft_substr(sbuff[fd], num, ft_strlen2(sbuff[fd], '\0'));
 	free(tmp2);
 	return (line);
 }
@@ -79,15 +79,13 @@ char	*get_next_line(int fd)
 // 	int fd = open("file.txt", O_RDWR);
 // 	if (fd < 0)
 // 		exit(1);
-// 	int i= 0;
-// 	char *str;
-// 	while (i < 10)
-// 	{
-// 		str = get_next_line(fd);
-// 		printf("->%s", str);
-// 		free(str);
-// 		i++;
-// 	}
+// 	int fd2 = open("file2.txt", O_RDWR);
+// 	if (fd2 < 0)
+// 		exit(1);
+// 	printf("fd1: %s",get_next_line(fd));
+// 	printf("fd2: %s",get_next_line(fd2));
+
 // 	close(fd);
+// 	close(fd2);
 // 	return (0);
 // }
