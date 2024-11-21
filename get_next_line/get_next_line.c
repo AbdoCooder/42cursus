@@ -5,88 +5,87 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/14 12:20:46 by abenajib          #+#    #+#             */
-/*   Updated: 2024/11/17 15:34:26 by abenajib         ###   ########.fr       */
+/*   Created: 2024/11/19 11:18:30 by abenajib          #+#    #+#             */
+/*   Updated: 2024/11/21 10:43:54 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static char	*lineset(char *line)
+void	readstatic(ssize_t *bytesread, int fd, char **tmp, char **sbuff)
 {
-	char	*left;
-	ssize_t	i;
-
-	if (!line)
-		return (NULL);
-	i = 0;
-	while (line[i] != '\n' && line[i] != '\0')
-		i++;
-	if (line[i] == '\0')
-		return (NULL);
-	left = ft_substr(line, i + 1, ft_strlen(line) - i - 1);
-	if (!left)
-		return (NULL);
-	if (!(*left))
+	*bytesread = read(fd, *tmp, BUFFER_SIZE);
+	if (*bytesread <= 0)
 	{
-		free(left);
-		left = NULL;
+		free(*tmp);
+		if (*bytesread == 0)
+			return ;
+		free(*sbuff);
+		*sbuff = NULL;
+		return ;
 	}
-	line[i + 1] = '\0';
-	return (left);
 }
 
-static char	*extract_line(int fd, char *staticbuffer, char *buffer)
+void	read_join(int fd, char **sbuff)
 {
-	ssize_t	bytesread;
 	char	*tmp;
+	char	*tmp2;
+	ssize_t	bytesread;
 
-	bytesread = 1;
-	while (bytesread > 0)
+	tmp = malloc(BUFFER_SIZE + 1);
+	if (!tmp)
 	{
-		bytesread = read(fd, buffer, BUFFER_SIZE);
-		if (bytesread == -1)
-		{
-			free(staticbuffer);
-			return (NULL);
-		}
-		else if (bytesread == 0)
-			break ;
-		buffer[bytesread] = '\0';
-		if (!staticbuffer)
-			staticbuffer = ft_strdup("");
-		tmp = staticbuffer;
-		staticbuffer = ft_strjoin(tmp, buffer);
-		free(tmp);
-		tmp = NULL;
-		if (ft_strchr(buffer, '\n'))
-			break ;
+		free(*sbuff);
+		*sbuff = NULL;
+		return ;
 	}
-	return (staticbuffer);
+	bytesread = 1;
+	while (bytesread > 0 && ft_strlen(*sbuff, '\n') == -1)
+	{
+		readstatic(&bytesread, fd, &tmp, sbuff);
+		if (bytesread <= 0)
+			return ;
+		tmp[bytesread] = '\0';
+		tmp2 = *sbuff;
+		*sbuff = ft_strjoin(*sbuff, tmp);
+		free(tmp2);
+	}
+	free(tmp);
 }
 
 char	*get_next_line(int fd)
 {
-	static char	*staticbuffer;
+	static char	*sbuff;
 	char		*line;
-	char		*buffer;
+	char		*tmp2;
+	ssize_t		num;
 
-	buffer = (char *)malloc(BUFFER_SIZE + 1);
-	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
-	{
-		free(staticbuffer);
-		free(buffer);
-		staticbuffer = NULL;
-		buffer = NULL;
-		return (NULL);
-	}
-	if (!buffer)
-		return (NULL);
-	line = extract_line(fd, staticbuffer, buffer);
-	free(buffer);
-	buffer = NULL;
-	if (!line)
-		return (NULL);
-	staticbuffer = lineset(line);
+	if (fd < 0 || BUFFER_SIZE < 0 || read(fd, 0, 0) < 0)
+		return (free(sbuff), sbuff = NULL, NULL);
+	if (ft_strlen(sbuff, '\n') == -1)
+		read_join(fd, &sbuff);
+	line = ft_substr(sbuff, 0, ft_strlen2(sbuff, '\n') + 1);
+	tmp2 = sbuff;
+	num = ft_strlen2(sbuff, '\n') + 1;
+	sbuff = ft_substr(sbuff, num, ft_strlen2(sbuff, '\0'));
+	free(tmp2);
 	return (line);
 }
+// #include <stdio.h>
+// int	main(void)
+// {
+// 	int fd = open("file.txt", O_RDWR);
+// 	if (fd < 0)
+// 		exit(1);
+// 	int i= 0;
+// 	char *str;
+// 	while (i < 10)
+// 	{
+// 		str = get_next_line(fd);
+// 		printf("->%s", str);
+// 		free(str);
+// 		i++;
+// 	}
+// 	close(fd);
+// 	return (0);
+// }
