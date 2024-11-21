@@ -6,7 +6,7 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 13:15:44 by abenajib          #+#    #+#             */
-/*   Updated: 2024/11/19 22:24:24 by abenajib         ###   ########.fr       */
+/*   Updated: 2024/11/21 12:16:00 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	ft_printf(const char *str, ...)
 		return (-1);
 	while (*str)
 	{
-		if (*str == '%')
+		if (*str == '%' && *(str + 1))
 		{
 			counter += ft_format(args, *(str + 1));
 			str++;
