@@ -6,11 +6,11 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 11:18:30 by abenajib          #+#    #+#             */
-/*   Updated: 2024/11/21 18:22:44 by abenajib         ###   ########.fr       */
+/*   Updated: 2024/11/21 18:53:03 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line_bonus.h"
+#include "get_next_line.h"
 
 void	readstatic(ssize_t *bytesread, int fd, char **tmp, char **sbuff)
 {

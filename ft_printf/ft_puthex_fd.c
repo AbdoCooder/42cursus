@@ -6,7 +6,7 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 15:32:13 by abenajib          #+#    #+#             */
-/*   Updated: 2024/11/12 15:34:18 by abenajib         ###   ########.fr       */
+/*   Updated: 2024/11/23 11:29:16 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,3 @@ int	ft_puthex(unsigned long long num, char c)
 		len += ft_putchar_fd(hex_upp[num % 16], 1);
 	return (len);
 }
-
-// #include <stdio.h>
-// int main()
-// {
-// 	ft_puthex(42, 'p');
-// 	return 0;
-// }
