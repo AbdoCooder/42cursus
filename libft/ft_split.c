@@ -6,11 +6,11 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 20:49:38 by abenajib          #+#    #+#             */
-/*   Updated: 2024/11/01 21:11:00 by abenajib         ###   ########.fr       */
+/*   Updated: 2024/12/21 11:15:15 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
 static size_t	countwords(const char *s, char c)
 {

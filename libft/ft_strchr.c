@@ -6,11 +6,11 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 09:19:48 by abenajib          #+#    #+#             */
-/*   Updated: 2024/10/26 11:00:16 by abenajib         ###   ########.fr       */
+/*   Updated: 2024/12/21 11:15:15 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
 char	*ft_strchr(const char *s, int c)
 {

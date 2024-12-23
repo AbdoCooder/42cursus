@@ -6,11 +6,11 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 13:44:53 by abenajib          #+#    #+#             */
-/*   Updated: 2024/10/29 22:03:46 by abenajib         ###   ########.fr       */
+/*   Updated: 2024/12/21 11:15:15 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {

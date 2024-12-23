@@ -6,11 +6,11 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 17:31:26 by abenajib          #+#    #+#             */
-/*   Updated: 2024/11/03 22:18:20 by abenajib         ###   ########.fr       */
+/*   Updated: 2024/12/21 11:15:15 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
