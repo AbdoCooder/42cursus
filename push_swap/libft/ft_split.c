@@ -6,13 +6,13 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 20:49:38 by abenajib          #+#    #+#             */
-/*   Updated: 2024/12/21 11:43:43 by abenajib         ###   ########.fr       */
+/*   Updated: 2024/12/23 13:57:05 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-static size_t	countwords(const char *s, char c)
+static size_t	countwords(const char *s, char *c)
 {
 	size_t	i;
 	size_t	count;
@@ -21,7 +21,7 @@ static size_t	countwords(const char *s, char c)
 	count = 0;
 	while (s[i])
 	{
-		if (s[i] != c && (i == 0 || s[i - 1] == c))
+		if (ft_strchr(c, s[i]) == NULL && (i == 0 || ft_strchr(c, s[i - 1]) != NULL))
 			count++;
 		i++;
 	}
@@ -36,7 +36,7 @@ static char	**freeall(char **p, size_t x)
 	return (NULL);
 }
 
-static char	**copywords(char **p, const char *s, char c)
+static char	**copywords(char **p, const char *s, char *c)
 {
 	size_t	i;
 	size_t	start;
@@ -46,10 +46,10 @@ static char	**copywords(char **p, const char *s, char c)
 	x = 0;
 	while (s[i] && x < countwords (s, c))
 	{
-		while (s[i] == c)
+		while (ft_strchr(c, s[i]) != NULL)
 			i++;
 		start = i;
-		while (s[i] && s[i] != c)
+		while (s[i] && ft_strchr(c, s[i]) == NULL)
 			i++;
 		p[x++] = ft_substr(s, start, i - start);
 		if (!p[x - 1])
@@ -59,7 +59,7 @@ static char	**copywords(char **p, const char *s, char c)
 	return (p);
 }
 
-char	**ft_split(const char *s, char c)
+char	**ft_split(const char *s, char *c)
 {
 	size_t	count;
 	char	**p;

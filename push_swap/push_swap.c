@@ -6,7 +6,7 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 10:44:19 by abenajib          #+#    #+#             */
-/*   Updated: 2024/12/23 13:38:16 by abenajib         ###   ########.fr       */
+/*   Updated: 2024/12/23 14:54:51 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,19 +38,44 @@ void ft_print_stacks(t_list *stack_a, t_list *stack_b)
 	}
 }
 
+int	check_args_valid(int argc, char **argv)
+{
+	int i;
+	int j;
+
+	i = 0;
+	j = 0;
+	while (i < argc)
+	{
+		while (argv[i][j])
+		{
+			if(!ft_isdigit(argv[i][j]))
+				return (-1);
+			j++;
+		}
+		i++;
+	}
+	return (0);
+}
+
 int	main(int argc, char* argv[])
 {
 	t_list	*stack_a;
 	t_list	*stack_b;
+	char	**split;
 	int		len;
 
-	len = 0;
 	stack_a = NULL;
 	stack_b = NULL;
-	char **split;
+	if(check_args_valid(argc, argv) == -1)
+	{
+		write(2, "ERROR\n", 6);
+		return (-1);
+	}
 	if (argc == 2)
 	{
-		split = ft_split(*argv, ' ');
+		len = 0;
+		split = ft_split(*(argv + 1), " \t");
 		while (split[len] != NULL)
 		{
 			int *new = malloc(4);
@@ -70,22 +95,6 @@ int	main(int argc, char* argv[])
 			len++;
 		}
 	}
-
-	// sa(&stack_a);
-	// sb(&stack_b);
-	// ss(&stack_a, &stack_b);
-
-	//pa(&stack_a, &stack_b);
-	//pb(&stack_a, &stack_b);
-
-	// ra(&stack_a);
-	// rb(&stack_b);
-	// rr(&stack_a, &stack_b);
-
-	// rra(&stack_a);
-	// rrb(&stack_b);
-	// rrr(&stack_a, &stack_b);
-
 	ft_print_stacks(stack_a, stack_b);
 	return (0);
 }
