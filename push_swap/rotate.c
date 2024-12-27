@@ -6,7 +6,7 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 10:18:31 by abenajib          #+#    #+#             */
-/*   Updated: 2024/12/23 12:14:55 by abenajib         ###   ########.fr       */
+/*   Updated: 2024/12/27 18:23:04 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	rotate(t_list **stack)
 		return ;
 	ptr = *stack;
 	tmp = ptr->next;
-	while(tmp != NULL && tmp->next != NULL && ptr != NULL)
+	while (tmp != NULL && tmp->next != NULL && ptr != NULL)
 	{
 		ptr = ptr->next;
 		tmp = tmp->next;
@@ -30,6 +30,7 @@ static void	rotate(t_list **stack)
 	ptr->next = NULL;
 	*stack = tmp;
 }
+
 void	ra(t_list **stack)
 {
 	rotate(stack);
@@ -41,6 +42,7 @@ void	rb(t_list **stack)
 	rotate(stack);
 	ft_printf("rb\n");
 }
+
 void	rr(t_list **stack_a, t_list **stack_b)
 {
 	rotate(stack_a);

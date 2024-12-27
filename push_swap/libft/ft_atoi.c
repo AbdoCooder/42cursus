@@ -6,7 +6,7 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 20:04:35 by abenajib          #+#    #+#             */
-/*   Updated: 2024/12/23 18:36:39 by abenajib         ###   ########.fr       */
+/*   Updated: 2024/12/27 18:21:16 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 long long	ft_atoi(const char *str)
 {
-	int					sign;
+	int			sign;
 	long long	result;
 
 	sign = 1;

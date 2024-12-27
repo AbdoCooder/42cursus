@@ -6,7 +6,7 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 13:53:47 by abenajib          #+#    #+#             */
-/*   Updated: 2024/12/23 11:49:58 by abenajib         ###   ########.fr       */
+/*   Updated: 2024/12/27 18:27:09 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ static void	push(t_list **stack_a, t_list **stack_b)
 	tmp = *stack_a;
 	*stack_a = (*stack_a)->next;
 	ft_lstadd_front(&(*stack_b), tmp);
-
 }
 
 void	pa(t_list **stack_a, t_list **stack_b)
