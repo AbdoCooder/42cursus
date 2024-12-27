@@ -6,7 +6,7 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 10:51:21 by abenajib          #+#    #+#             */
-/*   Updated: 2024/12/27 18:39:01 by abenajib         ###   ########.fr       */
+/*   Updated: 2024/12/27 21:28:36 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <limits.h>
-# include <unistd.h>
 
 int			ft_isalpha(int c);
 int			ft_isdigit(int c);
@@ -58,6 +57,7 @@ typedef struct s_list
 {
 	void			*content;
 	struct s_list	*next;
+	struct s_list	*target;
 }	t_list;
 t_list		*ft_lstnew(void *content);
 void		ft_lstadd_front(t_list **lst, t_list *new);
@@ -91,4 +91,5 @@ void		rrr(t_list **stack_a, t_list **stack_b);
 int			ft_check_args_valid(int argc, char **argv);
 int			ft_isduplicated(t_list **stack, long long new);
 int			ft_error(void);
+void		ft_sort_three(t_list **stack);
 #endif //PUSH_SWAP_H
