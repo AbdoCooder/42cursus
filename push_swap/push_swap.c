@@ -6,7 +6,7 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 10:44:19 by abenajib          #+#    #+#             */
-/*   Updated: 2024/12/23 14:54:51 by abenajib         ###   ########.fr       */
+/*   Updated: 2024/12/23 18:04:36 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,22 +38,38 @@ void ft_print_stacks(t_list *stack_a, t_list *stack_b)
 	}
 }
 
-int	check_args_valid(int argc, char **argv)
-{
-	int i;
-	int j;
 
-	i = 0;
-	j = 0;
+int ft_check_args_valid(int argc, char **argv)
+{
+	int	i;
+	int	j;
+
+	i = 1;
 	while (i < argc)
 	{
+		j = 0;
 		while (argv[i][j])
 		{
-			if(!ft_isdigit(argv[i][j]))
-				return (-1);
+			if (!ft_isdigit(argv[i][j]) && !(argv[i][j] == '-' || argv[i][j] == '+' || argv[i][j] == ' ' || argv[i][j] == '\t'))
+				return (1);
 			j++;
 		}
 		i++;
+	}
+	return (0);
+}
+int	ft_isduplicated(t_list **stack, long long new)
+{
+	t_list *ptr;
+
+	ptr = *stack;
+	if (new > INT_MAX || new < INT_MIN)
+		return (1);
+	while (ptr)
+	{
+		if (*(long long *)ptr->content == new)
+			return (1);
+		ptr = ptr->next;
 	}
 	return (0);
 }
@@ -64,37 +80,37 @@ int	main(int argc, char* argv[])
 	t_list	*stack_b;
 	char	**split;
 	int		len;
+	int		i;
+	long long		*new;
 
+	i = 1;
 	stack_a = NULL;
 	stack_b = NULL;
-	if(check_args_valid(argc, argv) == -1)
+	if (argc == 1 || (argc == 2 && argv[1][0]=='\0'))
+		return (1);
+	if(ft_check_args_valid(argc, argv) == 1)
 	{
 		write(2, "ERROR\n", 6);
-		return (-1);
+		return (1);
 	}
-	if (argc == 2)
+	while (argv[i])
 	{
 		len = 0;
-		split = ft_split(*(argv + 1), " \t");
-		while (split[len] != NULL)
+		split = ft_split(*(argv + i), " \t");
+
+		while(split[len])
 		{
-			int *new = malloc(4);
+			new = malloc(sizeof(long long));
 			*new = ft_atoi(split[len]);
+			if(ft_isduplicated(&stack_a, *new) == 1)
+				return (ft_lstclear(&stack_a, free), free(split), write(2, "ERROR\n", 6), 1);
 			ft_lstadd_back(&stack_a, ft_lstnew(new));
 			len++;
 		}
+		free(split);
+		i++;
 	}
-	else
-	{
-		len = 1;
-		while (len < argc)
-		{
-			int *new = malloc(4);
-			*new = ft_atoi(argv[len]);
-			ft_lstadd_back(&stack_a, ft_lstnew(new));
-			len++;
-		}
-	}
+
 	ft_print_stacks(stack_a, stack_b);
 	return (0);
 }

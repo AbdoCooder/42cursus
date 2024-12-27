@@ -6,7 +6,7 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 10:51:21 by abenajib          #+#    #+#             */
-/*   Updated: 2024/12/23 13:57:42 by abenajib         ###   ########.fr       */
+/*   Updated: 2024/12/23 18:05:28 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+#include <limits.h>
 
 int		ft_isalpha(int c);
 int		ft_isdigit(int c);
@@ -27,7 +28,7 @@ void	ft_bzero(void *s, size_t n);
 void	*ft_memcpy(void *dst, const void *src, size_t n);
 int		ft_toupper(int c);
 int		ft_tolower(int c);
-int		ft_atoi(const char *str);
+long long		ft_atoi(const char *str);
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
 char	*ft_strdup(const char *s1);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);

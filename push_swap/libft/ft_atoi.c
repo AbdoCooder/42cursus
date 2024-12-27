@@ -6,16 +6,16 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 20:04:35 by abenajib          #+#    #+#             */
-/*   Updated: 2024/12/21 11:43:43 by abenajib         ###   ########.fr       */
+/*   Updated: 2024/12/23 18:36:39 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-int	ft_atoi(const char *str)
+long long	ft_atoi(const char *str)
 {
 	int					sign;
-	unsigned long long	result;
+	long long	result;
 
 	sign = 1;
 	result = 0;
@@ -31,22 +31,6 @@ int	ft_atoi(const char *str)
 	{
 		result = result * 10 + (*str - '0');
 		str++;
-		if (sign == 1 && result > (9223372036854775807))
-			return (-1);
-		else if (sign == -1 && result > (9223372036854775807))
-			return (0);
 	}
-	return ((int)(result * sign));
+	return (result * sign);
 }
-// #include <stdio.h>
-// #include <xlocale.h>
-// int main()
-// {
-// 	char s[] = "2233720368547758085555555555";
-// 	int a = ft_atoi(s);
-// 	int at = atoi(s);
-// 	if (a == at)
-// 		printf("test pass");
-// 	else
-// 		printf("atoi:%d\nft_atoi:%d\n", at, a);
-// }
