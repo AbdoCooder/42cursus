@@ -6,7 +6,7 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 18:36:19 by abenajib          #+#    #+#             */
-/*   Updated: 2024/12/28 10:26:48 by abenajib         ###   ########.fr       */
+/*   Updated: 2024/12/28 10:56:07 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,10 @@ int	ft_isduplicated(t_list **stack, long long new)
 	return (0);
 }
 
-void	ft_error(void)
+void	ft_error(char *str)
 {
 	write(2, "ERROR\n", 6);
+	if (str)
+		ft_printf("%s\n", str);
 	exit (1);
 }
