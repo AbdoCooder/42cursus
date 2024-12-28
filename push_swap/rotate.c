@@ -6,7 +6,7 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 10:18:31 by abenajib          #+#    #+#             */
-/*   Updated: 2024/12/27 22:50:07 by abenajib         ###   ########.fr       */
+/*   Updated: 2024/12/28 10:45:01 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,18 @@
 
 static void	rotate(t_list **stack)
 {
-	t_list	*ptr;
+	t_list	*head;
 	t_list	*tmp;
 
-	if (*stack == NULL || ft_lstsize(*stack) <= 1)
+	if (!stack || ft_lstsize(*stack) <= 1)
 		return ;
-	ptr = *stack;
-	tmp = ptr->next;
-	while (tmp != NULL && tmp->next != NULL && ptr != NULL)
-	{
-		ptr = ptr->next;
+	head = *stack;
+	tmp = *stack;
+	while (tmp->next)
 		tmp = tmp->next;
-	}
-	tmp->next = *stack;
-	ptr->next = NULL;
-	*stack = tmp;
+	*stack = head->next;
+	head->next = NULL;
+	tmp->next = head;
 }
 
 void	ra(t_list **stack)

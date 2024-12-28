@@ -6,7 +6,7 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 10:51:21 by abenajib          #+#    #+#             */
-/*   Updated: 2024/12/27 21:28:36 by abenajib         ###   ########.fr       */
+/*   Updated: 2024/12/28 10:27:53 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,6 @@ void		rrr(t_list **stack_a, t_list **stack_b);
 //helpers
 int			ft_check_args_valid(int argc, char **argv);
 int			ft_isduplicated(t_list **stack, long long new);
-int			ft_error(void);
+void		ft_error(void);
 void		ft_sort_three(t_list **stack);
 #endif //PUSH_SWAP_H

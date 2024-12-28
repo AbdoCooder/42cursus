@@ -6,7 +6,7 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 21:17:13 by abenajib          #+#    #+#             */
-/*   Updated: 2024/12/27 22:51:06 by abenajib         ###   ########.fr       */
+/*   Updated: 2024/12/28 10:36:11 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,30 +56,21 @@ int	ft_sorted(t_list *a)
 
 void	ft_sort_three(t_list **stack)
 {
-	if (ft_lstsize(*stack) != 3)
-		return (write(2, "Stack size not 3 !!\n", 20), exit(1));
-	if (!ft_sorted(*stack))
-	{
-		if((*(int *)(*stack)->content) == ft_max(*stack))
-		{
-			ra(stack);
-			if (!ft_sorted(*stack))
-				sa(stack);
-		}
-		else if ((*(int *)(*stack)->content) == ft_min(*stack))
-		{
-			rra(stack);
-			sa(stack);
-		}
-		else
-		{
-			sa(stack);
-			if (!ft_sorted(*stack))
-			{
-				rra(stack);
-				sa(stack);
-				ra(stack);
-			}
-		}
-	}
+	int	a;
+	int	b;
+	int	c;
+
+	a = *(int *)(*stack)->content;
+	b = *(int *)(*stack)->next->content;
+	c = *(int *)(*stack)->next->next->content;
+	if (a > b && b < c && a < c)
+		sa(stack);
+	else if (a > b && b > c)
+		(sa(stack), rra(stack));
+	else if (a > b && b < c && a > c)
+		ra(stack);
+	else if (a < b && b > c && a < c)
+		(sa(stack), ra(stack));
+	else if (a < b && b > c && a > c)
+		rra(stack);
 }

@@ -6,7 +6,7 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 10:44:19 by abenajib          #+#    #+#             */
-/*   Updated: 2024/12/27 22:27:10 by abenajib         ###   ########.fr       */
+/*   Updated: 2024/12/28 10:27:28 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	ft_create_stack(char **argv[], t_list **stack_a, int i, int len)
 		new = malloc(sizeof(long long));
 		*new = ft_atoi(split[len]);
 		if (ft_isduplicated(stack_a, *new) == 1)
-			return (ft_lstclear(stack_a, free), free(split), ft_error());
+			return (ft_lstclear(stack_a, free), free(split), ft_error(), 1);
 		ft_lstadd_back(stack_a, ft_lstnew(new));
 		len++;
 	}
@@ -72,13 +72,13 @@ int	main(int argc, char *argv[])
 	if (argc == 1 || (argc == 2 && argv[1][0] == '\0'))
 		return (1);
 	if (ft_check_args_valid(argc, argv) == 1)
-		return (ft_error());
+		return (ft_error(), 1);
 	while (argv[i])
 	{
 		len = 0;
 		check = ft_create_stack(&argv, &stack_a, i, len);
 		if (check == 1)
-			return (ft_error());
+			return (ft_error(), 1);
 		i++;
 	}
 
