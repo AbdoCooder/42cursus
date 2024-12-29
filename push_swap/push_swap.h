@@ -6,7 +6,7 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 10:51:21 by abenajib          #+#    #+#             */
-/*   Updated: 2024/12/28 11:55:35 by abenajib         ###   ########.fr       */
+/*   Updated: 2024/12/29 17:43:06 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void		ft_putnbr_fd(int n, int fd);
 typedef struct s_list
 {
 	void			*content;
+	int				cost;
 	struct s_list	*next;
 	struct s_list	*target;
 }	t_list;

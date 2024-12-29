@@ -6,7 +6,7 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 10:44:19 by abenajib          #+#    #+#             */
-/*   Updated: 2024/12/28 13:43:12 by abenajib         ###   ########.fr       */
+/*   Updated: 2024/12/29 17:48:03 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,5 +82,7 @@ int	main(int argc, char *argv[])
 	}
 	ft_sort_stack(&stack_a, &stack_b);
 	ft_print_stacks(stack_a, stack_b);
+	ft_lstclear(&stack_a, free);
+	ft_lstclear(&stack_b, free);
 	return (0);
 }
