@@ -6,7 +6,7 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 10:51:21 by abenajib          #+#    #+#             */
-/*   Updated: 2024/12/29 17:43:06 by abenajib         ###   ########.fr       */
+/*   Updated: 2024/12/31 20:15:33 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <limits.h>
+# include <stdbool.h>
 
 int			ft_isalpha(int c);
 int			ft_isdigit(int c);
@@ -57,6 +58,8 @@ typedef struct s_list
 {
 	void			*content;
 	int				cost;
+	int				index;
+	bool			upper;
 	struct s_list	*next;
 	struct s_list	*target;
 }	t_list;
@@ -97,5 +100,6 @@ void		ft_sort_two(t_list **stack);
 void		ft_sort_stack(t_list **stack_a, t_list **stack_b);
 int			ft_max(t_list *a);
 int			ft_min(t_list *a);
-int			ft_sorted(t_list *a);
+int			ft_sum(t_list *stack);
+// int			ft_sorted(t_list *a);
 #endif //PUSH_SWAP_H
