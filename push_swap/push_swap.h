@@ -6,7 +6,7 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 10:51:21 by abenajib          #+#    #+#             */
-/*   Updated: 2025/01/04 16:27:33 by abenajib         ###   ########.fr       */
+/*   Updated: 2025/01/04 16:50:09 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,4 +102,14 @@ int			ft_max(t_list *a);
 int			ft_min(t_list *a);
 int			ft_sum(t_list *stack);
 bool		stack_sorted(t_list *stack);
+void		ft_min_on_top(t_list **a);
+//finders
+t_list		*ft_find_node(int number, t_list *stack);
+void		ft_find_target_in_b(t_list **ptr, t_list **stack_b);
+void		ft_find_target_in_a(t_list **ptr, t_list **stack_a);
+t_list		*ft_find_cheapest(t_list **stack);
+//setters
+void		ft_set_indexs(t_list **stack_a, t_list **stack_b);
+void		ft_set_costs(t_list **stack_a, t_list **stack_b);
+void		ft_set_upper(t_list **stack);
 #endif //PUSH_SWAP_H

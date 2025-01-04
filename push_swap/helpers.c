@@ -6,24 +6,11 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 10:50:31 by abenajib          #+#    #+#             */
-/*   Updated: 2025/01/04 16:27:16 by abenajib         ###   ########.fr       */
+/*   Updated: 2025/01/04 16:49:54 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-bool	stack_sorted(t_list *stack)
-{
-	if (!stack)
-		return (1);
-	while (stack->next)
-	{
-		if (*(int *)stack->content > *(int *)stack->next->content)
-			return (false);
-		stack = stack->next;
-	}
-	return (true);
-}
 
 int	ft_min(t_list *a)
 {
@@ -56,6 +43,7 @@ int	ft_max(t_list *a)
 	}
 	return (i);
 }
+
 int	ft_sum(t_list *stack)
 {
 	int		sum;
@@ -71,4 +59,15 @@ int	ft_sum(t_list *stack)
 		current = current->next;
 	}
 	return (sum);
+}
+
+void	ft_min_on_top(t_list **a)
+{
+	while (*(int *)(*a)->content != *(int *)(ft_find_node(ft_min(*a), *a)->content))
+	{
+		if (ft_find_node(ft_min(*a), *a)->upper == true)
+			ra(a);
+		else
+			rra(a);
+	}
 }
