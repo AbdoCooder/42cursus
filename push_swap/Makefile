@@ -1,7 +1,7 @@
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 SRCS=	push_swap.c push.c swap.c rotate.c reverse_rotate.c ft_validate.c ft_sort_three.c \
-		ft_sort_stack.c helpers.c \
+		ft_sort_stack.c helpers.c finders.c setters.c \
 		./libft/ft_isalpha.c ./libft/ft_isdigit.c ./libft/ft_isalnum.c ./libft/ft_isascii.c \
 		./libft/ft_isprint.c ./libft/ft_strlen.c ./libft/ft_memset.c ./libft/ft_bzero.c \
 		./libft/ft_memcpy.c ./libft/ft_memmove.c ./libft/ft_strlcpy.c ./libft/ft_strlcat.c \
