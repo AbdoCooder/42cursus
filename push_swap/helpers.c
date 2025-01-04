@@ -6,7 +6,7 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 10:50:31 by abenajib          #+#    #+#             */
-/*   Updated: 2025/01/04 16:49:54 by abenajib         ###   ########.fr       */
+/*   Updated: 2025/01/04 16:53:22 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,8 @@ int	ft_sum(t_list *stack)
 
 void	ft_min_on_top(t_list **a)
 {
-	while (*(int *)(*a)->content != *(int *)(ft_find_node(ft_min(*a), *a)->content))
+	while (*(int *)(*a)->content
+		!= *(int *)(ft_find_node(ft_min(*a), *a)->content))
 	{
 		if (ft_find_node(ft_min(*a), *a)->upper == true)
 			ra(a);

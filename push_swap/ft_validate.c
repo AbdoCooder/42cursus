@@ -6,7 +6,7 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 18:36:19 by abenajib          #+#    #+#             */
-/*   Updated: 2025/01/04 16:44:51 by abenajib         ###   ########.fr       */
+/*   Updated: 2025/01/04 16:53:40 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ void	ft_error(char *str)
 		ft_printf("%s\n", str);
 	exit (1);
 }
+
 bool	stack_sorted(t_list *stack)
 {
 	if (!stack)

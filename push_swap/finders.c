@@ -6,7 +6,7 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 16:45:32 by abenajib          #+#    #+#             */
-/*   Updated: 2025/01/04 16:48:59 by abenajib         ###   ########.fr       */
+/*   Updated: 2025/01/04 16:54:59 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,10 @@ void	ft_find_target_in_b(t_list **ptr, t_list **stack_b)
 
 void	ft_find_target_in_a(t_list **ptr, t_list **stack_a)
 {
-	t_list *node;
-	t_list *closest_bigger = NULL;
+	t_list	*node;
+	t_list	*closest_bigger;
 
+	closest_bigger = NULL;
 	node = *stack_a;
 	while (node)
 	{

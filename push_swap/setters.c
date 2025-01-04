@@ -6,7 +6,7 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 16:47:32 by abenajib          #+#    #+#             */
-/*   Updated: 2025/01/04 16:48:55 by abenajib         ###   ########.fr       */
+/*   Updated: 2025/01/04 16:52:34 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_set_indexs(t_list **stack_a, t_list **stack_b)
 {
-	int	i;
+	int		i;
 	t_list	*ptr;
 
 	i = 0;
@@ -40,10 +40,10 @@ void	ft_set_costs(t_list **stack_a, t_list **stack_b)
 	t_list	*ptr;
 	int		middle;
 
-	ft_set_indexs(stack_a, stack_b);//refresh the indexs to it correct values
+	ft_set_indexs(stack_a, stack_b);
 	middle = ft_lstsize(*stack_a) / 2;
 	ptr = *stack_a;
-	while (ptr)//loop on a and set cost for each node
+	while (ptr)
 	{
 		if (ptr->index <= middle)
 			ptr->cost = ptr->index;
@@ -53,7 +53,7 @@ void	ft_set_costs(t_list **stack_a, t_list **stack_b)
 	}
 	ptr = *stack_b;
 	middle = ft_sum(*stack_b) / ft_lstsize(*stack_b);
-	while (ptr)//loop on b and set cost for each node
+	while (ptr)
 	{
 		if (ptr->index <= middle)
 			ptr->cost = ptr->index;
@@ -72,7 +72,7 @@ void	ft_set_upper(t_list **stack)
 		return ;
 	middle = ft_lstsize(*stack) / 2;
 	ptr = *stack;
-	while (ptr)//loop on stack and set upper true for each node above the median
+	while (ptr)
 	{
 		if (ptr->index <= middle)
 			ptr->upper = true;
