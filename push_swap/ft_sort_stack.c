@@ -6,7 +6,7 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 11:00:30 by abenajib          #+#    #+#             */
-/*   Updated: 2025/01/02 17:44:52 by abenajib         ###   ########.fr       */
+/*   Updated: 2025/01/04 16:28:45 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -210,6 +210,17 @@ void ft_print_info(t_list *stack_a, t_list *stack_b)
 	}
 }
 
+void	ft_min_on_top(t_list **a)
+{
+	while (*(int *)(*a)->content != *(int *)(ft_find_node(ft_min(*a), *a)->content))
+	{
+		if (ft_find_node(ft_min(*a), *a)->upper == true)
+			ra(a);
+		else
+			rra(a);
+	}
+}
+
 void	ft_sort_stack(t_list **stack_a, t_list **stack_b)
 {
 	int		counter;
@@ -247,6 +258,8 @@ void	ft_sort_stack(t_list **stack_a, t_list **stack_b)
 			ft_set_costs(stack_a, stack_b);
 			ft_move_cheapest_to_a(stack_a, stack_b);
 		}
+		ft_set_indexs(stack_a, stack_b);
+		ft_min_on_top(stack_a);
 	}
 }
 //ft_printf("index: %d | [%d] --> [%d] | cost : %d | upper? %s\n", (*stack_a)->index, *(int *)(*stack_a)->content, *(int *)((*stack_a)->target)->content, (*stack_a)->cost, (*stack_a)->upper ? "yes" : "no");

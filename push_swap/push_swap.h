@@ -6,7 +6,7 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 10:51:21 by abenajib          #+#    #+#             */
-/*   Updated: 2024/12/31 20:15:33 by abenajib         ###   ########.fr       */
+/*   Updated: 2025/01/04 16:27:33 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,5 +101,5 @@ void		ft_sort_stack(t_list **stack_a, t_list **stack_b);
 int			ft_max(t_list *a);
 int			ft_min(t_list *a);
 int			ft_sum(t_list *stack);
-// int			ft_sorted(t_list *a);
+bool		stack_sorted(t_list *stack);
 #endif //PUSH_SWAP_H
