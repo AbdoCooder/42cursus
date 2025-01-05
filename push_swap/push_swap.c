@@ -81,8 +81,8 @@ int	main(int argc, char *argv[])
 		i++;
 	}
 	ft_sort_stack(&stack_a, &stack_b);
+	ft_print_stacks(stack_a, stack_b);
 	ft_lstclear(&stack_a, free);
 	ft_lstclear(&stack_b, free);
 	return (0);
 }
-// ft_print_stacks(stack_a, stack_b);
