@@ -24,7 +24,7 @@ int	ft_putstr_fd_p(char *s, int fd)
 	len = 0;
 	while (*s)
 	{
-		ft_putchar_fd(*s, fd);
+		ft_putchar_fd_p(*s, fd);
 		s++;
 		len++;
 	}
