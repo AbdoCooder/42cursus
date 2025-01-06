@@ -6,7 +6,7 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 11:00:30 by abenajib          #+#    #+#             */
-/*   Updated: 2025/01/06 21:45:14 by abenajib         ###   ########.fr       */
+/*   Updated: 2025/01/06 22:23:04 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,13 +79,13 @@ void	ft_prepare(t_list **stack_a, t_list **stack_b)
 	ft_set_targets(stack_a, stack_b);
 }
 
-void	ft_optimization(t_list **stack_a, t_list **stack_b, t_list	*cheapest)
+void	ft_optimization(t_list **stack_a, t_list **stack_b, t_list	**cheapest)
 {
-	while (*stack_a != cheapest && (*stack_a)->target != *stack_b)
+	while (*stack_a != (*cheapest) && (*cheapest)->target != *stack_b)
 	{
-		if (cheapest->upper && cheapest->target->upper)
+		if ((*cheapest)->upper && (*cheapest)->target->upper)
 			rr(stack_a, stack_b);
-		if (!(cheapest->upper) && !(cheapest->target->upper))
+		else if (!((*cheapest)->upper) && !((*cheapest)->target->upper))
 			rrr(stack_a, stack_b);
 	}
 }
@@ -96,7 +96,7 @@ void	ft_prep_move(t_list **stack_a, t_list **stack_b)
 
 	ft_refresh(stack_a, stack_b);
 	cheapest = ft_find_cheapest(stack_a);
-	// ft_optimization(stack_a, stack_b, cheapest);
+	ft_optimization(stack_a, stack_b, &cheapest);
 	ft_refresh(stack_a, stack_b);
 	while (*stack_a != cheapest)
 	{
@@ -129,6 +129,7 @@ void	ft_sort_stack(t_list **stack_a, t_list **stack_b)
 			pb(stack_a, stack_b);
 		while (ft_lstsize(*stack_a) > 3)
 		{
+			ft_printf("stack a-----%d---------\n", ft_lstsize(*stack_a));
 			ft_prep_move(stack_a, stack_b);
 			pb(stack_a, stack_b);
 		}
