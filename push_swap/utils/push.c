@@ -1,36 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   push.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/22 20:04:35 by abenajib          #+#    #+#             */
-/*   Updated: 2025/01/06 21:39:23 by abenajib         ###   ########.fr       */
+/*   Created: 2024/12/21 13:53:47 by abenajib          #+#    #+#             */
+/*   Updated: 2025/01/06 21:45:14 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
-long long	ft_atoi(const char *str)
+static void	push(t_list **stack_a, t_list **stack_b)
 {
-	int			sign;
-	long long	result;
+	t_list	*tmp;
 
-	sign = 1;
-	result = 0;
-	while (*str == ' ' || (*str >= 9 && *str <= 13))
-		str++;
-	if (*str == '-' || *str == '+')
-	{
-		if (*str == '-')
-			sign = -1;
-		str++;
-	}
-	while (*str >= '0' && *str <= '9')
-	{
-		result = result * 10 + (*str - '0');
-		str++;
-	}
-	return (result * sign);
+	if (*stack_a == NULL)
+		return ;
+	tmp = *stack_a;
+	*stack_a = (*stack_a)->next;
+	ft_lstadd_front(&(*stack_b), tmp);
+}
+
+void	pa(t_list **stack_a, t_list **stack_b)
+{
+	push(stack_b, stack_a);
+	ft_printf("pa\n");
+}
+
+void	pb(t_list **stack_a, t_list **stack_b)
+{
+	push(stack_a, stack_b);
+	ft_printf("pb\n");
 }

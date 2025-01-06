@@ -6,11 +6,11 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 18:36:19 by abenajib          #+#    #+#             */
-/*   Updated: 2025/01/04 16:53:40 by abenajib         ###   ########.fr       */
+/*   Updated: 2025/01/06 21:45:14 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 int	ft_check_args_valid(int argc, char **argv)
 {

@@ -6,11 +6,11 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 16:45:32 by abenajib          #+#    #+#             */
-/*   Updated: 2025/01/04 16:54:59 by abenajib         ###   ########.fr       */
+/*   Updated: 2025/01/06 21:45:14 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 t_list	*ft_find_node(int number, t_list *stack)
 {

@@ -1,36 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push.c                                             :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/21 13:53:47 by abenajib          #+#    #+#             */
-/*   Updated: 2024/12/31 20:15:43 by abenajib         ###   ########.fr       */
+/*   Created: 2024/10/22 20:04:35 by abenajib          #+#    #+#             */
+/*   Updated: 2025/01/06 21:45:14 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
-static void	push(t_list **stack_a, t_list **stack_b)
+long long	ft_atoi(const char *str)
 {
-	t_list	*tmp;
+	int			sign;
+	long long	result;
 
-	if (*stack_a == NULL)
-		return ;
-	tmp = *stack_a;
-	*stack_a = (*stack_a)->next;
-	ft_lstadd_front(&(*stack_b), tmp);
-}
-
-void	pa(t_list **stack_a, t_list **stack_b)
-{
-	push(stack_b, stack_a);
-	ft_printf("pa\n");
-}
-
-void	pb(t_list **stack_a, t_list **stack_b)
-{
-	push(stack_a, stack_b);
-	ft_printf("pb\n");
+	sign = 1;
+	result = 0;
+	while (*str == ' ' || (*str >= 9 && *str <= 13))
+		str++;
+	if (*str == '-' || *str == '+')
+	{
+		if (*str == '-')
+			sign = -1;
+		str++;
+	}
+	while (*str >= '0' && *str <= '9')
+	{
+		result = result * 10 + (*str - '0');
+		str++;
+	}
+	return (result * sign);
 }

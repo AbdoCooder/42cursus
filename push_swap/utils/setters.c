@@ -6,11 +6,11 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 16:47:32 by abenajib          #+#    #+#             */
-/*   Updated: 2025/01/06 20:35:03 by abenajib         ###   ########.fr       */
+/*   Updated: 2025/01/06 21:45:14 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 void	ft_set_indexs(t_list **stack_a, t_list **stack_b)
 {

@@ -1,16 +1,18 @@
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 SRCS=	push_swap.c \
-		push.c \
-		swap.c \
-		rotate.c \
-		reverse_rotate.c \
-		ft_validate.c \
-		ft_sort_three.c \
-		ft_sort_stack.c \
-		helpers.c \
-		finders.c \
-		setters.c \
+		./utils/push.c \
+		./utils/swap.c \
+		./utils/rotate.c \
+		./utils/reverse_rotate.c \
+		./utils/ft_validate.c \
+		./utils/ft_sort_three.c \
+		./utils/ft_sort_stack.c \
+		./utils/helpers.c \
+		./utils/finders.c \
+		./utils/setters.c \
+		./utils/ft_atoi.c \
+		./utils/ft_isdigit.c \
 		./ft_printf/ft_printf.c \
 		./ft_printf/ft_putchar_fd_p.c \
 		./ft_printf/ft_putnbr_fd_p.c \
@@ -22,8 +24,6 @@ SRCS=	push_swap.c \
 		./ft_lstutils/ft_lstclear_bonus.c \
 		./ft_lstutils/ft_lstnew_bonus.c \
 		./ft_lstutils/ft_lstsize_bonus.c \
-		ft_atoi.c \
-		ft_isdigit.c \
 		./ft_split/ft_split.c \
 		./ft_split/ft_strchr.c \
 		./ft_split/ft_strdup.c \
