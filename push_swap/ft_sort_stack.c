@@ -6,7 +6,7 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 11:00:30 by abenajib          #+#    #+#             */
-/*   Updated: 2025/01/04 16:49:45 by abenajib         ###   ########.fr       */
+/*   Updated: 2025/01/06 21:01:56 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ void	ft_move_cheapest_to_b(t_list **stack_a, t_list **stack_b)
 	}
 	pb(stack_a, stack_b);
 }
-
 void	ft_move_cheapest_to_a(t_list **stack_a, t_list **stack_b)
 {
 	t_list	*cheapest;
@@ -51,24 +50,6 @@ void	ft_move_cheapest_to_a(t_list **stack_a, t_list **stack_b)
 			rra(stack_a);
 	}
 	pa(stack_a, stack_b);
-}
-
-void	ft_set_targets(t_list **stack_a, t_list **stack_b)
-{
-	t_list	*ptr;
-
-	ptr = *stack_a;
-	while (ptr)
-	{
-		ft_find_target_in_b(&ptr, stack_b);
-		ptr = ptr->next;
-	}
-	ptr = *stack_b;
-	while (ptr)
-	{
-		ft_find_target_in_a(&ptr, stack_a);
-		ptr = ptr->next;
-	}
 }
 
 void	ft_prepare(t_list **stack_a, t_list **stack_b)
@@ -98,6 +79,42 @@ void	ft_prepare(t_list **stack_a, t_list **stack_b)
 	ft_set_targets(stack_a, stack_b);
 }
 
+void	ft_optimization(t_list **stack_a, t_list **stack_b, t_list	*cheapest)
+{
+	while (*stack_a != cheapest && (*stack_a)->target != *stack_b)
+	{
+		if (cheapest->upper && cheapest->target->upper)
+			rr(stack_a, stack_b);
+		if (!(cheapest->upper) && !(cheapest->target->upper))
+			rrr(stack_a, stack_b);
+	}
+}
+
+void	ft_prep_move(t_list **stack_a, t_list **stack_b)
+{
+	t_list	*cheapest;
+
+	ft_refresh(stack_a, stack_b);
+	cheapest = ft_find_cheapest(stack_a);
+	// ft_optimization(stack_a, stack_b, cheapest);
+	ft_refresh(stack_a, stack_b);
+	while (*stack_a != cheapest)
+	{
+		if (cheapest->upper == true)
+				ra(stack_a);
+			else
+				rra(stack_a);
+	}
+	while (*stack_b != cheapest->target)
+	{
+		if (cheapest->target->upper == true)
+				rb(stack_b);
+			else
+				rrb(stack_b);
+	}
+	ft_refresh(stack_a, stack_b);
+}
+
 void	ft_sort_stack(t_list **stack_a, t_list **stack_b)
 {
 	if (ft_lstsize(*stack_a) == 2)
@@ -106,12 +123,19 @@ void	ft_sort_stack(t_list **stack_a, t_list **stack_b)
 		ft_sort_three(stack_a);
 	else
 	{
-		while (ft_lstsize(*stack_a) > 3)
+		if (ft_lstsize(*stack_a) > 3)
 			pb(stack_a, stack_b);
+		if (ft_lstsize(*stack_a) > 3)
+			pb(stack_a, stack_b);
+		while (ft_lstsize(*stack_a) > 3)
+		{
+			ft_prep_move(stack_a, stack_b);
+			pb(stack_a, stack_b);
+		}
 		ft_sort_three(stack_a);
 		while (*stack_b)
 		{
-			ft_prepare(stack_a, stack_b); // set the cheapest node with the target at the top
+			ft_prepare(stack_a, stack_b);
 			pa(stack_a, stack_b);
 		}
 		ft_set_indexs(stack_a, stack_b);

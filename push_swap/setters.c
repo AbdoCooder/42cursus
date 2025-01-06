@@ -6,7 +6,7 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 16:47:32 by abenajib          #+#    #+#             */
-/*   Updated: 2025/01/04 16:52:34 by abenajib         ###   ########.fr       */
+/*   Updated: 2025/01/06 20:35:03 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,24 @@ void	ft_set_upper(t_list **stack)
 			ptr->upper = true;
 		else
 			ptr->upper = false;
+		ptr = ptr->next;
+	}
+}
+
+void	ft_set_targets(t_list **stack_a, t_list **stack_b)
+{
+	t_list	*ptr;
+
+	ptr = *stack_a;
+	while (ptr)
+	{
+		ft_find_target_in_b(&ptr, stack_b);
+		ptr = ptr->next;
+	}
+	ptr = *stack_b;
+	while (ptr)
+	{
+		ft_find_target_in_a(&ptr, stack_a);
 		ptr = ptr->next;
 	}
 }
