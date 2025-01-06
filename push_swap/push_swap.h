@@ -6,7 +6,7 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 10:51:21 by abenajib          #+#    #+#             */
-/*   Updated: 2025/01/06 21:39:07 by abenajib         ###   ########.fr       */
+/*   Updated: 2025/01/06 22:00:36 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void		ft_sort_stack(t_list **stack_a, t_list **stack_b);
 int			ft_max(t_list *a);
 int			ft_min(t_list *a);
 int			ft_sum(t_list *stack);
-// bool		stack_sorted(t_list *stack);
+bool		stack_sorted(t_list *stack);
 void		ft_min_on_top(t_list **a);
 //finders
 t_list		*ft_find_node(int number, t_list *stack);
