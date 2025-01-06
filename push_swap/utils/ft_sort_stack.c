@@ -6,7 +6,7 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 11:00:30 by abenajib          #+#    #+#             */
-/*   Updated: 2025/01/06 22:23:04 by abenajib         ###   ########.fr       */
+/*   Updated: 2025/01/06 22:49:26 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,7 @@ void	ft_prepare(t_list **stack_a, t_list **stack_b)
 {
 	t_list	*cheapest;
 
-	ft_set_indexs(stack_a, stack_b);
-	ft_set_costs(stack_a, stack_b);
-	ft_set_targets(stack_a, stack_b);
+	ft_refresh(stack_a, stack_b);
 	cheapest = ft_find_cheapest(stack_b);
 	while (*stack_b != cheapest)
 	{
@@ -74,9 +72,7 @@ void	ft_prepare(t_list **stack_a, t_list **stack_b)
 			else
 				rra(stack_a);
 	}
-	ft_set_indexs(stack_a, stack_b);
-	ft_set_costs(stack_a, stack_b);
-	ft_set_targets(stack_a, stack_b);
+	ft_refresh(stack_a, stack_b);
 }
 
 void	ft_optimization(t_list **stack_a, t_list **stack_b, t_list	**cheapest)
@@ -96,7 +92,7 @@ void	ft_prep_move(t_list **stack_a, t_list **stack_b)
 
 	ft_refresh(stack_a, stack_b);
 	cheapest = ft_find_cheapest(stack_a);
-	ft_optimization(stack_a, stack_b, &cheapest);
+	// ft_optimization(stack_a, stack_b, &cheapest);
 	ft_refresh(stack_a, stack_b);
 	while (*stack_a != cheapest)
 	{
@@ -123,14 +119,14 @@ void	ft_sort_stack(t_list **stack_a, t_list **stack_b)
 		ft_sort_three(stack_a);
 	else
 	{
-		if (ft_lstsize(*stack_a) > 3)
-			pb(stack_a, stack_b);
-		if (ft_lstsize(*stack_a) > 3)
-			pb(stack_a, stack_b);
+		// if (ft_lstsize(*stack_a) > 3)
+		// 	pb(stack_a, stack_b);
+		// if (ft_lstsize(*stack_a) > 3)
+		// 	pb(stack_a, stack_b);
 		while (ft_lstsize(*stack_a) > 3)
 		{
-			ft_printf("stack a-----%d---------\n", ft_lstsize(*stack_a));
-			ft_prep_move(stack_a, stack_b);
+			// ft_printf("stack a-----%d---------\n", ft_lstsize(*stack_a));
+			// ft_prep_move(stack_a, stack_b);
 			pb(stack_a, stack_b);
 		}
 		ft_sort_three(stack_a);
