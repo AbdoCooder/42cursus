@@ -6,7 +6,7 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 10:51:21 by abenajib          #+#    #+#             */
-/*   Updated: 2025/01/06 22:00:36 by abenajib         ###   ########.fr       */
+/*   Updated: 2025/01/07 13:03:30 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct s_list
 {
 	void			*content;
 	int				cost;
+	int				push_cost;
 	int				index;
 	bool			upper;
 	struct s_list	*next;
@@ -82,4 +83,6 @@ void		ft_set_costs(t_list **stack_a, t_list **stack_b);
 void		ft_set_upper(t_list **stack);
 void		ft_refresh(t_list **stack_a, t_list **stack_b);
 void		ft_set_targets(t_list **stack_a, t_list **stack_b);
+void		ft_set_push_cost(t_list **stack_a);
+int			ft_min_push_cost(t_list *stack);
 #endif //PUSH_SWAP_H

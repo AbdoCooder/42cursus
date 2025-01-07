@@ -6,7 +6,7 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 16:47:32 by abenajib          #+#    #+#             */
-/*   Updated: 2025/01/06 21:45:14 by abenajib         ###   ########.fr       */
+/*   Updated: 2025/01/07 13:05:33 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,28 @@ void	ft_set_targets(t_list **stack_a, t_list **stack_b)
 	while (ptr)
 	{
 		ft_find_target_in_a(&ptr, stack_a);
+		ptr = ptr->next;
+	}
+}
+
+int max(int a, int b)
+{
+	if (a > b)
+		return (a);
+	return (b);
+}
+
+void	ft_set_push_cost(t_list **stack_a)
+{
+	t_list	*ptr;
+
+	ptr = *stack_a;
+	while (ptr)
+	{
+		if ((ptr->upper && ptr->target->upper) || (!ptr->upper && !ptr->target->upper))
+			ptr->push_cost = max(ptr->cost, ptr->target->cost);
+		else
+			ptr->push_cost = ptr->cost + ptr->target->cost;
 		ptr = ptr->next;
 	}
 }

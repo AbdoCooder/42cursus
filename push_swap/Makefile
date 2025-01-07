@@ -47,7 +47,7 @@ $(NAME): $(OBJS)
 	@${CC} ${CFLAGS} -c $< -o $@
 
 clean:
-	@$(RM) $(OBJS) $(NAME)
+	@$(RM) $(OBJS)
 
 fclean: clean
 	@$(RM) $(NAME) push_swap

@@ -6,7 +6,7 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 16:45:32 by abenajib          #+#    #+#             */
-/*   Updated: 2025/01/06 21:45:14 by abenajib         ###   ########.fr       */
+/*   Updated: 2025/01/07 14:02:52 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,15 +67,9 @@ void	ft_find_target_in_a(t_list **ptr, t_list **stack_a)
 t_list	*ft_find_cheapest(t_list **stack)
 {
 	t_list	*cheapest;
-	t_list	*ptr;
 
 	cheapest = *stack;
-	ptr = *stack;
-	while (ptr)
-	{
-		if ((ptr->cost + ptr->target->cost) < (cheapest->cost + cheapest->target->cost))
-			cheapest = ptr;
-		ptr = ptr->next;
-	}
+	ft_set_push_cost(stack);
+	cheapest = ft_find_node(ft_min_push_cost(*stack), *stack);
 	return (cheapest);
 }

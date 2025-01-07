@@ -6,7 +6,7 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 10:44:19 by abenajib          #+#    #+#             */
-/*   Updated: 2025/01/07 10:35:18 by abenajib         ###   ########.fr       */
+/*   Updated: 2025/01/07 19:07:00 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	ft_print_stacks(t_list *stack_a, t_list *stack_b)
 	}
 }
 
-int	ft_create_stack(char **argv[], t_list **stack_a, int i, int len)
+static int	ft_create_stack(char **argv[], t_list **stack_a, int i, int len)
 {
 	char		**split;
 	long long	*new;
@@ -84,7 +84,5 @@ int	main(int argc, char *argv[])
 		ft_sort_stack(&stack_a, &stack_b);
 	// ft_print_stacks(stack_a, stack_b);
 	ft_lstclear(&stack_a, free);
-	ft_lstclear(&stack_b, free);
 	return (0);
 }
-
