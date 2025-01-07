@@ -35,7 +35,10 @@ NAME = push_swap.a
 OBJS = $(SRCS:.c=.o)
 HEADER = ./push_swap.h
 
-all: $(NAME)
+all: push_swap
+
+push_swap: $(NAME)
+	@${CC} ${CFLAGS} -o push_swap push_swap.c $(NAME)
 
 $(NAME): $(OBJS)
 	@ar rcs $(NAME) $^
@@ -44,9 +47,9 @@ $(NAME): $(OBJS)
 	@${CC} ${CFLAGS} -c $< -o $@
 
 clean:
-	@$(RM) $(OBJS)
+	@$(RM) $(OBJS) $(NAME)
 
 fclean: clean
-	@$(RM) $(NAME)
+	@$(RM) $(NAME) push_swap
 
 re: fclean all
