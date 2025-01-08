@@ -16,6 +16,7 @@ static void	ft_optimization(t_list **stack_a, t_list **stack_b, t_list	**cheapes
 {
 	while (*stack_a != (*cheapest) && (*cheapest)->target != *stack_b)
 	{
+		ft_refresh(stack_a, stack_b);
 		if ((*cheapest)->upper && (*cheapest)->target->upper)
 			rr(stack_a, stack_b);
 		else if (!((*cheapest)->upper) && !((*cheapest)->target->upper))
@@ -42,19 +43,19 @@ static void	ft_prepare(t_list **stack_a, t_list **stack_b)
 	}
 	while (*stack_a != cheapest->target)
 	{
+		ft_refresh(stack_a, stack_b);
 		if (cheapest->target->upper == true)
 				ra(stack_a);
 			else
 				rra(stack_a);
 	}
-	// ft_refresh(stack_a, stack_b);
 }
 
 void	ft_move_top(t_list **stack, t_list *ptr)
 {
 	while (*stack != ptr)
 	{
-		// ft_set_upper(stack);
+		ft_set_upper(stack);
 		if (ptr->upper == true)
 			ra(stack);
 		else
@@ -65,18 +66,21 @@ void	ft_move_top(t_list **stack, t_list *ptr)
 void ft_b_move(t_list **stack_a, t_list **stack_b)
 {
 	int		medium;
-	int		size;
 	t_list	*ptr;
+	t_list	*next;
 
 	medium = ft_sum(*stack_a) / ft_lstsize(*stack_a);
 	ptr = *stack_a;
-	size = ft_lstsize(*stack_a);
-	while (size-- > 3)
+	while (ptr && ft_lstsize(*stack_a) > 3)
 	{
-		if (*(int *)(*stack_a)->content < medium)
+		next = ptr->next;
+		if (*(int *)(ptr)->content < medium)
+		{
+			ft_set_upper(stack_a);
+			ft_move_top(stack_a, ptr);
 			pb(stack_a, stack_b);
-		else
-			ra(stack_a);
+		}
+		ptr = next;
 	}
 }
 
