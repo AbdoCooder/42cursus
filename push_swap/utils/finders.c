@@ -6,7 +6,7 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 16:45:32 by abenajib          #+#    #+#             */
-/*   Updated: 2025/01/07 14:02:52 by abenajib         ###   ########.fr       */
+/*   Updated: 2025/01/14 16:13:47 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ t_list	*ft_find_node(int number, t_list *stack)
 void	ft_find_target_in_b(t_list **ptr, t_list **stack_b)
 {
 	t_list	*node;
-
 	node = *stack_b;
+
 	(*ptr)->target = NULL;
 	while (node)
 	{
