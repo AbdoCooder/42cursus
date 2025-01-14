@@ -6,7 +6,7 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 18:36:19 by abenajib          #+#    #+#             */
-/*   Updated: 2025/01/07 19:14:15 by abenajib         ###   ########.fr       */
+/*   Updated: 2025/01/14 17:52:27 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,11 @@ int	ft_check_args_valid(int argc, char **argv)
 				&& !(argv[i][j] == '-' || argv[i][j] == '+'
 				|| argv[i][j] == ' ' || argv[i][j] == '\t')) || (argv[i][j] == '\0'))
 				return (1);
+			if (argv[i][j] == '-' || argv[i][j] == '+')
+			{
+				if (!argv[i][j+1] || !ft_isdigit(argv[i][j+1]))
+					return (1);
+			}
 			j++;
 		}
 		i++;

@@ -6,7 +6,7 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 20:04:35 by abenajib          #+#    #+#             */
-/*   Updated: 2025/01/07 19:10:47 by abenajib         ###   ########.fr       */
+/*   Updated: 2025/01/14 19:11:52 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,12 @@ long long	ft_atoi(const char *str)
 	while (*str >= '0' && *str <= '9')
 	{
 		result = result * 10 + (*str - '0');
+		if (result * sign > INT_MAX || sign * result < INT_MIN)
+			return (result * sign);
 		str++;
 	}
+	if (*str != '\0')
+		ft_error(NULL);
 	return (result * sign);
 }
+

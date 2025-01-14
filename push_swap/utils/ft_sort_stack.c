@@ -6,13 +6,13 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 11:00:30 by abenajib          #+#    #+#             */
-/*   Updated: 2025/01/14 16:49:01 by abenajib         ###   ########.fr       */
+/*   Updated: 2025/01/14 19:31:45 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-static void	ft_optimization(t_list **stack_a, t_list **stack_b, t_list	**cheapest)
+void	ft_optimization(t_list **stack_a, t_list **stack_b, t_list	**cheapest)
 {
 	while (*stack_a != (*cheapest) && (*cheapest)->target != *stack_b)
 	{
@@ -31,6 +31,9 @@ static void	ft_prepare(t_list **stack_a, t_list **stack_b)
 
 	ft_refresh(stack_a, stack_b);
 	cheapest = ft_find_cheapest(stack_b);
+	// ft_printf("%d gggggg %d\n", *(int *)cheapest->content, cheapest->push_cost);
+	// ft_print_stacks(*stack_a, *stack_b);
+	// pause();
 	ft_optimization(stack_b, stack_a, &cheapest);
 	while (*stack_b != cheapest)
 	{
@@ -79,17 +82,19 @@ int ft_b_move_mr(t_list **stack_a ,int medium)
 void	ft_sort_stack(t_list **stack_a, t_list **stack_b)
 {
 	t_list	*ptr;
+	int		medium;
+
 	ptr = *stack_a;
-	int medium = ft_sum(*stack_a) / ft_lstsize(*stack_a);
+	medium = ft_sum(*stack_a) / ft_lstsize(*stack_a);
 	if (ft_lstsize(*stack_a) == 2)
 		ft_sort_two(stack_a);
 	else if (ft_lstsize(*stack_a) == 3)
 		ft_sort_three(stack_a);
 	else
 	{
-		while (ptr && ft_lstsize(*stack_a) > 3)
+		while (ft_lstsize(*stack_a) > 3)
 		{
-			int data = ft_b_move_mr(stack_a,medium);
+			int data = ft_b_move_mr(stack_a, medium);
 			ft_move_top(stack_a, ft_find_node(data, *stack_a));
 			pb(stack_a, stack_b);
 			ft_set_upper(stack_a);
@@ -102,7 +107,7 @@ void	ft_sort_stack(t_list **stack_a, t_list **stack_b)
 			pa(stack_a, stack_b);
 		}
 		ft_set_indexs(stack_a, stack_b);
-		ft_min_on_top(stack_a);
+		ft_move_top(stack_a, ft_find_node(ft_min(*stack_a), *stack_a));
 	}
 }
 //ft_printf("index: %d | [%d] --> [%d] | cost : %d | upper? %s\n", (*stack_a)->index, *(int *)(*stack_a)->content, *(int *)((*stack_a)->target)->content, (*stack_a)->cost, (*stack_a)->upper ? "yes" : "no");

@@ -6,7 +6,7 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 10:51:21 by abenajib          #+#    #+#             */
-/*   Updated: 2025/01/07 13:03:30 by abenajib         ###   ########.fr       */
+/*   Updated: 2025/01/14 19:15:19 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,4 +85,5 @@ void		ft_refresh(t_list **stack_a, t_list **stack_b);
 void		ft_set_targets(t_list **stack_a, t_list **stack_b);
 void		ft_set_push_cost(t_list **stack_a);
 int			ft_min_push_cost(t_list *stack);
+void	ft_print_stacks(t_list *stack_a, t_list *stack_b);
 #endif //PUSH_SWAP_H

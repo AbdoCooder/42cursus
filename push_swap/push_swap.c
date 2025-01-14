@@ -6,7 +6,7 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 10:44:19 by abenajib          #+#    #+#             */
-/*   Updated: 2025/01/07 19:07:00 by abenajib         ###   ########.fr       */
+/*   Updated: 2025/01/14 19:34:09 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	ft_print_stacks(t_list *stack_a, t_list *stack_b)
 	while (stack_b)
 	{
 		ft_printf(" ---\n");
-		ft_printf("| %d |\n", *(int *)(stack_b->content));
+		ft_printf("i = %d | %d |cost node %d |target %d |cost target %d |cost push %d |\n", stack_b->index, *(int *)(stack_b->content),stack_b->cost, *(int *)(stack_b->target->content), stack_b->target->cost,stack_b->push_cost);
 		ft_printf(" ---\n");
 		stack_b = stack_b->next;
 	}
@@ -44,6 +44,8 @@ static int	ft_create_stack(char **argv[], t_list **stack_a, int i, int len)
 	long long	*new;
 
 	split = ft_split(*(*argv + i), " \t");
+	if (!*split || !split)
+		return (ft_error(NULL), 1);
 	while (split[len])
 	{
 		new = malloc(sizeof(long long));
@@ -68,7 +70,7 @@ int	main(int argc, char *argv[])
 	i = 1;
 	stack_a = NULL;
 	stack_b = NULL;
-	if (argc == 1 || (argc == 2 && argv[1][0] == '\0'))
+	if (argc < 2)
 		return (1);
 	if (ft_check_args_valid(argc, argv) == 1)
 		return (ft_error(NULL), 1);
