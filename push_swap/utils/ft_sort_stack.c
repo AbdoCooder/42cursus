@@ -6,7 +6,7 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 11:00:30 by abenajib          #+#    #+#             */
-/*   Updated: 2025/01/14 16:13:24 by abenajib         ###   ########.fr       */
+/*   Updated: 2025/01/14 16:49:01 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ static void	ft_prepare(t_list **stack_a, t_list **stack_b)
 	ft_refresh(stack_a, stack_b);
 	cheapest = ft_find_cheapest(stack_b);
 	ft_optimization(stack_b, stack_a, &cheapest);
-	ft_refresh(stack_a, stack_b);
 	while (*stack_b != cheapest)
 	{
 		if (cheapest->upper == true)
@@ -47,7 +46,6 @@ static void	ft_prepare(t_list **stack_a, t_list **stack_b)
 			else
 				rra(stack_a);
 	}
-	// ft_refresh(stack_a, stack_b);
 }
 
 void	ft_move_top(t_list **stack, t_list *ptr)
