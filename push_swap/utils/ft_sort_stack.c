@@ -65,11 +65,9 @@ void	ft_move_top(t_list **stack, t_list *ptr)
 
 int ft_b_move_mr(t_list **stack_a ,int medium)
 {
-	int		size;
 	t_list	*ptr;
 
 	ptr = *stack_a;
-	size = ft_lstsize(*stack_a);
 	while (ptr)
 	{
 		if (*(int *)(ptr)->content < medium)
@@ -81,10 +79,8 @@ int ft_b_move_mr(t_list **stack_a ,int medium)
 
 void	ft_sort_stack(t_list **stack_a, t_list **stack_b)
 {
-	t_list	*ptr;
 	int		medium;
 
-	ptr = *stack_a;
 	medium = ft_sum(*stack_a) / ft_lstsize(*stack_a);
 	if (ft_lstsize(*stack_a) == 2)
 		ft_sort_two(stack_a);
@@ -98,7 +94,6 @@ void	ft_sort_stack(t_list **stack_a, t_list **stack_b)
 			ft_move_top(stack_a, ft_find_node(data, *stack_a));
 			pb(stack_a, stack_b);
 			ft_set_upper(stack_a);
-			ptr = *stack_a;
 		}
 		ft_sort_three(stack_a);
 		while (*stack_b)

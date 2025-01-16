@@ -71,7 +71,7 @@ int	main(int argc, char *argv[])
 	stack_a = NULL;
 	stack_b = NULL;
 	if (argc < 2)
-		return (1);
+		exit (1);
 	if (ft_check_args_valid(argc, argv) == 1)
 		return (ft_error(NULL), 1);
 	while (argv[i])
