@@ -47,10 +47,15 @@ $(NAME): $(OBJS)
 %.o: %.c $(HEADER)
 	@${CC} ${CFLAGS} -c $< -o $@
 
+bonus:
+	make -C checker_
+
 clean:
 	@$(RM) $(OBJS)
+	make -C checker_ clean
 
 fclean: clean
 	@$(RM) $(NAME) push_swap
+	make -C checker_ fclean
 
 re: fclean all

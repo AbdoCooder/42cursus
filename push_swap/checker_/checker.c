@@ -6,7 +6,7 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 20:11:03 by abenajib          #+#    #+#             */
-/*   Updated: 2025/01/18 11:42:16 by abenajib         ###   ########.fr       */
+/*   Updated: 2025/01/18 16:22:30 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void	ft_read_and_update(t_list **stack_a, t_list **stack_b)
 					ft_ko(stack_a, stack_b, op);
 			}
 		}
+		free(op);
 		op = get_next_line(0);
 	}
 }

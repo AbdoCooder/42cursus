@@ -6,7 +6,7 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 21:35:22 by abenajib          #+#    #+#             */
-/*   Updated: 2025/01/17 21:45:46 by abenajib         ###   ########.fr       */
+/*   Updated: 2025/01/18 16:19:23 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ int	ft_create_stack(char **argv[], t_list **stack_a, int i, int len)
 		if (ft_isduplicated(stack_a, *new) == 1)
 			return (ft_lstclear(stack_a, free), free(split), ft_error(NULL), 1);
 		ft_lstadd_back(stack_a, ft_lstnew(new));
+		free(split[len]);
 		len++;
 	}
 	free(split);
