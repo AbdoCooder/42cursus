@@ -1,30 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstsize_bonus.c                                 :+:      :+:    :+:   */
+/*   ft_lstadd_back_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/30 19:11:31 by abenajib          #+#    #+#             */
+/*   Created: 2024/10/30 19:19:28 by abenajib          #+#    #+#             */
 /*   Updated: 2025/01/17 21:48:00 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../checker.h"
+#include "../checker_bonus.h"
 
-int	ft_lstsize(t_list *lst)
+void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	t_list	*p;
-	int		len;
+	t_list	*last;
 
-	if (lst == NULL)
-		return (0);
-	p = lst;
-	len = 0;
-	while (p != NULL)
+	if (!lst || !new)
+		return ;
+	if (*lst == NULL)
 	{
-		p = p->next;
-		len++;
+		*lst = new;
+		new->next = NULL;
 	}
-	return (len);
+	else
+	{
+		last = *lst;
+		while (last->next)
+			last = last->next;
+		last->next = new;
+		new->next = NULL;
+	}
 }

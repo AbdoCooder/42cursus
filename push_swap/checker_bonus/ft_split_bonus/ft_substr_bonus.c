@@ -1,34 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back_bonus.c                             :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/30 19:19:28 by abenajib          #+#    #+#             */
+/*   Created: 2024/10/25 17:31:26 by abenajib          #+#    #+#             */
 /*   Updated: 2025/01/17 21:48:00 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../checker.h"
+#include "../checker_bonus.h"
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	t_list	*last;
+	char	*substr;
+	size_t	i;
+	size_t	s_len;
 
-	if (!lst || !new)
-		return ;
-	if (*lst == NULL)
+	if (!s)
+		return (NULL);
+	s_len = ft_strlen(s);
+	if (start >= s_len)
+		return (ft_strdup(""));
+	i = 0;
+	if (len > s_len - start)
+		len = s_len - start;
+	substr = malloc((len + 1) * sizeof(char));
+	if (!substr)
+		return (NULL);
+	while (i < len && s[start])
 	{
-		*lst = new;
-		new->next = NULL;
+		substr[i++] = s[start++];
 	}
-	else
-	{
-		last = *lst;
-		while (last->next)
-			last = last->next;
-		last->next = new;
-		new->next = NULL;
-	}
+	substr[i] = '\0';
+	return (substr);
 }

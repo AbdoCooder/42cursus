@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd_p.c                                   :+:      :+:    :+:   */
+/*   ft_putunint_fd_p.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,15 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../checker.h"
+#include "../checker_bonus.h"
 
-static int	ft_numsize(int num)
+static int	ft_numsize(unsigned int num)
 {
 	int	count;
 
-	count = (num <= 0);
-	if (num == 0)
-		return (1);
+	count = (num == 0);
 	while (num != 0)
 	{
 		num /= 10;
@@ -27,35 +25,24 @@ static int	ft_numsize(int num)
 	return (count);
 }
 
-int	ft_putnbr_fd_p(int nb, int fd)
+int	ft_putunint_fd_p(unsigned int nb, int fd)
 {
-	int	n;
+	unsigned int	n;
 
 	n = nb;
-	if (n == -2147483648)
-	{
-		ft_putstr_fd_p("-2147483648", fd);
-		return (11);
-	}
-	if (n < 0)
-	{
-		ft_putchar_fd_p('-', fd);
-		n = -n;
-	}
 	if (n > 9)
 	{
-		ft_putnbr_fd_p(n / 10, fd);
-		ft_putnbr_fd_p(n % 10, fd);
+		ft_putunint_fd_p(n / 10, fd);
+		ft_putunint_fd_p(n % 10, fd);
 	}
 	else
-	{
 		ft_putchar_fd_p(n + '0', fd);
-	}
 	return (ft_numsize(nb));
 }
+
 // #include <stdio.h>
 // int main()
 // {
-// 	int n = ft_putnbr_fd(45, 1);
+// 	int n = ft_putunint_fd(524525252, 1);
 // 	printf("\n%d\n", n);
 // }

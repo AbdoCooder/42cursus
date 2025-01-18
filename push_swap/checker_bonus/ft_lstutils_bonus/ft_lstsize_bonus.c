@@ -1,19 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar_fd_p.c                                  :+:      :+:    :+:   */
+/*   ft_lstsize_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/27 15:10:34 by abenajib          #+#    #+#             */
+/*   Created: 2024/10/30 19:11:31 by abenajib          #+#    #+#             */
 /*   Updated: 2025/01/17 21:48:00 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../checker.h"
+#include "../checker_bonus.h"
 
-int	ft_putchar_fd_p(char c, int fd)
+int	ft_lstsize(t_list *lst)
 {
-	write(fd, &c, 1);
-	return (1);
+	t_list	*p;
+	int		len;
+
+	if (lst == NULL)
+		return (0);
+	p = lst;
+	len = 0;
+	while (p != NULL)
+	{
+		p = p->next;
+		len++;
+	}
+	return (len);
 }

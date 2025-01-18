@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../checker.h"
+#include "../checker_bonus.h"
 #include <stdarg.h>
 
 int	ft_format(va_list args, char c)

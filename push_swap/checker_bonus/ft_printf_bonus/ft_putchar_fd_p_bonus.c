@@ -1,42 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_putchar_fd_p.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/22 19:47:40 by abenajib          #+#    #+#             */
+/*   Created: 2024/10/27 15:10:34 by abenajib          #+#    #+#             */
 /*   Updated: 2025/01/17 21:48:00 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../checker.h"
+#include "../checker_bonus.h"
 
-static char	*ft_strcpy(char *dest, const char *src)
+int	ft_putchar_fd_p(char c, int fd)
 {
-	int	i;
-
-	i = 0;
-	while (src[i] != '\0')
-	{
-		dest[i] = src[i];
-		i++;
-	}
-	dest[i] = '\0';
-	return (dest);
-}
-
-char	*ft_strdup(const char *src)
-{
-	int		slen;
-	char	*dest;
-
-	slen = 0;
-	while (src[slen])
-		slen++;
-	dest = (char *)malloc(sizeof(char) * slen + 1);
-	if (!dest)
-		return (NULL);
-	ft_strcpy (dest, src);
-	return (dest);
+	write(fd, &c, 1);
+	return (1);
 }

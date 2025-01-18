@@ -1,38 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   ft_lstclear_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/25 17:31:26 by abenajib          #+#    #+#             */
+/*   Created: 2024/10/30 19:34:11 by abenajib          #+#    #+#             */
 /*   Updated: 2025/01/17 21:48:00 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../checker.h"
+#include "../checker_bonus.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
-	char	*substr;
-	size_t	i;
-	size_t	s_len;
+	t_list	*temp;
 
-	if (!s)
-		return (NULL);
-	s_len = ft_strlen(s);
-	if (start >= s_len)
-		return (ft_strdup(""));
-	i = 0;
-	if (len > s_len - start)
-		len = s_len - start;
-	substr = malloc((len + 1) * sizeof(char));
-	if (!substr)
-		return (NULL);
-	while (i < len && s[start])
+	if (!lst || !del)
+		return ;
+	while (*lst)
 	{
-		substr[i++] = s[start++];
+		temp = (*lst)->next;
+		del((*lst)->content);
+		free(*lst);
+		*lst = temp;
 	}
-	substr[i] = '\0';
-	return (substr);
+	*lst = NULL;
 }

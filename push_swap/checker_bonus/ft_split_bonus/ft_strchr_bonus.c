@@ -1,37 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_puthex_fd_p.c                                   :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/11 15:32:13 by abenajib          #+#    #+#             */
+/*   Created: 2024/10/23 09:19:48 by abenajib          #+#    #+#             */
 /*   Updated: 2025/01/17 21:48:00 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../checker.h"
+#include "../checker_bonus.h"
 
-int	ft_puthex_p(unsigned long long num, char c)
+char	*ft_strchr(const char *s, int c)
 {
-	int		len;
-	char	*hex_low;
-	char	*hex_upp;
+	int	i;
 
-	hex_low = "0123456789abcdef";
-	hex_upp = "0123456789ABCDEF";
-	len = 0;
-	if (c == 'p')
+	i = 0;
+	while (s[i])
 	{
-		len += ft_putchar_fd_p('0', 1);
-		len += ft_putchar_fd_p('x', 1);
-		len += ft_puthex_p(num, 'x');
+		if ((char)c == s[i])
+			return ((char *)(s + i));
+		i++;
 	}
-	if (num >= 16 && c != 'p')
-		len += ft_puthex_p(num / 16, c);
-	if (c == 'x')
-		len += ft_putchar_fd_p(hex_low[num % 16], 1);
-	else if (c == 'X')
-		len += ft_putchar_fd_p(hex_upp[num % 16], 1);
-	return (len);
+	if ((char)c == '\0')
+		return ((char *)(s + i));
+	else
+		return (NULL);
 }

@@ -1,38 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd_p.c                                   :+:      :+:    :+:   */
+/*   ft_lstnew_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/27 15:34:01 by abenajib          #+#    #+#             */
+/*   Created: 2024/10/30 19:03:12 by abenajib          #+#    #+#             */
 /*   Updated: 2025/01/17 21:48:00 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../checker.h"
+#include "../checker_bonus.h"
 
-int	ft_putstr_fd_p(char *s, int fd)
+t_list	*ft_lstnew(void *content)
 {
-	int	len;
+	t_list	*new_node;
 
-	if (!s)
-	{
-		write(1, "(null)", 6);
-		return (6);
-	}
-	len = 0;
-	while (*s)
-	{
-		ft_putchar_fd_p(*s, fd);
-		s++;
-		len++;
-	}
-	return (len);
+	new_node = (t_list *)malloc(sizeof(t_list));
+	if (!new_node)
+		return (NULL);
+	new_node -> content = content;
+	new_node -> next = NULL;
+	return (new_node);
 }
-// #include <stdio.h>
-// int main()
-// {
-// 	int n = ft_putstr_fd("helosdjsmcdsc", 1);
-// 	printf("\n%d\n", n);
-// }

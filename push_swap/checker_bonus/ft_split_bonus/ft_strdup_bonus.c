@@ -1,30 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/23 09:19:48 by abenajib          #+#    #+#             */
+/*   Created: 2024/10/22 19:47:40 by abenajib          #+#    #+#             */
 /*   Updated: 2025/01/17 21:48:00 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../checker.h"
+#include "../checker_bonus.h"
 
-char	*ft_strchr(const char *s, int c)
+static char	*ft_strcpy(char *dest, const char *src)
 {
 	int	i;
 
 	i = 0;
-	while (s[i])
+	while (src[i] != '\0')
 	{
-		if ((char)c == s[i])
-			return ((char *)(s + i));
+		dest[i] = src[i];
 		i++;
 	}
-	if ((char)c == '\0')
-		return ((char *)(s + i));
-	else
+	dest[i] = '\0';
+	return (dest);
+}
+
+char	*ft_strdup(const char *src)
+{
+	int		slen;
+	char	*dest;
+
+	slen = 0;
+	while (src[slen])
+		slen++;
+	dest = (char *)malloc(sizeof(char) * slen + 1);
+	if (!dest)
 		return (NULL);
+	ft_strcpy (dest, src);
+	return (dest);
 }
