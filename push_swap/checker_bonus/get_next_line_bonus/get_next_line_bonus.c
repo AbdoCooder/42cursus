@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 void	readstatic(ssize_t *bytesread, int fd, char **tmp, char **sbuff)
 {

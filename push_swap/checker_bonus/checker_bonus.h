@@ -14,7 +14,7 @@
 # define CHECKER_H
 
 # include "../push_swap.h"
-# include "get_next_line/get_next_line.h"
+# include "get_next_line_bonus/get_next_line_bonus.h"
 
 int	ft_strcmp(const char *s1, const char *s2);
 int	ft_check_swap(t_list **stack_a, t_list **stack_b, char *op);
