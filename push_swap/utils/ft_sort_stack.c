@@ -6,7 +6,7 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 11:00:30 by abenajib          #+#    #+#             */
-/*   Updated: 2025/01/14 19:31:45 by abenajib         ###   ########.fr       */
+/*   Updated: 2025/01/14 22:34:16 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,29 +25,26 @@ void	ft_optimization(t_list **stack_a, t_list **stack_b, t_list	**cheapest)
 	}
 }
 
-static void	ft_prepare(t_list **stack_a, t_list **stack_b)
+void	ft_prepare(t_list **stack_a, t_list **stack_b)
 {
 	t_list	*cheapest;
 
 	ft_refresh(stack_a, stack_b);
 	cheapest = ft_find_cheapest(stack_b);
-	// ft_printf("%d gggggg %d\n", *(int *)cheapest->content, cheapest->push_cost);
-	// ft_print_stacks(*stack_a, *stack_b);
-	// pause();
 	ft_optimization(stack_b, stack_a, &cheapest);
 	while (*stack_b != cheapest)
 	{
 		if (cheapest->upper == true)
-				rb(stack_b);
-			else
-				rrb(stack_b);
+			rb(stack_b);
+		else
+			rrb(stack_b);
 	}
 	while (*stack_a != cheapest->target)
 	{
 		if (cheapest->target->upper == true)
-				ra(stack_a);
-			else
-				rra(stack_a);
+			ra(stack_a);
+		else
+			rra(stack_a);
 	}
 }
 
@@ -63,11 +60,13 @@ void	ft_move_top(t_list **stack, t_list *ptr)
 	}
 }
 
-int ft_b_move_mr(t_list **stack_a ,int medium)
+int	ft_b_move(t_list **stack_a, int medium)
 {
+	int		size;
 	t_list	*ptr;
 
 	ptr = *stack_a;
+	size = ft_lstsize(*stack_a);
 	while (ptr)
 	{
 		if (*(int *)(ptr)->content < medium)
@@ -79,8 +78,11 @@ int ft_b_move_mr(t_list **stack_a ,int medium)
 
 void	ft_sort_stack(t_list **stack_a, t_list **stack_b)
 {
+	t_list	*ptr;
 	int		medium;
+	int		data;
 
+	ptr = *stack_a;
 	medium = ft_sum(*stack_a) / ft_lstsize(*stack_a);
 	if (ft_lstsize(*stack_a) == 2)
 		ft_sort_two(stack_a);
@@ -90,19 +92,13 @@ void	ft_sort_stack(t_list **stack_a, t_list **stack_b)
 	{
 		while (ft_lstsize(*stack_a) > 3)
 		{
-			int data = ft_b_move_mr(stack_a, medium);
+			data = ft_b_move(stack_a, medium);
 			ft_move_top(stack_a, ft_find_node(data, *stack_a));
 			pb(stack_a, stack_b);
 			ft_set_upper(stack_a);
+			ptr = *stack_a;
 		}
 		ft_sort_three(stack_a);
-		while (*stack_b)
-		{
-			ft_prepare(stack_a, stack_b);
-			pa(stack_a, stack_b);
-		}
-		ft_set_indexs(stack_a, stack_b);
-		ft_move_top(stack_a, ft_find_node(ft_min(*stack_a), *stack_a));
+		ft_finish(stack_a, stack_b);
 	}
 }
-//ft_printf("index: %d | [%d] --> [%d] | cost : %d | upper? %s\n", (*stack_a)->index, *(int *)(*stack_a)->content, *(int *)((*stack_a)->target)->content, (*stack_a)->cost, (*stack_a)->upper ? "yes" : "no");

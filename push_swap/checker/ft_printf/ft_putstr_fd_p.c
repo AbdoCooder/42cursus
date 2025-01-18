@@ -1,36 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push.c                                             :+:      :+:    :+:   */
+/*   ft_putstr_fd_p.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/21 13:53:47 by abenajib          #+#    #+#             */
-/*   Updated: 2025/01/17 20:46:38 by abenajib         ###   ########.fr       */
+/*   Created: 2024/10/27 15:34:01 by abenajib          #+#    #+#             */
+/*   Updated: 2025/01/17 21:48:00 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "../checker.h"
 
-void	push(t_list **stack_a, t_list **stack_b)
+int	ft_putstr_fd_p(char *s, int fd)
 {
-	t_list	*tmp;
+	int	len;
 
-	if (*stack_a == NULL)
-		return ;
-	tmp = *stack_a;
-	*stack_a = (*stack_a)->next;
-	ft_lstadd_front(&(*stack_b), tmp);
+	if (!s)
+	{
+		write(1, "(null)", 6);
+		return (6);
+	}
+	len = 0;
+	while (*s)
+	{
+		ft_putchar_fd_p(*s, fd);
+		s++;
+		len++;
+	}
+	return (len);
 }
-
-void	pa(t_list **stack_a, t_list **stack_b)
-{
-	push(stack_b, stack_a);
-	ft_printf("pa\n");
-}
-
-void	pb(t_list **stack_a, t_list **stack_b)
-{
-	push(stack_a, stack_b);
-	ft_printf("pb\n");
-}
+// #include <stdio.h>
+// int main()
+// {
+// 	int n = ft_putstr_fd("helosdjsmcdsc", 1);
+// 	printf("\n%d\n", n);
+// }

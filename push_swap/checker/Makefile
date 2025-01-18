@@ -1,18 +1,12 @@
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
-SRCS=	push_swap.c \
-		./utils/push.c \
-		./utils/swap.c \
-		./utils/rotate.c \
-		./utils/reverse_rotate.c \
-		./utils/ft_validate.c \
-		./utils/ft_sort_three.c \
-		./utils/ft_sort_stack.c \
-		./utils/helpers.c \
-		./utils/finders.c \
-		./utils/setters.c \
-		./utils/ft_atoi.c \
-		./utils/ft_isdigit.c \
+SRCS=	checker.c \
+		checker_utils.c \
+		checker_utils2.c \
+		checker_utils3.c \
+		ft_strcmp.c \
+		./get_next_line/get_next_line.c \
+		./get_next_line/get_next_line_utils.c \
 		./ft_printf/ft_printf.c \
 		./ft_printf/ft_putchar_fd_p.c \
 		./ft_printf/ft_putnbr_fd_p.c \
@@ -31,14 +25,14 @@ SRCS=	push_swap.c \
 		./ft_split/ft_substr.c \
 
 RM = rm -rf
-NAME = push_swap.a
+NAME = checker.a
 OBJS = $(SRCS:.c=.o)
-HEADER = ./push_swap.h
+HEADER = ./checker.h
 
-all: push_swap
+all: checker
 
-push_swap: $(NAME)
-	@${CC} ${CFLAGS} -o push_swap push_swap.c $(NAME)
+checker: $(NAME)
+	@${CC} ${CFLAGS} -o checker checker.c $(NAME)
 	@RM $(NAME)
 
 $(NAME): $(OBJS)
@@ -51,6 +45,6 @@ clean:
 	@$(RM) $(OBJS)
 
 fclean: clean
-	@$(RM) $(NAME) push_swap
+	@$(RM) $(NAME) checker
 
 re: fclean all

@@ -6,7 +6,7 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 10:51:21 by abenajib          #+#    #+#             */
-/*   Updated: 2025/01/14 19:15:19 by abenajib         ###   ########.fr       */
+/*   Updated: 2025/01/17 20:47:48 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,25 +49,30 @@ int			ft_putnbr_fd_p(int n, int fd);
 int			ft_puthex_p(unsigned long long num, char c);
 int			ft_putunint_fd_p(unsigned int nb, int fd);
 //operations
+void		swap(t_list **stack);
 void		sa(t_list **stack);
 void		sb(t_list **stack);
 void		ss(t_list **stack_a, t_list **stack_b);
+void		push(t_list **stack_a, t_list **stack_b);
 void		pa(t_list **stack_a, t_list **stack_b);
 void		pb(t_list **stack_a, t_list **stack_b);
+void		rotate(t_list **stack);
 void		ra(t_list **stack);
 void		rb(t_list **stack);
 void		rr(t_list **stack_a, t_list **stack_b);
+void		reverse_rotate(t_list **stack);
 void		rra(t_list **stack);
 void		rrb(t_list **stack);
 void		rrr(t_list **stack_a, t_list **stack_b);
 //helpers
 int			ft_check_args_valid(int argc, char **argv);
 int			ft_isduplicated(t_list **stack, long long new);
+int			ft_create_stack(char **argv[], t_list **stack_a, int i, int len);
 void		ft_error(char *str);
 void		ft_sort_three(t_list **stack);
 void		ft_sort_two(t_list **stack);
 void		ft_sort_stack(t_list **stack_a, t_list **stack_b);
-int			ft_max(t_list *a);
+int			max(int a, int b);
 int			ft_min(t_list *a);
 int			ft_sum(t_list *stack);
 bool		stack_sorted(t_list *stack);
@@ -85,5 +90,8 @@ void		ft_refresh(t_list **stack_a, t_list **stack_b);
 void		ft_set_targets(t_list **stack_a, t_list **stack_b);
 void		ft_set_push_cost(t_list **stack_a);
 int			ft_min_push_cost(t_list *stack);
-void	ft_print_stacks(t_list *stack_a, t_list *stack_b);
+void		ft_print_stacks(t_list *stack_a, t_list *stack_b);
+void		ft_finish(t_list **stack_a, t_list **stack_b);
+void		ft_prepare(t_list **stack_a, t_list **stack_b);
+void		ft_move_top(t_list **stack, t_list *ptr);
 #endif //PUSH_SWAP_H

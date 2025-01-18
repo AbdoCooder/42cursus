@@ -6,7 +6,7 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 20:04:35 by abenajib          #+#    #+#             */
-/*   Updated: 2025/01/14 19:11:52 by abenajib         ###   ########.fr       */
+/*   Updated: 2025/01/14 22:12:46 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,3 @@ long long	ft_atoi(const char *str)
 		ft_error(NULL);
 	return (result * sign);
 }
-

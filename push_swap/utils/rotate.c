@@ -6,13 +6,13 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 10:18:31 by abenajib          #+#    #+#             */
-/*   Updated: 2025/01/06 21:45:14 by abenajib         ###   ########.fr       */
+/*   Updated: 2025/01/17 20:46:53 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-static void	rotate(t_list **stack)
+void	rotate(t_list **stack)
 {
 	t_list	*head;
 	t_list	*tmp;

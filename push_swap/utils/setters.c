@@ -6,7 +6,7 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 16:47:32 by abenajib          #+#    #+#             */
-/*   Updated: 2025/01/14 19:28:19 by abenajib         ###   ########.fr       */
+/*   Updated: 2025/01/14 22:08:06 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,13 +94,6 @@ void	ft_set_targets(t_list **stack_a, t_list **stack_b)
 	}
 }
 
-int max(int a, int b)
-{
-	if (a > b)
-		return (a);
-	return (b);
-}
-
 void	ft_set_push_cost(t_list **stack_a)
 {
 	t_list	*ptr;
@@ -108,7 +101,8 @@ void	ft_set_push_cost(t_list **stack_a)
 	ptr = *stack_a;
 	while (ptr)
 	{
-		if ((ptr->upper && ptr->target->upper) || (!ptr->upper && !ptr->target->upper))
+		if ((ptr->upper && ptr->target->upper)
+			|| (!ptr->upper && !ptr->target->upper))
 			ptr->push_cost = max(ptr->cost, ptr->target->cost);
 		else
 			ptr->push_cost = ptr->cost + ptr->target->cost;

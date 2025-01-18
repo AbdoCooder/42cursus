@@ -1,36 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push.c                                             :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/21 13:53:47 by abenajib          #+#    #+#             */
-/*   Updated: 2025/01/17 20:46:38 by abenajib         ###   ########.fr       */
+/*   Created: 2025/01/17 20:44:45 by abenajib          #+#    #+#             */
+/*   Updated: 2025/01/17 20:45:10 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "checker.h"
 
-void	push(t_list **stack_a, t_list **stack_b)
+int	ft_strcmp(const char *s1, const char *s2)
 {
-	t_list	*tmp;
-
-	if (*stack_a == NULL)
-		return ;
-	tmp = *stack_a;
-	*stack_a = (*stack_a)->next;
-	ft_lstadd_front(&(*stack_b), tmp);
-}
-
-void	pa(t_list **stack_a, t_list **stack_b)
-{
-	push(stack_b, stack_a);
-	ft_printf("pa\n");
-}
-
-void	pb(t_list **stack_a, t_list **stack_b)
-{
-	push(stack_a, stack_b);
-	ft_printf("pb\n");
+	while (*s1 == *s2 && *s1 != '\0')
+	{
+		s1++;
+		s2++;
+	}
+	return ((unsigned char)*s1 - (unsigned char)*s2);
 }

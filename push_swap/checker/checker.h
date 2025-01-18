@@ -1,36 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push.c                                             :+:      :+:    :+:   */
+/*   checker.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/21 13:53:47 by abenajib          #+#    #+#             */
-/*   Updated: 2025/01/17 20:46:38 by abenajib         ###   ########.fr       */
+/*   Created: 2025/01/17 20:11:40 by abenajib          #+#    #+#             */
+/*   Updated: 2025/01/18 11:43:21 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#ifndef CHECKER_H
+# define CHECKER_H
 
-void	push(t_list **stack_a, t_list **stack_b)
-{
-	t_list	*tmp;
+# include "../push_swap.h"
+# include "get_next_line/get_next_line.h"
 
-	if (*stack_a == NULL)
-		return ;
-	tmp = *stack_a;
-	*stack_a = (*stack_a)->next;
-	ft_lstadd_front(&(*stack_b), tmp);
-}
+int	ft_strcmp(const char *s1, const char *s2);
+int	ft_check_swap(t_list **stack_a, t_list **stack_b, char *op);
+int	ft_check_rotate(t_list **stack_a, t_list **stack_b, char *op);
+int	ft_check_push(t_list **stack_a, t_list **stack_b, char *op);
 
-void	pa(t_list **stack_a, t_list **stack_b)
-{
-	push(stack_b, stack_a);
-	ft_printf("pa\n");
-}
-
-void	pb(t_list **stack_a, t_list **stack_b)
-{
-	push(stack_a, stack_b);
-	ft_printf("pb\n");
-}
+#endif

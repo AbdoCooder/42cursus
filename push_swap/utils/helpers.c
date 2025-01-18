@@ -6,7 +6,7 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 10:50:31 by abenajib          #+#    #+#             */
-/*   Updated: 2025/01/14 16:14:14 by abenajib         ###   ########.fr       */
+/*   Updated: 2025/01/14 22:19:39 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,20 +28,11 @@ int	ft_min(t_list *a)
 	return (i);
 }
 
-int	ft_max(t_list *a)
+int	max(int a, int b)
 {
-	int		i;
-
-	if (!a->next)
-		return (*(int *)a->content);
-	i = *(int *)a->content;
-	while (a)
-	{
-		if (*(int *)a->content > i)
-			i = *(int *)a->content;
-		a = a->next;
-	}
-	return (i);
+	if (a > b)
+		return (a);
+	return (b);
 }
 
 int	ft_sum(t_list *stack)
@@ -80,27 +71,4 @@ void	ft_refresh(t_list **stack_a, t_list **stack_b)
 	ft_set_targets(stack_a, stack_b);
 	ft_set_upper(stack_a);
 	ft_set_upper(stack_b);
-}
-
-int	ft_min_push_cost(t_list *stack)
-{
-	if (!stack)
-		ft_error("empty stack -- ft_min_push_cost");
-	int		min;
-	int		number;
-	t_list	*ptr;
-
-	min = stack->push_cost;
-	number = *(int *)stack->content;
-	ptr = stack;
-	while (ptr)
-	{
-		if (ptr->push_cost < min)
-		{
-			number = *(int *)ptr->content;
-			min = ptr->push_cost;
-		}
-		ptr = ptr->next;
-	}
-	return (number);
 }

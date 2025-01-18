@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_validate.c                                      :+:      :+:    :+:   */
+/*   checker_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/27 18:36:19 by abenajib          #+#    #+#             */
-/*   Updated: 2025/01/14 22:18:02 by abenajib         ###   ########.fr       */
+/*   Created: 2025/01/17 21:35:22 by abenajib          #+#    #+#             */
+/*   Updated: 2025/01/17 21:45:46 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "checker.h"
 
 int	ft_check_args_valid(int argc, char **argv)
 {
@@ -40,22 +40,6 @@ int	ft_check_args_valid(int argc, char **argv)
 	return (0);
 }
 
-int	ft_isduplicated(t_list **stack, long long new)
-{
-	t_list	*ptr;
-
-	ptr = *stack;
-	if (new > INT_MAX || new < INT_MIN)
-		return (1);
-	while (ptr)
-	{
-		if (*(long long *)ptr->content == new)
-			return (1);
-		ptr = ptr->next;
-	}
-	return (0);
-}
-
 void	ft_error(char *str)
 {
 	write(2, "Error\n", 6);
@@ -64,15 +48,44 @@ void	ft_error(char *str)
 	exit (1);
 }
 
-bool	stack_sorted(t_list *stack)
+int	ft_create_stack(char **argv[], t_list **stack_a, int i, int len)
 {
-	if (!stack)
-		return (1);
-	while (stack->next)
+	char		**split;
+	long long	*new;
+
+	split = ft_split(*(*argv + i), " \t");
+	if (!*split || !split)
+		return (ft_error(NULL), 1);
+	while (split[len])
 	{
-		if (*(int *)stack->content > *(int *)stack->next->content)
-			return (false);
-		stack = stack->next;
+		new = malloc(sizeof(long long));
+		*new = ft_atoi(split[len]);
+		if (ft_isduplicated(stack_a, *new) == 1)
+			return (ft_lstclear(stack_a, free), free(split), ft_error(NULL), 1);
+		ft_lstadd_back(stack_a, ft_lstnew(new));
+		len++;
 	}
-	return (true);
+	free(split);
+	return (0);
+}
+
+void	ft_lstclear(t_list **lst, void (*del)(void *))
+{
+	t_list	*temp;
+
+	if (!lst || !del)
+		return ;
+	while (*lst)
+	{
+		temp = (*lst)->next;
+		del((*lst)->content);
+		free(*lst);
+		*lst = temp;
+	}
+	*lst = NULL;
+}
+
+int	ft_isdigit(int c)
+{
+	return (c >= '0' && c <= '9');
 }

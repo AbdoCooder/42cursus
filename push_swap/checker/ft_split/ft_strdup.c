@@ -1,36 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push.c                                             :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/21 13:53:47 by abenajib          #+#    #+#             */
-/*   Updated: 2025/01/17 20:46:38 by abenajib         ###   ########.fr       */
+/*   Created: 2024/10/22 19:47:40 by abenajib          #+#    #+#             */
+/*   Updated: 2025/01/17 21:48:00 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "../checker.h"
 
-void	push(t_list **stack_a, t_list **stack_b)
+static char	*ft_strcpy(char *dest, const char *src)
 {
-	t_list	*tmp;
+	int	i;
 
-	if (*stack_a == NULL)
-		return ;
-	tmp = *stack_a;
-	*stack_a = (*stack_a)->next;
-	ft_lstadd_front(&(*stack_b), tmp);
+	i = 0;
+	while (src[i] != '\0')
+	{
+		dest[i] = src[i];
+		i++;
+	}
+	dest[i] = '\0';
+	return (dest);
 }
 
-void	pa(t_list **stack_a, t_list **stack_b)
+char	*ft_strdup(const char *src)
 {
-	push(stack_b, stack_a);
-	ft_printf("pa\n");
-}
+	int		slen;
+	char	*dest;
 
-void	pb(t_list **stack_a, t_list **stack_b)
-{
-	push(stack_a, stack_b);
-	ft_printf("pb\n");
+	slen = 0;
+	while (src[slen])
+		slen++;
+	dest = (char *)malloc(sizeof(char) * slen + 1);
+	if (!dest)
+		return (NULL);
+	ft_strcpy (dest, src);
+	return (dest);
 }
