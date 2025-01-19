@@ -6,7 +6,7 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 10:44:19 by abenajib          #+#    #+#             */
-/*   Updated: 2025/01/18 16:18:16 by abenajib         ###   ########.fr       */
+/*   Updated: 2025/01/19 11:40:27 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,31 +32,6 @@ int	ft_create_stack(char **argv[], t_list **stack_a, int i, int len)
 	}
 	free(split);
 	return (0);
-}
-void	ft_print_stacks(t_list *stack_a, t_list *stack_b)
-{
-	ft_printf("\n===========\n");
-	ft_printf("stack_a\n");
-	if (!stack_a)
-		ft_printf("EMPTY!\n");
-	while (stack_a)
-	{
-		ft_printf(" ---\n");
-		ft_printf("| %d |\n", *(int *)(stack_a->content));
-		ft_printf(" --- \n");
-		stack_a = stack_a->next;
-	}
-	ft_printf("===========\n");
-	ft_printf("stack_b\n");
-	if (!stack_b)
-		ft_printf("EMPTY!\n");
-	while (stack_b)
-	{
-		ft_printf(" ---\n");
-		ft_printf("i = %d | %d |cost node %d |target %d | cost target %d |cost push %d |\n", stack_b->index, *(int *)(stack_b->content),stack_b->cost, *(int *)(stack_b->target->content), stack_b->target->cost,stack_b->push_cost);
-		ft_printf(" ---\n");
-		stack_b = stack_b->next;
-	}
 }
 
 int	main(int argc, char *argv[])
@@ -84,7 +59,37 @@ int	main(int argc, char *argv[])
 	}
 	if (!stack_sorted(stack_a))
 		ft_sort_stack(&stack_a, &stack_b);
-	// ft_print_stacks(stack_a, stack_b);
 	ft_lstclear(&stack_a, free);
 	return (0);
 }
+
+// ft_print_stacks(stack_a, stack_b);
+// void	ft_print_stacks(t_list *stack_a, t_list *stack_b)
+// {
+// 	ft_printf("\n===========\n");
+// 	ft_printf("stack_a\n");
+// 	if (!stack_a)
+// 		ft_printf("EMPTY!\n");
+// 	while (stack_a)
+// 	{
+// 		ft_printf(" ---\n");
+// 		ft_printf("| %d |\n", *(int *)(stack_a->content));
+// 		ft_printf(" --- \n");
+// 		stack_a = stack_a->next;
+// 	}
+// 	ft_printf("===========\n");
+// 	ft_printf("stack_b\n");
+// 	if (!stack_b)
+// 		ft_printf("EMPTY!\n");
+// 	while (stack_b)
+// 	{
+// 		ft_printf(" ---\n");
+// 		ft_printf("i = %d | %d |cost node %d |target %d
+//| cost target %d |cost push %d |\n",
+// 				stack_b->index, *(int *)(stack_b->content),
+// 				stack_b->cost, *(int *)(stack_b->target->content),
+// 				stack_b->target->cost,stack_b->push_cost);
+// 		ft_printf(" ---\n");
+// 		stack_b = stack_b->next;
+// 	}
+// }
