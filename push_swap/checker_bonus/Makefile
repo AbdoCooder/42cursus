@@ -5,24 +5,24 @@ SRCS=	checker_bonus.c \
 		checker_utils2_bonus.c \
 		checker_utils3_bonus.c \
 		ft_strcmp_bonus.c \
-		./get_next_line/get_next_line_bonus.c \
-		./get_next_line/get_next_line_utils_bonus.c \
-		./ft_printf/ft_printf_bonus.c \
-		./ft_printf/ft_putchar_fd_p_bonus.c \
-		./ft_printf/ft_putnbr_fd_p_bonus.c \
-		./ft_printf/ft_putstr_fd_p_bonus.c \
-		./ft_printf/ft_puthex_fd_p_bonus.c \
-		./ft_printf/ft_putunint_fd_p_bonus.c \
-		./ft_lstutils/ft_lstadd_back_bonus_bonus.c \
-		./ft_lstutils/ft_lstadd_front_bonus_bonus.c \
-		./ft_lstutils/ft_lstclear_bonus_bonus.c \
-		./ft_lstutils/ft_lstnew_bonus_bonus.c \
-		./ft_lstutils/ft_lstsize_bonus_bonus.c \
-		./ft_split/ft_split_bonus.c \
-		./ft_split/ft_strchr_bonus.c \
-		./ft_split/ft_strdup_bonus.c \
-		./ft_split/ft_strlen_bonus.c \
-		./ft_split/ft_substr_bonus.c \
+		./get_next_line_bonus/get_next_line_bonus.c \
+		./get_next_line_bonus/get_next_line_utils_bonus.c \
+		./ft_printf_bonus/ft_printf_bonus.c \
+		./ft_printf_bonus/ft_putchar_fd_p_bonus.c \
+		./ft_printf_bonus/ft_putnbr_fd_p_bonus.c \
+		./ft_printf_bonus/ft_putstr_fd_p_bonus.c \
+		./ft_printf_bonus/ft_puthex_fd_p_bonus.c \
+		./ft_printf_bonus/ft_putunint_fd_p_bonus.c \
+		./ft_lstutils_bonus/ft_lstadd_back_bonus.c \
+		./ft_lstutils_bonus/ft_lstadd_front_bonus.c \
+		./ft_lstutils_bonus/ft_lstclear_bonus.c \
+		./ft_lstutils_bonus/ft_lstnew_bonus.c \
+		./ft_lstutils_bonus/ft_lstsize_bonus.c \
+		./ft_split_bonus/ft_split_bonus.c \
+		./ft_split_bonus/ft_strchr_bonus.c \
+		./ft_split_bonus/ft_strdup_bonus.c \
+		./ft_split_bonus/ft_strlen_bonus.c \
+		./ft_split_bonus/ft_substr_bonus.c \
 
 RM = rm -rf
 NAME = checker_bonus.a
@@ -32,7 +32,7 @@ HEADER = ./checker_bonus.h
 all: checker
 
 checker: $(NAME)
-	@${CC} ${CFLAGS} -o checker checker_bonus.c $(NAME)
+	@${CC} ${CFLAGS} -o ../checker checker_bonus.c $(NAME)
 	@$(RM) $(NAME)
 
 $(NAME): $(OBJS)
@@ -45,6 +45,6 @@ clean:
 	@$(RM) $(OBJS)
 
 fclean: clean
-	@$(RM) $(NAME) checker
+	@$(RM) $(NAME) ../checker
 
 re: fclean all

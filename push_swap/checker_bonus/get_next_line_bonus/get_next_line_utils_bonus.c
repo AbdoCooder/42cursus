@@ -82,8 +82,8 @@ char	*ft_substr_gnl(char const *s, unsigned int start, size_t len)
 	i = 0;
 	if (len > s_len - start)
 		len = s_len - start;
-	if (len < 0)
-		return (NULL);
+	// if (len < 0)
+	// 	return (NULL);
 	substr = malloc(len + 1);
 	if (!substr)
 		return (NULL);
