@@ -86,10 +86,5 @@ int	main(int argc, char *argv[])
 		ft_sort_stack(&stack_a, &stack_b);
 	// ft_print_stacks(stack_a, stack_b);
 	ft_lstclear(&stack_a, free);
-	while (1)
-	{
-		/* code */
-	}
-
 	return (0);
 }

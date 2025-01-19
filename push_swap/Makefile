@@ -48,14 +48,14 @@ $(NAME): $(OBJS)
 	@${CC} ${CFLAGS} -c $< -o $@
 
 bonus:
-	@make -C checker_
+	@make -C checker_bonus
 
 clean:
 	@$(RM) $(OBJS)
-	@make -C checker_ clean
+	@make -C checker_bonus clean
 
 fclean: clean
 	@$(RM) $(NAME) push_swap
-	@make -C checker_ fclean
+	@make -C checker_bonus fclean
 
 re: fclean all
