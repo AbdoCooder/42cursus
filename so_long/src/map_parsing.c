@@ -6,7 +6,7 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 17:13:19 by abenajib          #+#    #+#             */
-/*   Updated: 2025/01/20 21:03:42 by abenajib         ###   ########.fr       */
+/*   Updated: 2025/01/20 22:32:23 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,79 +79,21 @@ void ft_map_errors(int error)
 //================================================================================
 // AI
 
-bool validate_map(t_map_data *map_data)
+bool ft_validate_map(t_map_data *map)
 {
+	int		i;
+	int		j;
 
-
-	// Check if the map is surrounded by walls
-	for (int i = 0; i < map_data->height; i++)
+	i = 0;
+	j = 0;
+	//RECTANGULAR
+	while (i < map->height)
 	{
-		// Check first and last character of each line
-		if (map_data->map[i][0] != '1' || map_data->map[i][map_data->width - 1] != '1')
-		{
-			ft_map_errors(ERROR_MAP_NOT_SURROUNDED_BY_WALLS);
-			return false;
-		}
+		if (ft_strlen(map->map[i], '\0') - 1 != map->width)
+			return (ft_map_errors(ERROR_MAP_NOT_RECTANGULAR), false);
+		i++;
 	}
-	// Check first and last line
-	for (int j = 0; j < map_data->width; j++)
-	{
-		if (map_data->map[0][j] != '1' || map_data->map[map_data->height - 1][j] != '1')
-		{
-			ft_map_errors(ERROR_MAP_NOT_SURROUNDED_BY_WALLS);
-			return false;
-		}
-	}
-
-	// Count players, exits, and collectibles
-	map_data->players = 0;
-	map_data->exits = 0;
-	map_data->collectables = 0;
-
-	for (int i = 0; i < map_data->height; i++)
-	{
-		for (int j = 0; j < map_data->width; j++)
-		{
-			if (map_data->map[i][j] == 'P')
-			{
-				map_data->players++;
-				// Check if player is on the border (invalid position)
-				if (i == 0 || i == map_data->height - 1 || j == 0 || j == map_data->width - 1)
-				{
-					ft_map_errors(ERROR_INVALID_CHARACTER);
-					return false;
-				}
-			}
-			else if (map_data->map[i][j] == 'E')
-				map_data->exits++;
-			else if (map_data->map[i][j] == 'C')
-				map_data->collectables++;
-			else if (map_data->map[i][j] != '0' && map_data->map[i][j] != '1')
-			{
-				ft_map_errors(ERROR_INVALID_CHARACTER);
-				return false;
-			}
-		}
-	}
-
-	// Validate number of players, exits, and collectibles
-	if (map_data->players != 1)
-	{
-		ft_map_errors(ERROR_INVALID_NUMBER_OF_PLAYERS);
-		return false;
-	}
-	if (map_data->exits != 1)
-	{
-		ft_map_errors(ERROR_INVALID_NUMBER_OF_EXITS);
-		return false;
-	}
-	if (map_data->collectables < 1)
-	{
-		ft_map_errors(ERROR_INVALID_NUMBER_OF_COLLECTIBLES);
-		return false;
-	}
-
-	return true;
+	return (true);
 }
 
 //================================================================================

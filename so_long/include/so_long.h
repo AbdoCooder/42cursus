@@ -6,7 +6,7 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 16:34:15 by abenajib          #+#    #+#             */
-/*   Updated: 2025/01/20 20:35:30 by abenajib         ###   ########.fr       */
+/*   Updated: 2025/01/20 21:15:14 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ typedef struct s_map_data
 void ft_map_errors(int error);
 void free_map(t_map_data *map);
 void ft_read_map(t_map_data *map, char *file);
-bool validate_map(t_map_data *map_data);
+bool ft_validate_map(t_map_data *map_data);
 
 #endif // SO_LONG_H
 

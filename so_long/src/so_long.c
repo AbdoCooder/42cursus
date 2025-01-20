@@ -6,7 +6,7 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 11:06:55 by codespace         #+#    #+#             */
-/*   Updated: 2025/01/20 20:36:05 by abenajib         ###   ########.fr       */
+/*   Updated: 2025/01/20 22:14:18 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int main(int argc, char **argv)
 		free_map(&map_data);
 		return (1);
 	}
-	if (!validate_map(&map_data))
+	if (!ft_validate_map(&map_data))
 	{
 		free_map(&map_data);
 		return (1);
