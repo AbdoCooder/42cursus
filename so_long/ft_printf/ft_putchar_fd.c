@@ -1,25 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.c                                          :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/19 11:06:55 by codespace         #+#    #+#             */
-/*   Updated: 2025/01/19 11:35:01 by codespace        ###   ########.fr       */
+/*   Created: 2024/10/27 15:10:34 by abenajib          #+#    #+#             */
+/*   Updated: 2024/11/12 15:29:51 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx.h"
+#include "ft_printf.h"
 
-#define WIDTH 500
-#define HEIGHT 500
-
-int	main(int argc, char *argv[])
+int	ft_putchar_fd(char c, int fd)
 {
-	void	*mlx_ptr;
-
-	mlx_ptr = mlx_init();
-	mlx_new_window(mlx_ptr, WIDTH, HEIGHT, "MLX_SO_LONG");
-	mlx_loop(mlx_ptr);
+	write(fd, &c, 1);
+	return (1);
 }
