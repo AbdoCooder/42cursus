@@ -6,7 +6,7 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 17:13:19 by abenajib          #+#    #+#             */
-/*   Updated: 2025/01/20 22:32:23 by abenajib         ###   ########.fr       */
+/*   Updated: 2025/01/20 22:54:48 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,24 +76,58 @@ void ft_map_errors(int error)
 		ft_printf("Error\nUnknown error.\n");
 }
 
-//================================================================================
-// AI
-
-bool ft_validate_map(t_map_data *map)
+bool	ft_check_rectangular(t_map_data *map)
 {
 	int		i;
-	int		j;
 
 	i = 0;
-	j = 0;
-	//RECTANGULAR
 	while (i < map->height)
 	{
 		if (ft_strlen(map->map[i], '\0') - 1 != map->width)
-			return (ft_map_errors(ERROR_MAP_NOT_RECTANGULAR), false);
+			return (false);
 		i++;
 	}
 	return (true);
 }
 
-//================================================================================
+bool	ft_check_first_line(t_map_data *map)
+{
+	int j;
+
+	j = 0;
+	while (j < map->width)
+	{
+		ft_printf("%c\n", map->map[0][j]); //TODO:
+		if (map->map[0][j] != 1)
+			return (false);
+		j++;
+	}
+	return (true);
+}
+
+bool	ft_check_walls(t_map_data *map)
+{
+	if (!ft_check_first_line(map))
+		return (false);
+	// if (!ft_check_last_line(map))
+	// 	return (false);
+	// if (!ft_check_barriers(map))
+	// 	return (false);
+	return (true);
+}
+
+bool ft_validate_map(t_map_data *map)
+{
+	int		i;
+
+	i = 0;
+	//RECTANGULAR
+	if (!ft_check_rectangular(map))
+		return (ft_map_errors(ERROR_MAP_NOT_RECTANGULAR), false);
+
+	//SURROUNDED_BY_WALLS
+	if (!ft_check_walls(map))
+		return (ft_map_errors(ERROR_MAP_NOT_SURROUNDED_BY_WALLS), false);
+
+	return (true);
+}
