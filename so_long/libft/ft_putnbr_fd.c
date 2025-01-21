@@ -1,48 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putunint_fd.c                                   :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 15:47:42 by abenajib          #+#    #+#             */
-/*   Updated: 2024/11/12 16:01:55 by abenajib         ###   ########.fr       */
+/*   Updated: 2025/01/21 15:37:09 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-static int	ft_numsize(unsigned int num)
+void	ft_putnbr_fd(int n, int fd)
 {
-	int	count;
-
-	count = (num == 0);
-	while (num != 0)
+	if (n == -2147483648)
 	{
-		num /= 10;
-		count++;
+		ft_putstr_fd("-2147483648", fd);
+		return ;
 	}
-	return (count);
-}
-
-int	ft_putunint_fd(unsigned int nb, int fd)
-{
-	unsigned int	n;
-
-	n = nb;
+	if (n < 0)
+	{
+		ft_putchar_fd('-', fd);
+		n = -n;
+	}
 	if (n > 9)
 	{
-		ft_putunint_fd(n / 10, fd);
-		ft_putunint_fd(n % 10, fd);
+		ft_putnbr_fd(n / 10, fd);
+		ft_putnbr_fd(n % 10, fd);
 	}
 	else
+	{
 		ft_putchar_fd(n + '0', fd);
-	return (ft_numsize(nb));
+	}
 }
-
-// #include <stdio.h>
-// int main()
-// {
-// 	int n = ft_putunint_fd(524525252, 1);
-// 	printf("\n%d\n", n);
-// }

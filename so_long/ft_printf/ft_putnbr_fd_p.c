@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_putnbr_fd_p_p.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 15:47:42 by abenajib          #+#    #+#             */
-/*   Updated: 2024/11/12 15:50:38 by abenajib         ###   ########.fr       */
+/*   Updated: 2025/01/21 15:23:15 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,35 +27,35 @@ static int	ft_numsize(int num)
 	return (count);
 }
 
-int	ft_putnbr_fd(int nb, int fd)
+int	ft_putnbr_fd_p(int nb, int fd)
 {
 	int	n;
 
 	n = nb;
 	if (n == -2147483648)
 	{
-		ft_putstr_fd("-2147483648", fd);
+		ft_putstr_fd_p("-2147483648", fd);
 		return (11);
 	}
 	if (n < 0)
 	{
-		ft_putchar_fd('-', fd);
+		ft_putchar_fd_p('-', fd);
 		n = -n;
 	}
 	if (n > 9)
 	{
-		ft_putnbr_fd(n / 10, fd);
-		ft_putnbr_fd(n % 10, fd);
+		ft_putnbr_fd_p(n / 10, fd);
+		ft_putnbr_fd_p(n % 10, fd);
 	}
 	else
 	{
-		ft_putchar_fd(n + '0', fd);
+		ft_putchar_fd_p(n + '0', fd);
 	}
 	return (ft_numsize(nb));
 }
 // #include <stdio.h>
 // int main()
 // {
-// 	int n = ft_putnbr_fd(45, 1);
+// 	int n = ft_putnbr_fd_p(45, 1);
 // 	printf("\n%d\n", n);
 // }

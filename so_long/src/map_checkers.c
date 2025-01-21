@@ -6,7 +6,7 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 11:34:22 by abenajib          #+#    #+#             */
-/*   Updated: 2025/01/21 12:33:53 by abenajib         ###   ########.fr       */
+/*   Updated: 2025/01/21 15:31:08 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,11 @@ bool ft_check_rectangular(t_map_data *map)
 	i = 0;
 	while (i < map->height)
 	{
-		// if (i == map->height - 1)
-		// {
-		// 	if (ft_strlen(map->map[i], '\0') != map->width)
-		// 		return (false);
-		// }
-		// else
-		// {
-			if (ft_strlen(map->map[i], '\n') != map->width)
-				return (false);
-		// }
+		int j = 0;
+		while (ft_strchr(" \t\n", map->map[i][j]))
+			j++;
+		if (ft_strlen_gnl(map->map[i] + j, '\n') != map->width)
+			return (false);
 		i++;
 	}
 	return (true);

@@ -1,25 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/11 15:06:30 by abenajib          #+#    #+#             */
-/*   Updated: 2025/01/21 15:23:51 by abenajib         ###   ########.fr       */
+/*   Created: 2024/10/22 19:47:40 by abenajib          #+#    #+#             */
+/*   Updated: 2025/01/21 15:37:09 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "libft.h"
 
-# include <unistd.h>
+static char	*ft_strcpy(char *dest, const char *src)
+{
+	int	i;
 
-int	ft_printf(const char *str, ...);
-int	ft_putstr_fd_p(char *s, int fd);
-int	ft_putchar_fd_p(char c, int fd);
-int	ft_putnbr_fd_p(int n, int fd);
-int	ft_puthex_p(unsigned long long num, char c);
-int	ft_putunint_fd_p(unsigned int nb, int fd);
+	i = 0;
+	while (src[i] != '\0')
+	{
+		dest[i] = src[i];
+		i++;
+	}
+	dest[i] = '\0';
+	return (dest);
+}
 
-#endif
+char	*ft_strdup(const char *src)
+{
+	int		slen;
+	char	*dest;
+
+	slen = 0;
+	while (src[slen])
+		slen++;
+	dest = (char *)malloc(sizeof(char) * slen + 1);
+	if (!dest)
+		return (NULL);
+	ft_strcpy (dest, src);
+	return (dest);
+}

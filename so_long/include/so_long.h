@@ -6,7 +6,7 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 16:34:15 by abenajib          #+#    #+#             */
-/*   Updated: 2025/01/21 12:07:50 by abenajib         ###   ########.fr       */
+/*   Updated: 2025/01/21 15:21:09 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "MLX42/MLX42.h"
 # include "../ft_printf/ft_printf.h"
+# include "../libft/libft.h"
 # include "../get_next_line/get_next_line.h"
 # include <stdlib.h>
 # include <stdbool.h>

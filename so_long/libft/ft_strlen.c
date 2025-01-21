@@ -1,38 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/27 15:34:01 by abenajib          #+#    #+#             */
-/*   Updated: 2024/11/12 14:02:31 by abenajib         ###   ########.fr       */
+/*   Created: 2024/10/22 15:23:46 by abenajib          #+#    #+#             */
+/*   Updated: 2025/01/21 15:37:09 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_putstr_fd(char *s, int fd)
+size_t	ft_strlen(const char *s)
 {
-	int	len;
+	size_t	count;
 
-	if (!s)
-	{
-		write(1, "(null)", 6);
-		return (6);
-	}
-	len = 0;
-	while (*s)
-	{
-		ft_putchar_fd(*s, fd);
-		s++;
-		len++;
-	}
-	return (len);
+	count = 0;
+	while (s[count])
+		count++;
+	return (count);
 }
-// #include <stdio.h>
-// int main()
-// {
-// 	int n = ft_putstr_fd("helosdjsmcdsc", 1);
-// 	printf("\n%d\n", n);
-// }

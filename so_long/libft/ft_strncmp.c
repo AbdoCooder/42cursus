@@ -1,25 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/11 15:06:30 by abenajib          #+#    #+#             */
-/*   Updated: 2025/01/21 15:23:51 by abenajib         ###   ########.fr       */
+/*   Created: 2024/10/22 20:29:11 by abenajib          #+#    #+#             */
+/*   Updated: 2025/01/21 15:37:09 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "libft.h"
 
-# include <unistd.h>
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
+{
+	size_t	i;
 
-int	ft_printf(const char *str, ...);
-int	ft_putstr_fd_p(char *s, int fd);
-int	ft_putchar_fd_p(char c, int fd);
-int	ft_putnbr_fd_p(int n, int fd);
-int	ft_puthex_p(unsigned long long num, char c);
-int	ft_putunint_fd_p(unsigned int nb, int fd);
-
-#endif
+	i = 0;
+	while (i < n)
+	{
+		if (s1[i] != s2[i] || s1[i] == '\0' || s2[i] == '\0')
+		{
+			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+		}
+		i++;
+	}
+	return (0);
+}

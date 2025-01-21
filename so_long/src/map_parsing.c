@@ -6,7 +6,7 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 17:13:19 by abenajib          #+#    #+#             */
-/*   Updated: 2025/01/21 13:01:56 by abenajib         ###   ########.fr       */
+/*   Updated: 2025/01/21 15:30:42 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void ft_read_map(t_map_data *map, char *file)
 		map->map[map->height] = line;
 		map->height++;
 		if (map->width == 0)
-			map->width = ft_strlen(line, '\0') - 1;
+			map->width = ft_strlen(line) - 1;
 	}
 	close(fd);
 }
@@ -129,7 +129,7 @@ bool ft_validate_map(t_map_data *map)
 	i = 0;
 
 	//RECTANGULAR
-	if (!ft_check_rectangular(map))
+	if (!ft_check_rectangular(map)) //TODO: Fix this function if there is a whitespace at the end of the line
 		return (ft_map_errors(ERROR_MAP_NOT_RECTANGULAR), false);
 
 	//SURROUNDED_BY_WALLS

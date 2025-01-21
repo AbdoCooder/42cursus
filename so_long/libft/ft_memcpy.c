@@ -1,25 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/11 15:06:30 by abenajib          #+#    #+#             */
-/*   Updated: 2025/01/21 15:23:51 by abenajib         ###   ########.fr       */
+/*   Created: 2024/10/22 17:44:20 by abenajib          #+#    #+#             */
+/*   Updated: 2025/01/21 15:37:09 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "libft.h"
 
-# include <unistd.h>
+void	*ft_memcpy(void *dest, const void *src, size_t n)
+{
+	unsigned char		*d;
+	const unsigned char	*s;
 
-int	ft_printf(const char *str, ...);
-int	ft_putstr_fd_p(char *s, int fd);
-int	ft_putchar_fd_p(char c, int fd);
-int	ft_putnbr_fd_p(int n, int fd);
-int	ft_puthex_p(unsigned long long num, char c);
-int	ft_putunint_fd_p(unsigned int nb, int fd);
-
-#endif
+	if (dest == src)
+		return (dest);
+	d = (unsigned char *)dest;
+	s = (const unsigned char *)src;
+	while (n--)
+		*d++ = *s++;
+	return (dest);
+}
+// #include <stdio.h>
+// #include <string.h>
+// int main()
+// {
+// 	char *s3 = "zxcvbnm";
+// 	ft_memcpy(s3, s3, 5);
+// 	return 0;
+// }
