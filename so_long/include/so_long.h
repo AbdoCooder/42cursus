@@ -6,7 +6,7 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 16:34:15 by abenajib          #+#    #+#             */
-/*   Updated: 2025/01/20 21:15:14 by abenajib         ###   ########.fr       */
+/*   Updated: 2025/01/21 12:07:50 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # define HEIGHT 500
 #define ERROR_MAP_NOT_RECTANGULAR 1
 #define ERROR_MAP_NOT_SURROUNDED_BY_WALLS 2
+#define ERROR_INVALID_FILE_EXTENTION 10
 #define ERROR_INVALID_NUMBER_OF_PLAYERS 3
 #define ERROR_INVALID_NUMBER_OF_EXITS 4
 #define ERROR_INVALID_NUMBER_OF_COLLECTIBLES 5
@@ -41,11 +42,18 @@ typedef struct s_map_data
 	bool	valid;
 }			t_map_data;
 
+//MAP FUNCTIONS START-----------------------------------
+void	ft_map_errors(int error);
+void	free_map(t_map_data *map);
+void	ft_read_map(t_map_data *map, char *file);
+bool	ft_validate_map(t_map_data *map_data);
+bool	ft_check_rectangular(t_map_data *map);
+bool	ft_check_first_last_line(t_map_data *map);
+bool	ft_check_barriers(t_map_data *map);
+bool	ft_check_walls(t_map_data *map);
+bool	ft_check_chars(t_map_data *map);
+//MAP FUNCTIONS END-------------------------------------
 
-void ft_map_errors(int error);
-void free_map(t_map_data *map);
-void ft_read_map(t_map_data *map, char *file);
-bool ft_validate_map(t_map_data *map_data);
 
 #endif // SO_LONG_H
 

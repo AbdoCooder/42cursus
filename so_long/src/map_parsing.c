@@ -6,11 +6,18 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 17:13:19 by abenajib          #+#    #+#             */
-/*   Updated: 2025/01/20 22:54:48 by abenajib         ###   ########.fr       */
+/*   Updated: 2025/01/21 12:21:14 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
+
+void	ft_error(char *str)
+{
+	if (str)
+		ft_printf("%s", str);
+	exit(1);
+}
 
 void ft_read_map(t_map_data *map, char *file)
 {
@@ -26,9 +33,8 @@ void ft_read_map(t_map_data *map, char *file)
 	map->map = (char **)malloc(sizeof(char *) * 100);
 	if (!map->map)
 	{
-		ft_printf("ERROR\nMemory allocation failed\n");
 		close(fd);
-		exit(1);
+		ft_error("ERROR\nMemory allocation failed\n");
 	}
 	map->height = 0;
 	map->width = 0;
@@ -72,47 +78,45 @@ void ft_map_errors(int error)
 		ft_printf("Error\nMap file is empty.\n");
 	else if (error == ERROR_FAILED_TO_OPEN_MAP_FILE)
 		ft_printf("Error\nFailed to open map file.\n");
+	else if (error == ERROR_INVALID_FILE_EXTENTION)
+		ft_printf("Error\nInvalid file extention.\n");
 	else
 		ft_printf("Error\nUnknown error.\n");
 }
 
-bool	ft_check_rectangular(t_map_data *map)
+bool ft_check_requirements(t_map_data *map)
 {
-	int		i;
+	int i;
+	int j;
+	int players;
+	int collectables;
+	int exits;
 
 	i = 0;
+	players = 0;
+	collectables = 0;
+	exits = 0;
 	while (i < map->height)
 	{
-		if (ft_strlen(map->map[i], '\0') - 1 != map->width)
-			return (false);
+		j = 0;
+		while (j < map->width)
+		{
+			if (map->map[i][j] == 'P')
+				players++;
+			else if (map->map[i][j] == 'C')
+				collectables++;
+			else if (map->map[i][j] == 'E')
+				exits++;
+			j++;
+		}
 		i++;
 	}
-	return (true);
-}
-
-bool	ft_check_first_line(t_map_data *map)
-{
-	int j;
-
-	j = 0;
-	while (j < map->width)
-	{
-		ft_printf("%c\n", map->map[0][j]); //TODO:
-		if (map->map[0][j] != 1)
-			return (false);
-		j++;
-	}
-	return (true);
-}
-
-bool	ft_check_walls(t_map_data *map)
-{
-	if (!ft_check_first_line(map))
-		return (false);
-	// if (!ft_check_last_line(map))
-	// 	return (false);
-	// if (!ft_check_barriers(map))
-	// 	return (false);
+	if (players != 1)
+		return (ft_map_errors(ERROR_INVALID_NUMBER_OF_PLAYERS), false);
+	if (collectables < 1)
+		return (ft_map_errors(ERROR_INVALID_NUMBER_OF_COLLECTIBLES), false);
+	if (exits < 1)
+		return (ft_map_errors(ERROR_INVALID_NUMBER_OF_EXITS), false);
 	return (true);
 }
 
@@ -121,6 +125,7 @@ bool ft_validate_map(t_map_data *map)
 	int		i;
 
 	i = 0;
+
 	//RECTANGULAR
 	if (!ft_check_rectangular(map))
 		return (ft_map_errors(ERROR_MAP_NOT_RECTANGULAR), false);
@@ -129,5 +134,16 @@ bool ft_validate_map(t_map_data *map)
 	if (!ft_check_walls(map))
 		return (ft_map_errors(ERROR_MAP_NOT_SURROUNDED_BY_WALLS), false);
 
+	//INVALID_CHARACTER
+	if (!ft_check_chars(map))
+		return (ft_map_errors(ERROR_INVALID_CHARACTER), false);
+
+	//INVALID_REQUIRED_ELEMENTS
+	if (!ft_check_requirements(map))
+		return (false);
+
+	//INVALID_PATH
+	// if (!ft_check_path(map))
+	// 	return (ft_map_errors(ERROR_NO_VALID_PATH), false);
 	return (true);
 }
