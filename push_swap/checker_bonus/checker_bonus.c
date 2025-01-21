@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker.c                                          :+:      :+:    :+:   */
+/*   checker_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 20:11:03 by abenajib          #+#    #+#             */
-/*   Updated: 2025/01/18 16:22:30 by abenajib         ###   ########.fr       */
+/*   Updated: 2025/01/21 13:48:12 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	ft_result(char *str)
 {
 	if (str)
 		ft_printf("%s\n", str);
-	exit (1);
+	// exit (1);
 }
 
 void	ft_ko(t_list **stack_a, t_list **stack_b, char *op)
@@ -93,6 +93,6 @@ int	main(int argc, char *argv[])
 	}
 	ft_read_and_update(&stack_a, &stack_b);
 	ft_checker(&stack_a, &stack_b);
-	ft_lstclear(&stack_a, free);
+	system("leaks checker");
 	return (0);
 }

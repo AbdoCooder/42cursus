@@ -6,7 +6,7 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 11:00:30 by abenajib          #+#    #+#             */
-/*   Updated: 2025/01/19 11:38:49 by abenajib         ###   ########.fr       */
+/*   Updated: 2025/01/21 14:04:41 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ void	ft_sort_stack(t_list **stack_a, t_list **stack_b)
 	{
 		while (ft_lstsize(*stack_a) > 3)
 		{
+			ft_set_indexs(stack_a, stack_b);
 			data = ft_b_move(stack_a, medium);
 			ft_move_top(stack_a, ft_find_node(data, *stack_a));
 			pb(stack_a, stack_b);

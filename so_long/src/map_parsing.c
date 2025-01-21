@@ -6,7 +6,7 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 17:13:19 by abenajib          #+#    #+#             */
-/*   Updated: 2025/01/21 12:21:14 by abenajib         ###   ########.fr       */
+/*   Updated: 2025/01/21 13:01:56 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,13 +65,13 @@ void ft_map_errors(int error)
 	else if (error == ERROR_MAP_NOT_SURROUNDED_BY_WALLS)
 		ft_printf("Error\nMap is not surrounded by walls.\n");
 	else if (error == ERROR_INVALID_NUMBER_OF_PLAYERS)
-		ft_printf("Error\nInvalid number of players (P).\n");
+		ft_printf("Error\nInvalid number of players (P). (Hint: Only one starting position)\n");
 	else if (error == ERROR_INVALID_NUMBER_OF_EXITS)
-		ft_printf("Error\nInvalid number of exits (E).\n");
+		ft_printf("Error\nInvalid number of exits (E). (Hint: Only one exit)\n");
 	else if (error == ERROR_INVALID_NUMBER_OF_COLLECTIBLES)
-		ft_printf("Error\nInvalid number of collectibles (C).\n");
+		ft_printf("Error\nInvalid number of collectibles (C). (Hint: At least one collectibles)\n");
 	else if (error == ERROR_INVALID_CHARACTER)
-		ft_printf("Error\nInvalid character in map.\n");
+		ft_printf("Error\nInvalid character in map. (Hint: Valide chars [0, 1, P, C, E])\n");
 	else if (error == ERROR_NO_VALID_PATH)
 		ft_printf("Error\nNo valid path to exit or collectibles.\n");
 	else if (error == ERROR_MAP_FILE_EMPTY)
@@ -84,38 +84,40 @@ void ft_map_errors(int error)
 		ft_printf("Error\nUnknown error.\n");
 }
 
-bool ft_check_requirements(t_map_data *map)
+void ft_calculate_elements(t_map_data *map)
 {
 	int i;
 	int j;
-	int players;
-	int collectables;
-	int exits;
 
 	i = 0;
-	players = 0;
-	collectables = 0;
-	exits = 0;
+	map->players = 0;
+	map->collectables = 0;
+	map->exits = 0;
 	while (i < map->height)
 	{
 		j = 0;
 		while (j < map->width)
 		{
 			if (map->map[i][j] == 'P')
-				players++;
+				map->players++;
 			else if (map->map[i][j] == 'C')
-				collectables++;
+				map->collectables++;
 			else if (map->map[i][j] == 'E')
-				exits++;
+				map->exits++;
 			j++;
 		}
 		i++;
 	}
-	if (players != 1)
+}
+
+bool ft_check_requirements(t_map_data *map)
+{
+	ft_calculate_elements(map);
+	if (map->players != 1)
 		return (ft_map_errors(ERROR_INVALID_NUMBER_OF_PLAYERS), false);
-	if (collectables < 1)
+	if (map->collectables < 1)
 		return (ft_map_errors(ERROR_INVALID_NUMBER_OF_COLLECTIBLES), false);
-	if (exits < 1)
+	if (map->exits != 1)
 		return (ft_map_errors(ERROR_INVALID_NUMBER_OF_EXITS), false);
 	return (true);
 }
