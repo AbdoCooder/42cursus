@@ -72,3 +72,49 @@
 
 
 ==========================================================================================================
+
+
+==========================================================================================================
+//Code Structure
+
+	Reading the Map:
+
+		The ft_read_map function reads the map from a file and stores it in the t_map_data structure. It handles errors related to file opening and memory allocation.
+
+	Freeing the Map:
+
+		The free_map function frees the allocated memory for the map.
+
+	Calculating Map Elements:
+
+		The ft_calculate_elements function counts the number of players, collectables, and exits in the map.
+
+	Checking Requirements:
+
+		The ft_check_requirements function ensures that there is exactly one player, at least one collectable, and exactly one exit. It calls ft_map_errors to print appropriate error messages if the requirements are not met.
+
+	Finding the Player:
+
+		The ft_find_player function locates the player's starting position in the map.
+
+	Flood Fill Algorithm:
+
+		The flood_fill function performs a flood fill algorithm to mark reachable areas of the map starting from the player's position.
+
+	Checking Flood Fill:
+
+		The ft_check_flood function verifies that all collectables and the exit are reachable by checking if any 'C' or 'E' characters remain in the map after the flood fill.
+
+	Checking Path Validity:
+
+		The ft_check_path function creates a copy of the map, performs the flood fill, and checks if all required elements are reachable. It frees the copied map and returns the result.
+
+	Validating the Map:
+
+		The ft_validate_map function performs a series of checks to validate the map:
+			It checks if the map is rectangular using ft_check_rectangular.
+			It checks if the map is surrounded by walls using ft_check_walls.
+			It checks for invalid characters using ft_check_chars.
+			It checks the required elements using ft_check_requirements.
+			It checks for a valid path using ft_check_path.
+==========================================================================================================

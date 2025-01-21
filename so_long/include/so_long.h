@@ -6,7 +6,7 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 16:34:15 by abenajib          #+#    #+#             */
-/*   Updated: 2025/01/21 15:21:09 by abenajib         ###   ########.fr       */
+/*   Updated: 2025/01/21 17:21:14 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,14 @@ typedef struct s_map_data
 	int		exits;
 	bool	valid;
 }			t_map_data;
+
+//Flood fill functions
+typedef struct s_player
+{
+	int x;
+	int y;
+	int		collected;
+} t_player;
 
 //MAP FUNCTIONS START-----------------------------------
 void	ft_map_errors(int error);
