@@ -2,6 +2,11 @@
 
 void ft_start_game(t_map_data *map)
 {
+	if (!map->valid)
+	{
+		ft_printf("Map is not valid\n");
+		return;
+	}
 	ft_init_game(map);
 }
 
@@ -19,8 +24,8 @@ void ft_init_game(t_map_data *map)
 		return;
 	}
 
-	// Create a new image
-	mlx_image_t *img = mlx_new_image(mlx_ptr, 50, 50);
+	// Create a new image that covers the entire window
+	mlx_image_t *img = mlx_new_image(mlx_ptr, map->width * 50, map->height * 50);
 	if (!img)
 	{
 		ft_printf("Failed to create image\n");
@@ -28,23 +33,37 @@ void ft_init_game(t_map_data *map)
 	}
 
 	// Color the image based on the map
-	for (int y = 0; y < 50; y++)
+	for (int y = 0; y < map->height; y++)
 	{
-		for (int x = 0; x < 50; x++)
+		for (int x = 0; x < map->width; x++)
 		{
-			if (map->map[y][x] == '1')
+			for (int i = 0; i < 50; i++)
 			{
-				mlx_put_pixel(img, x, y, 0x0000FFFF); // Blue color with full opacity
-			}
-			else if (map->map[y][x] == '0')
-			{
-				mlx_put_pixel(img, x, y, 0x000000FF); // Black color with full opacity
+				for (int j = 0; j < 50; j++)
+				{
+					if (map->map[y][x] == '1')
+					{
+						mlx_put_pixel(img, x * 50 + j, y * 50 + i, 0x0000FF); // Blue color with full opacity
+					}
+					else if (map->map[y][x] == '0')
+					{
+						mlx_put_pixel(img, x * 50 + j, y * 50 + i, 0x000000); // Black color with full opacity
+					}
+					else if (map->map[y][x] == 'P')
+					{
+						mlx_put_pixel(img, x * 50 + j, y * 50 + i, 0xFF0000); // Red color with full opacity
+					}
+					else if (map->map[y][x] == 'C')
+					{
+						mlx_put_pixel(img, x * 50 + j, y * 50 + i, 0x00FF00); // Green color with full opacity
+					}
+				}
 			}
 		}
 	}
 
-	// Put the image at the player's position
-	mlx_image_to_window(mlx_ptr, img, player.x * 50, player.y * 50);
+	// Put the image at the top-left corner of the window
+	mlx_image_to_window(mlx_ptr, img, 0, 0);
 
 	// Start the MLX42 loop
 	mlx_loop(mlx_ptr);
