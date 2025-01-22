@@ -9,6 +9,9 @@ LDFLAGS = -L ./lib/MLX42/build -L $(GLFW_PATH)/lib -lmlx42 -lglfw -framework Ope
 SRC = ./src/so_long.c \
 		./src/map_parsing.c \
 		./src/map_checkers.c \
+		./src/map_checkers_2.c \
+		./src/map_checkers_3.c \
+		./src/game_init.c \
 		./ft_printf/ft_printf.c \
 		./ft_printf/ft_putchar_fd_p.c \
 		./ft_printf/ft_putnbr_fd_p.c \

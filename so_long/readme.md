@@ -118,3 +118,30 @@
 			It checks the required elements using ft_check_requirements.
 			It checks for a valid path using ft_check_path.
 ==========================================================================================================
+
+
+==========================================================================================================
+
+// NOW IT'S ADVENTURE'S TIME
+
+	?How to start a new empty window?
+
+		//Initialize the connexion with the mac IO server and create an empty window
+			mlx_t *mlx_ptr = mlx_init(int32_t width, int32_t height, const char *title, bool resize);
+			if (!mlx_ptr){ ft_printf("Failed to initialize MLX42\n"); return; }
+
+		//We need to leave the window open
+			mlx_loop(mlx_ptr);
+
+	That's it!
+
+	?How to put images there?
+
+		// create the image
+			mlx_image_t *img = mlx_new_image(mlx_t *mlx, uint32_t width, uint32_t height);
+			if (!img) { ft_printf("Failed to create image\n"); return; }
+
+		//push the image to the window
+			mlx_image_to_window(mlx_t *mlx, mlx_image_t *img, int32_t x, int32_t y);
+
+==========================================================================================================

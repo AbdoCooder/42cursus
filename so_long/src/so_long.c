@@ -6,7 +6,7 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 11:06:55 by codespace         #+#    #+#             */
-/*   Updated: 2025/01/21 12:33:25 by abenajib         ###   ########.fr       */
+/*   Updated: 2025/01/22 14:11:13 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,22 +45,15 @@ int main(int argc, char **argv)
 		ft_printf("Error\nUsage: %s <map.ber>\n", argv[0]);
 		return (1);
 	}
-	//FILE_EXTENSION
 	if (!ft_check_extention(argv[1]))
 		return (ft_map_errors(ERROR_INVALID_FILE_EXTENTION), false);
-	//READ_MAP
 	ft_read_map(&map_data, argv[1]);
 	if (map_data.height == 0)
-	{
-		//MAP_FILE_EMPTY
-		ft_map_errors(ERROR_MAP_FILE_EMPTY);
-		return (free_map(&map_data), 1);
-	}
-	//VALIDATE_MAP
+		return (ft_map_errors(ERROR_MAP_FILE_EMPTY), free_map(&map_data), 1);
 	if (!ft_validate_map(&map_data))
 		return (free_map(&map_data), 1);
-	print_map(&map_data);
-	ft_printf("\nMap is valid!\n");
+	ft_start_game(&map_data);
 	free_map(&map_data);
+	ft_printf("Game ended\n");
 	return 0;
 }

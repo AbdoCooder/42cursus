@@ -6,7 +6,7 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 16:34:15 by abenajib          #+#    #+#             */
-/*   Updated: 2025/01/21 17:21:14 by abenajib         ###   ########.fr       */
+/*   Updated: 2025/01/22 13:41:14 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ typedef struct s_player
 	int		collected;
 } t_player;
 
-//MAP FUNCTIONS START-----------------------------------
+//MAP FUNCTIONS START--------------------------------------------
 void	ft_map_errors(int error);
 void	free_map(t_map_data *map);
 void	ft_read_map(t_map_data *map, char *file);
@@ -61,8 +61,20 @@ bool	ft_check_first_last_line(t_map_data *map);
 bool	ft_check_barriers(t_map_data *map);
 bool	ft_check_walls(t_map_data *map);
 bool	ft_check_chars(t_map_data *map);
-//MAP FUNCTIONS END-------------------------------------
+void	ft_calculate_elements(t_map_data *map);
+bool	ft_check_requirements(t_map_data *map);
+char	**ft_strdup_2d(char **strs, int height);
+void	ft_find_player(t_map_data *map, t_player *player);
+void	flood_fill(char **map_copy, int x, int y);
+bool	ft_check_flood(char **map_copy, int height, int width);
+void	ft_free_2d(char **array, int height);
+bool	ft_check_path(t_map_data *map);
+bool	ft_validate_map(t_map_data *map);
+//MAP FUNCTIONS END----------------------------------------------
 
+void	ft_error(char *str);
+void 	ft_start_game(t_map_data *map);
+void 	ft_init_game(t_map_data *map);
 
 #endif // SO_LONG_H
 
