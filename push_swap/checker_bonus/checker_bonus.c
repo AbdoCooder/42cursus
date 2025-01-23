@@ -92,6 +92,5 @@ int	main(int argc, char *argv[])
 	}
 	ft_read_and_update(&stack_a, &stack_b);
 	ft_checker(&stack_a, &stack_b);
-	system("leaks checker");
 	return (0);
 }
