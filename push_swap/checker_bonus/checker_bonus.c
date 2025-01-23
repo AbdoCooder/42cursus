@@ -16,7 +16,6 @@ void	ft_result(char *str)
 {
 	if (str)
 		ft_printf("%s\n", str);
-	// exit (1);
 }
 
 void	ft_ko(t_list **stack_a, t_list **stack_b, char *op)
@@ -93,6 +92,5 @@ int	main(int argc, char *argv[])
 	}
 	ft_read_and_update(&stack_a, &stack_b);
 	ft_checker(&stack_a, &stack_b);
-	system("leaks checker");
 	return (0);
 }
