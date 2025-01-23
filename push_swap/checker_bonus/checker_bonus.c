@@ -16,7 +16,6 @@ void	ft_result(char *str)
 {
 	if (str)
 		ft_printf("%s\n", str);
-	// exit (1);
 }
 
 void	ft_ko(t_list **stack_a, t_list **stack_b, char *op)
