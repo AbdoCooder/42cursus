@@ -7,64 +7,75 @@ void ft_start_game(t_map_data *map)
 		ft_printf("Map is not valid\n");
 		return;
 	}
+	ft_printf("Game Start!\n");
 	ft_init_game(map);
 }
 
+static mlx_image_t* player_image;
+// static mlx_image_t* img;
+
+int32_t ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a)
+{
+	return (r << 24 | g << 16 | b << 8 | a);
+}
+
+void ft_randomize(void* param)
+{
+	(void)param;
+	uint32_t i = 0;
+	uint32_t y = 0;
+	uint32_t color = 0xFF;
+	while (i < player_image->width)
+	{
+		y = 0;
+		while (y < player_image->height)
+			mlx_put_pixel(player_image, i, y++, color);
+		i++;
+	}
+}
+
+void ft_hook(void* param)
+{
+	mlx_t* mlx = param;
+
+	if (mlx_is_key_down(mlx, MLX_KEY_ESCAPE))
+		mlx_close_window(mlx);
+	if (mlx_is_key_down(mlx, MLX_KEY_UP))
+		player_image->instances[0].y -= 10;
+	if (mlx_is_key_down(mlx, MLX_KEY_DOWN))
+		player_image->instances[0].y += 10;
+	if (mlx_is_key_down(mlx, MLX_KEY_LEFT))
+		player_image->instances[0].x -= 10;
+	if (mlx_is_key_down(mlx, MLX_KEY_RIGHT))
+		player_image->instances[0].x += 10;
+}
+
+
 void ft_init_game(t_map_data *map)
 {
+	mlx_t* mlx;
 	t_player player;
-	mlx_t *mlx_ptr;
 
-	ft_printf("\nGame started\n");
 	ft_find_player(map, &player);
-	mlx_ptr = mlx_init(map->width * 50, map->height * 50, "So Long", false);
-	if (!mlx_ptr)
+	if (!(mlx = mlx_init(map->width * 50, map->height * 50, "so_long", false)))
 	{
-		ft_printf("Failed to initialize MLX42\n");
-		return;
+		puts(mlx_strerror(mlx_errno));
+		return ;
 	}
-
-	// Create a new image that covers the entire window
-	mlx_image_t *img = mlx_new_image(mlx_ptr, map->width * 50, map->height * 50);
-	if (!img)
+	if (!(player_image = mlx_new_image(mlx, 50, 50)))
 	{
-		ft_printf("Failed to create image\n");
-		return;
+		mlx_close_window(mlx);
+		puts(mlx_strerror(mlx_errno));
+		return ;
 	}
-
-	// Color the image based on the map
-	for (int y = 0; y < map->height; y++)
+	if (mlx_image_to_window(mlx, player_image, player.x * 50, player.y * 50) == -1)
 	{
-		for (int x = 0; x < map->width; x++)
-		{
-			for (int i = 0; i < 50; i++)
-			{
-				for (int j = 0; j < 50; j++)
-				{
-					if (map->map[y][x] == '1')
-					{
-						mlx_put_pixel(img, x * 50 + j, y * 50 + i, 0x0000FF); // Blue color with full opacity
-					}
-					else if (map->map[y][x] == '0')
-					{
-						mlx_put_pixel(img, x * 50 + j, y * 50 + i, 0x000000); // Black color with full opacity
-					}
-					else if (map->map[y][x] == 'P')
-					{
-						mlx_put_pixel(img, x * 50 + j, y * 50 + i, 0xFF0000); // Red color with full opacity
-					}
-					else if (map->map[y][x] == 'C')
-					{
-						mlx_put_pixel(img, x * 50 + j, y * 50 + i, 0x00FF00); // Green color with full opacity
-					}
-				}
-			}
-		}
+		mlx_close_window(mlx);
+		puts(mlx_strerror(mlx_errno));
+		return ;
 	}
-
-	// Put the image at the top-left corner of the window
-	mlx_image_to_window(mlx_ptr, img, 0, 0);
-
-	// Start the MLX42 loop
-	mlx_loop(mlx_ptr);
+	mlx_loop_hook(mlx, ft_randomize, mlx);
+	mlx_loop_hook(mlx, ft_hook, mlx);
+	mlx_loop(mlx);
+	mlx_terminate(mlx);
 }

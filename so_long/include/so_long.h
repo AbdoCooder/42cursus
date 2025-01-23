@@ -6,7 +6,7 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 16:34:15 by abenajib          #+#    #+#             */
-/*   Updated: 2025/01/22 13:41:14 by abenajib         ###   ########.fr       */
+/*   Updated: 2025/01/23 21:07:42 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include "../get_next_line/get_next_line.h"
 # include <stdlib.h>
 # include <stdbool.h>
+# include <stdio.h>
 # define WIDTH 500
 # define HEIGHT 500
 #define ERROR_MAP_NOT_RECTANGULAR 1
