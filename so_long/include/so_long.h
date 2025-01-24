@@ -6,7 +6,7 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 16:34:15 by abenajib          #+#    #+#             */
-/*   Updated: 2025/01/23 21:07:42 by abenajib         ###   ########.fr       */
+/*   Updated: 2025/01/24 22:06:56 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,18 +20,26 @@
 # include <stdlib.h>
 # include <stdbool.h>
 # include <stdio.h>
-# define WIDTH 500
-# define HEIGHT 500
-#define ERROR_MAP_NOT_RECTANGULAR 1
-#define ERROR_MAP_NOT_SURROUNDED_BY_WALLS 2
-#define ERROR_INVALID_FILE_EXTENTION 10
-#define ERROR_INVALID_NUMBER_OF_PLAYERS 3
-#define ERROR_INVALID_NUMBER_OF_EXITS 4
-#define ERROR_INVALID_NUMBER_OF_COLLECTIBLES 5
-#define ERROR_INVALID_CHARACTER 6
-#define ERROR_NO_VALID_PATH 7
-#define ERROR_MAP_FILE_EMPTY 8
-#define ERROR_FAILED_TO_OPEN_MAP_FILE 9
+# define MAX_WIDTH 40
+# define MAX_HEIGHT 20
+# define ERROR_MAP_NOT_RECTANGULAR 1
+# define ERROR_MAP_NOT_SURROUNDED_BY_WALLS 2
+# define ERROR_INVALID_FILE_EXTENTION 10
+# define ERROR_INVALID_NUMBER_OF_PLAYERS 3
+# define ERROR_INVALID_NUMBER_OF_EXITS 4
+# define ERROR_INVALID_NUMBER_OF_COLLECTIBLES 5
+# define ERROR_INVALID_CHARACTER 6
+# define ERROR_NO_VALID_PATH 7
+# define ERROR_MAP_FILE_EMPTY 8
+# define ERROR_FAILED_TO_OPEN_MAP_FILE 9
+# define ERROR_SIZE_MAP 11
+
+//TEXTURES
+# define GROUND_TEXTURE 0
+# define WALLS_TEXTURE 1
+# define PLAYER_TEXTURE 2
+# define COLECTABLES_TEXTURE 3
+# define EXITS_TEXTURE 4
 
 typedef struct s_map_data
 {
@@ -44,13 +52,29 @@ typedef struct s_map_data
 	bool	valid;
 }			t_map_data;
 
-//Flood fill functions
-typedef struct s_player
+typedef struct s_textures
 {
-	int x;
-	int y;
-	int		collected;
-} t_player;
+	char *ground_path;
+	char *walls_path;
+	char *colectables_path;
+	char *exit_path;
+} t_textures;
+
+typedef struct s_pos
+{
+	int	x;
+	int	y;
+	int	collected;
+} t_pos;
+
+typedef struct s_images
+{
+	mlx_image_t *player_image;
+	mlx_image_t *wall_image;
+	mlx_image_t *collectable_image;
+	mlx_image_t *exit_image;
+} t_images;
+
 
 //MAP FUNCTIONS START--------------------------------------------
 void	ft_map_errors(int error);
@@ -65,7 +89,7 @@ bool	ft_check_chars(t_map_data *map);
 void	ft_calculate_elements(t_map_data *map);
 bool	ft_check_requirements(t_map_data *map);
 char	**ft_strdup_2d(char **strs, int height);
-void	ft_find_player(t_map_data *map, t_player *player);
+void	ft_find_pos(t_map_data *map, t_pos *position, char c);
 void	flood_fill(char **map_copy, int x, int y);
 bool	ft_check_flood(char **map_copy, int height, int width);
 void	ft_free_2d(char **array, int height);
@@ -75,7 +99,7 @@ bool	ft_validate_map(t_map_data *map);
 
 void	ft_error(char *str);
 void 	ft_start_game(t_map_data *map);
-void 	ft_init_game(t_map_data *map);
+bool 	ft_init_game(t_map_data *map);
 
 #endif // SO_LONG_H
 

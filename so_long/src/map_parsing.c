@@ -6,7 +6,7 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 17:13:19 by abenajib          #+#    #+#             */
-/*   Updated: 2025/01/22 13:34:35 by abenajib         ###   ########.fr       */
+/*   Updated: 2025/01/24 21:52:17 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,8 @@ void	ft_map_errors(int error)
 		ft_printf("Error\nFailed to open map file.\n");
 	else if (error == ERROR_INVALID_FILE_EXTENTION)
 		ft_printf("Error\nInvalid file extention.\n");
+	else if (error == ERROR_SIZE_MAP)
+		ft_printf("Error\nThe map is too big.\n");
 	else
 		ft_printf("Error\nUnknown error.\n");
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_checkers_2.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 13:31:37 by abenajib          #+#    #+#             */
-/*   Updated: 2025/01/24 12:21:25 by codespace        ###   ########.fr       */
+/*   Updated: 2025/01/24 21:51:26 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,12 @@ bool	ft_check_flood(char **map_copy, int height, int width)
 bool	ft_check_path(t_map_data *map)
 {
 	char		**map_copy;
-	t_player	player;
+	t_pos	player;
 
 	map_copy = ft_strdup_2d(map->map, map->height);
 	if (!map_copy)
 		return (false);
-	ft_find_player(map, &player);
+	ft_find_pos(map, &player, 'P');
 	flood_fill(map_copy, player.x, player.y);
 	if (!ft_check_flood(map_copy, map->height, map->width))
 	{
@@ -80,6 +80,10 @@ void	ft_free_2d(char **array, int height)
 
 bool	ft_validate_map(t_map_data *map)
 {
+	//MAP SIZE
+	if (map->height > MAX_HEIGHT || map->width > MAX_WIDTH)
+		return (ft_map_errors(ERROR_SIZE_MAP), false);
+
 	//RECTANGULAR
 	if (!ft_check_rectangular(map))
 		return (ft_map_errors(ERROR_MAP_NOT_RECTANGULAR), false);

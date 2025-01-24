@@ -95,7 +95,7 @@
 
 	Finding the Player:
 
-		The ft_find_player function locates the player's starting position in the map.
+		The ft_find_pos function locates the player's starting position in the map.
 
 	Flood Fill Algorithm:
 

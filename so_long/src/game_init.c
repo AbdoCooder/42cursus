@@ -1,5 +1,80 @@
 #include "../include/so_long.h"
 
+bool ft_check_char(t_map_data *map, int x, int y, int num)
+{
+	if (num == GROUND_TEXTURE)
+		return (map->map[y][x] == '0' || map->map[y][x] == 'E' || map->map[y][x] == 'C' || map->map[y][x] == 'P' || map->map[y][x] == '1');
+	if (num == WALLS_TEXTURE)
+		return (map->map[y][x] == '1');
+	if (num == COLECTABLES_TEXTURE)
+		return (map->map[y][x] == 'C');
+	return (false);
+}
+
+char	*ft_write_path(t_textures *textures, int num)
+{
+	if (num == GROUND_TEXTURE)
+		return (textures->ground_path);
+	if (num == WALLS_TEXTURE)
+		return (textures->walls_path);
+	if (num == COLECTABLES_TEXTURE)
+		return (textures->colectables_path);
+	return (NULL);
+}
+
+bool	ft_put_texture(mlx_t *mlx, t_map_data *map, t_textures *textures, int num)
+{
+	int x;
+	int y;
+	void *texture;
+	void *image;
+
+	y = 0;
+	while (map->map[y])
+	{
+		x = 0;
+		while (map->map[y][x])
+		{
+			if (ft_check_char(map, x, y, num))
+			{
+				texture = mlx_load_png(ft_write_path(textures, num));
+				image = mlx_texture_to_image(mlx, texture);
+				if (mlx_image_to_window(mlx, image, x * 64, y * 64) == -1)
+					return (false);
+				mlx_delete_texture(texture);
+			}
+			x++;
+		}
+		y++;
+	}
+	return (true);
+}
+
+void ft_fill_textures(t_textures *textures)
+{
+	textures->ground_path = "textures/ground.png";
+	textures->walls_path = "textures/wall.png";
+	textures->colectables_path = "textures/colectable.png";
+}
+
+bool	ft_init_game(t_map_data *map)
+{
+	mlx_t	*mlx;
+	t_textures	textures;
+
+	ft_fill_textures(&textures);
+	mlx = mlx_init(map->width * 64, map->height * 64, "so_long", false);
+	if (!ft_put_texture(mlx, map, &textures, GROUND_TEXTURE))
+		return(ft_printf("Error | Failed to put the GROUND_TEXTURE!\n"), false);
+	if (!ft_put_texture(mlx, map, &textures, WALLS_TEXTURE))
+		return(ft_printf("Error | Failed to put the WALLS_TEXTURE!\n"), false);
+	if (!ft_put_texture(mlx, map, &textures, COLECTABLES_TEXTURE))
+		return(ft_printf("Error | Failed to put the COLECTABLES_TEXTURE!\n"), false);
+	mlx_loop(mlx);
+	mlx_terminate(mlx);
+	return (true);
+}
+
 void ft_start_game(t_map_data *map)
 {
 	if (!map->valid)
@@ -11,71 +86,4 @@ void ft_start_game(t_map_data *map)
 	ft_init_game(map);
 }
 
-static mlx_image_t* player_image;
-// static mlx_image_t* img;
-
-int32_t ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a)
-{
-	return (r << 24 | g << 16 | b << 8 | a);
-}
-
-void ft_randomize(void* param)
-{
-	(void)param;
-	uint32_t i = 0;
-	uint32_t y = 0;
-	uint32_t color = 0xFF;
-	while (i < player_image->width)
-	{
-		y = 0;
-		while (y < player_image->height)
-			mlx_put_pixel(player_image, i, y++, color);
-		i++;
-	}
-}
-
-void ft_hook(void* param)
-{
-	mlx_t* mlx = param;
-
-	if (mlx_is_key_down(mlx, MLX_KEY_ESCAPE))
-		mlx_close_window(mlx);
-	if (mlx_is_key_down(mlx, MLX_KEY_UP))
-		player_image->instances[0].y -= 10;
-	if (mlx_is_key_down(mlx, MLX_KEY_DOWN))
-		player_image->instances[0].y += 10;
-	if (mlx_is_key_down(mlx, MLX_KEY_LEFT))
-		player_image->instances[0].x -= 10;
-	if (mlx_is_key_down(mlx, MLX_KEY_RIGHT))
-		player_image->instances[0].x += 10;
-}
-
-
-void ft_init_game(t_map_data *map)
-{
-	mlx_t* mlx;
-	t_player player;
-
-	ft_find_player(map, &player);
-	if (!(mlx = mlx_init(map->width * 50, map->height * 50, "so_long", false)))
-	{
-		puts(mlx_strerror(mlx_errno));
-		return ;
-	}
-	if (!(player_image = mlx_new_image(mlx, 50, 50)))
-	{
-		mlx_close_window(mlx);
-		puts(mlx_strerror(mlx_errno));
-		return ;
-	}
-	if (mlx_image_to_window(mlx, player_image, player.x * 50, player.y * 50) == -1)
-	{
-		mlx_close_window(mlx);
-		puts(mlx_strerror(mlx_errno));
-		return ;
-	}
-	mlx_loop_hook(mlx, ft_randomize, mlx);
-	mlx_loop_hook(mlx, ft_hook, mlx);
-	mlx_loop(mlx);
-	mlx_terminate(mlx);
-}
+	// ft_printf("=============================================\n");

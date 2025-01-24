@@ -60,7 +60,7 @@ $(TARGET): $(OBJ) libft ft_printf
 	@echo "$(GREEN)|     ||  !  |____|     7|  !  ||  |  ||  !  |"
 	@echo "$(GREEN)!_____!!_____!____!_____!!_____!!__!__!!_____!"
 	@echo "$(GREEN)\n==The Makefile of [SO_LONG] has been compiled!==\n$(DEF_COLOR)"
-	@echo "$(YELLOW)\n=> Usage: ./so_long <map.ber>\n"
+	@echo "$(YELLOW)\n=> Usage: ./so_long <map.ber>\n$(DEF_COLOR)"
 
 clean:
 	@rm -f $(OBJ)

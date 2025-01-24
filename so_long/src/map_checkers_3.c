@@ -6,7 +6,7 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 13:33:44 by abenajib          #+#    #+#             */
-/*   Updated: 2025/01/22 13:34:40 by abenajib         ###   ########.fr       */
+/*   Updated: 2025/01/24 17:19:06 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ char	**ft_strdup_2d(char **strs, int height)
 	return (copy);
 }
 
-void	ft_find_player(t_map_data *map, t_player *player)
+void	ft_find_pos(t_map_data *map, t_pos *position, char c)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (i < map->height)
@@ -40,11 +40,11 @@ void	ft_find_player(t_map_data *map, t_player *player)
 		j = 0;
 		while (j < map->width)
 		{
-			if (map->map[i][j] == 'P')
+			if (map->map[i][j] == c)
 			{
-				player->x = j;
-				player->y = i;
-				player->collected = 0;
+				position->x = j;
+				position->y = i;
+				position->collected = 0;
 				return ;
 			}
 			j++;
@@ -52,6 +52,7 @@ void	ft_find_player(t_map_data *map, t_player *player)
 		i++;
 	}
 }
+
 
 void	flood_fill(char **map_copy, int x, int y)
 {
