@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_checkers_2.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 13:31:37 by abenajib          #+#    #+#             */
-/*   Updated: 2025/01/22 13:34:24 by abenajib         ###   ########.fr       */
+/*   Updated: 2025/01/24 12:21:25 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,7 @@ bool	ft_check_path(t_map_data *map)
 {
 	char		**map_copy;
 	t_player	player;
-	int			i;
 
-	i = 0;
 	map_copy = ft_strdup_2d(map->map, map->height);
 	if (!map_copy)
 		return (false);
@@ -82,10 +80,6 @@ void	ft_free_2d(char **array, int height)
 
 bool	ft_validate_map(t_map_data *map)
 {
-	int		i;
-
-	i = 0;
-
 	//RECTANGULAR
 	if (!ft_check_rectangular(map))
 		return (ft_map_errors(ERROR_MAP_NOT_RECTANGULAR), false);
