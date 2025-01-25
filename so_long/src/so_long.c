@@ -6,16 +6,17 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 11:06:55 by codespace         #+#    #+#             */
-/*   Updated: 2025/01/23 21:39:47 by abenajib         ###   ########.fr       */
+/*   Updated: 2025/01/25 12:04:41 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-void print_map(t_map_data *map_data)
+void	print_map(t_map_data *map_data)
 {
-	int i = 0;
+	int	i;
 
+	i = 0;
 	while (i < map_data->height)
 	{
 		ft_printf("%s", map_data->map[i]);
@@ -23,22 +24,24 @@ void print_map(t_map_data *map_data)
 	}
 }
 
-bool ft_check_extention(char *file)
+bool	ft_check_extention(char *file)
 {
-	int i = 0;
+	int	i;
 
+	i = 0;
 	while (file[i])
 		i++;
 	if (i < 5)
 		return (false);
-	if (file[i - 1] != 'r' || file[i - 2] != 'e' || file[i - 3] != 'b' || file[i - 4] != '.')
+	if (file[i - 1] != 'r' || file[i - 2] != 'e'
+		|| file[i - 3] != 'b' || file[i - 4] != '.')
 		return (false);
 	return (true);
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-	t_map_data map_data;
+	t_map_data	map_data;
 
 	if (argc != 2)
 	{
@@ -56,5 +59,5 @@ int main(int argc, char **argv)
 	ft_start_game(&map_data);
 	free_map(&map_data);
 	ft_printf("Game ended!\n");
-	return 0;
+	return (0);
 }

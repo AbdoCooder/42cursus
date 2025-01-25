@@ -6,16 +6,16 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 11:34:22 by abenajib          #+#    #+#             */
-/*   Updated: 2025/01/21 16:46:39 by abenajib         ###   ########.fr       */
+/*   Updated: 2025/01/25 12:08:51 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-bool ft_check_rectangular(t_map_data *map)
+bool	ft_check_rectangular(t_map_data *map)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (i < map->height)
@@ -30,7 +30,7 @@ bool ft_check_rectangular(t_map_data *map)
 
 bool	ft_check_first_last_line(t_map_data *map)
 {
-	int j;
+	int	j;
 
 	j = 0;
 	while (j < map->width)
@@ -51,7 +51,7 @@ bool	ft_check_first_last_line(t_map_data *map)
 
 bool	ft_check_barriers(t_map_data *map)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < map->height)

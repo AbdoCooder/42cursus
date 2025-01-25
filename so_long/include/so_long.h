@@ -6,7 +6,7 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 16:34:15 by abenajib          #+#    #+#             */
-/*   Updated: 2025/01/24 22:06:56 by abenajib         ###   ########.fr       */
+/*   Updated: 2025/01/25 12:23:34 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,27 +54,27 @@ typedef struct s_map_data
 
 typedef struct s_textures
 {
-	char *ground_path;
-	char *walls_path;
-	char *colectables_path;
-	char *exit_path;
-} t_textures;
+	char	*ground_path;
+	char	*walls_path;
+	char	*colectables_path;
+	char	*exit_path;
+	char	*player_path;
+}			t_textures;
 
 typedef struct s_pos
 {
 	int	x;
 	int	y;
 	int	collected;
-} t_pos;
+}		t_pos;
 
 typedef struct s_images
 {
-	mlx_image_t *player_image;
-	mlx_image_t *wall_image;
-	mlx_image_t *collectable_image;
-	mlx_image_t *exit_image;
-} t_images;
-
+	mlx_image_t	*player_image;
+	mlx_image_t	*wall_image;
+	mlx_image_t	*collectable_image;
+	mlx_image_t	*exit_image;
+}				t_images;
 
 //MAP FUNCTIONS START--------------------------------------------
 void	ft_map_errors(int error);
@@ -98,8 +98,7 @@ bool	ft_validate_map(t_map_data *map);
 //MAP FUNCTIONS END----------------------------------------------
 
 void	ft_error(char *str);
-void 	ft_start_game(t_map_data *map);
-bool 	ft_init_game(t_map_data *map);
+void	ft_start_game(t_map_data *map);
+bool	ft_init_game(t_map_data *map);
 
 #endif // SO_LONG_H
-

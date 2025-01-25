@@ -6,7 +6,7 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 13:33:44 by abenajib          #+#    #+#             */
-/*   Updated: 2025/01/24 17:19:06 by abenajib         ###   ########.fr       */
+/*   Updated: 2025/01/25 12:09:58 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ void	ft_find_pos(t_map_data *map, t_pos *position, char c)
 		i++;
 	}
 }
-
 
 void	flood_fill(char **map_copy, int x, int y)
 {

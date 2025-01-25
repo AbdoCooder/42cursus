@@ -6,7 +6,7 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 17:13:19 by abenajib          #+#    #+#             */
-/*   Updated: 2025/01/24 21:52:17 by abenajib         ###   ########.fr       */
+/*   Updated: 2025/01/25 12:25:57 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,22 @@ void	ft_error(char *str)
 	exit(1);
 }
 
+void	ft_read_lines(char *line, t_map_data *map, int fd)
+{
+	while (line != NULL)
+	{
+		map->map[map->height] = line;
+		map->height++;
+		if (map->width == 0)
+			map->width = ft_strlen(line) - 1;
+		line = get_next_line(fd);
+	}
+}
+
 void	ft_read_map(t_map_data *map, char *file)
 {
-	int fd;
-	char *line;
+	int		fd;
+	char	*line;
 
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
@@ -38,13 +50,8 @@ void	ft_read_map(t_map_data *map, char *file)
 	}
 	map->height = 0;
 	map->width = 0;
-	while ((line = get_next_line(fd)) != NULL)
-	{
-		map->map[map->height] = line;
-		map->height++;
-		if (map->width == 0)
-			map->width = ft_strlen(line) - 1;
-	}
+	line = get_next_line(fd);
+	ft_read_lines(line, map, fd);
 	close(fd);
 }
 
@@ -65,13 +72,16 @@ void	ft_map_errors(int error)
 	else if (error == ERROR_MAP_NOT_SURROUNDED_BY_WALLS)
 		ft_printf("Error\nMap is not surrounded by walls.\n");
 	else if (error == ERROR_INVALID_NUMBER_OF_PLAYERS)
-		ft_printf("Error\nInvalid number of players (P). (Hint: Only one starting position)\n");
+		ft_printf("Error\nInvalid number of players (P).\
+		(Hint: Only one starting position)\n");
 	else if (error == ERROR_INVALID_NUMBER_OF_EXITS)
 		ft_printf("Error\nInvalid number of exits (E). (Hint: Only one exit)\n");
 	else if (error == ERROR_INVALID_NUMBER_OF_COLLECTIBLES)
-		ft_printf("Error\nInvalid number of collectibles (C). (Hint: At least one collectibles)\n");
+		ft_printf("Error\nInvalid number of collectibles (C).\
+		(Hint: At least one collectibles)\n");
 	else if (error == ERROR_INVALID_CHARACTER)
-		ft_printf("Error\nInvalid character in map. (Hint: Valide chars [0, 1, P, C, E])\n");
+		ft_printf("Error\nInvalid character in map.\
+		(Hint: Valide chars [0, 1, P, C, E])\n");
 	else if (error == ERROR_NO_VALID_PATH)
 		ft_printf("Error\nNo valid path to exit or collectibles.\n");
 	else if (error == ERROR_MAP_FILE_EMPTY)
@@ -88,8 +98,8 @@ void	ft_map_errors(int error)
 
 void	ft_calculate_elements(t_map_data *map)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	map->players = 0;

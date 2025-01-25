@@ -6,7 +6,7 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 13:31:37 by abenajib          #+#    #+#             */
-/*   Updated: 2025/01/24 21:51:26 by abenajib         ###   ########.fr       */
+/*   Updated: 2025/01/25 12:09:50 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ bool	ft_check_requirements(t_map_data *map)
 
 bool	ft_check_flood(char **map_copy, int height, int width)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (i < height)
@@ -46,7 +46,7 @@ bool	ft_check_flood(char **map_copy, int height, int width)
 
 bool	ft_check_path(t_map_data *map)
 {
-	char		**map_copy;
+	char	**map_copy;
 	t_pos	player;
 
 	map_copy = ft_strdup_2d(map->map, map->height);
@@ -69,7 +69,7 @@ void	ft_free_2d(char **array, int height)
 
 	i = 0;
 	if (array == NULL)
-		return;
+		return ;
 	while (i < height)
 	{
 		free(array[i]);
@@ -80,27 +80,16 @@ void	ft_free_2d(char **array, int height)
 
 bool	ft_validate_map(t_map_data *map)
 {
-	//MAP SIZE
 	if (map->height > MAX_HEIGHT || map->width > MAX_WIDTH)
 		return (ft_map_errors(ERROR_SIZE_MAP), false);
-
-	//RECTANGULAR
 	if (!ft_check_rectangular(map))
 		return (ft_map_errors(ERROR_MAP_NOT_RECTANGULAR), false);
-
-	//SURROUNDED_BY_WALLS
 	if (!ft_check_walls(map))
 		return (ft_map_errors(ERROR_MAP_NOT_SURROUNDED_BY_WALLS), false);
-
-	//INVALID_CHARACTER
 	if (!ft_check_chars(map))
 		return (ft_map_errors(ERROR_INVALID_CHARACTER), false);
-
-	//INVALID_REQUIRED_ELEMENTS
 	if (!ft_check_requirements(map))
 		return (false);
-
-	//INVALID_PATH
 	if (!ft_check_path(map))
 		return (ft_map_errors(ERROR_NO_VALID_PATH), false);
 	return (true);
