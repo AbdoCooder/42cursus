@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker_utils.c                                    :+:      :+:    :+:   */
+/*   checker_utils_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 21:35:22 by abenajib          #+#    #+#             */
-/*   Updated: 2025/01/18 16:19:23 by abenajib         ###   ########.fr       */
+/*   Updated: 2025/01/26 12:33:53 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,21 +52,23 @@ int	ft_create_stack(char **argv[], t_list **stack_a, int i, int len)
 {
 	char		**split;
 	long long	*new;
+	size_t		words;
 
+	words = countwords(*(*argv + i), " \t");
 	split = ft_split(*(*argv + i), " \t");
-	if (!*split || !split)
+	if (!split || !*split)
 		return (ft_error(NULL), 1);
 	while (split[len])
 	{
 		new = malloc(sizeof(long long));
 		*new = ft_atoi(split[len]);
 		if (ft_isduplicated(stack_a, *new) == 1)
-			return (ft_lstclear(stack_a, free), free(split), ft_error(NULL), 1);
+			return (ft_lstclear(stack_a, free),
+				freeall(split, words), ft_error(NULL), 1);
 		ft_lstadd_back(stack_a, ft_lstnew(new));
-		free(split[len]);
 		len++;
 	}
-	free(split);
+	freeall(split, words);
 	return (0);
 }
 

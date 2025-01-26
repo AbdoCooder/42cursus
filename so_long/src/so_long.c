@@ -6,7 +6,7 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 11:06:55 by codespace         #+#    #+#             */
-/*   Updated: 2025/01/25 12:04:41 by abenajib         ###   ########.fr       */
+/*   Updated: 2025/01/25 14:29:51 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ int	main(int argc, char **argv)
 		return (ft_map_errors(ERROR_MAP_FILE_EMPTY), free_map(&map_data), 1);
 	if (!ft_validate_map(&map_data))
 		return (free_map(&map_data), 1);
-	map_data.valid = true;
 	ft_start_game(&map_data);
 	free_map(&map_data);
 	ft_printf("Game ended!\n");

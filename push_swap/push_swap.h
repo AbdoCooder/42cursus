@@ -6,7 +6,7 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 10:51:21 by abenajib          #+#    #+#             */
-/*   Updated: 2025/01/17 20:47:48 by abenajib         ###   ########.fr       */
+/*   Updated: 2025/01/26 12:21:56 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,4 +94,6 @@ void		ft_print_stacks(t_list *stack_a, t_list *stack_b);
 void		ft_finish(t_list **stack_a, t_list **stack_b);
 void		ft_prepare(t_list **stack_a, t_list **stack_b);
 void		ft_move_top(t_list **stack, t_list *ptr);
+char		**freeall(char **p, size_t x);
+size_t		countwords(const char *s, char *c);
 #endif //PUSH_SWAP_H

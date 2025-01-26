@@ -6,7 +6,7 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 12:05:20 by abenajib          #+#    #+#             */
-/*   Updated: 2025/01/25 12:08:05 by abenajib         ###   ########.fr       */
+/*   Updated: 2025/01/25 15:25:58 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,6 +133,11 @@ bool	ft_check_textures(void)
 	return (true);
 }
 
+mlx_keyfunc my_mlx_key_hook(mlx_key_data_t keydata, void* param)
+{
+
+}
+
 bool	ft_init_game(t_map_data *map)
 {
 	mlx_t		*mlx;
@@ -153,6 +158,7 @@ bool	ft_init_game(t_map_data *map)
 		return (ft_printf("Error | Failed to put the EXITS_TEXTURE!\n"), false);
 	if (!ft_put_texture(mlx, map, &textures, PLAYER_TEXTURE))
 		return (ft_printf("Error | Failed to put the PLAYER_TEXTURE!\n"), false);
+	mlx_key_hook(mlx, &my_mlx_key_hook, mlx);
 	mlx_loop(mlx);
 	mlx_terminate(mlx);
 	return (true);
@@ -160,13 +166,8 @@ bool	ft_init_game(t_map_data *map)
 
 void	ft_start_game(t_map_data *map)
 {
-	if (!map->valid)
-	{
-		ft_printf("Map is not valid\n");
-		return ;
-	}
 	ft_printf("Game Start!\n");
 	ft_init_game(map);
 }
 
-	// ft_printf("=============================================\n");
+// ft_printf("=============================================\n");

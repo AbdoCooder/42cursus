@@ -6,13 +6,13 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 20:49:38 by abenajib          #+#    #+#             */
-/*   Updated: 2024/12/27 18:20:59 by abenajib         ###   ########.fr       */
+/*   Updated: 2025/01/26 12:21:43 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-static size_t	countwords(const char *s, char *c)
+size_t	countwords(const char *s, char *c)
 {
 	size_t	i;
 	size_t	count;
@@ -29,7 +29,7 @@ static size_t	countwords(const char *s, char *c)
 	return (count);
 }
 
-static char	**freeall(char **p, size_t x)
+char	**freeall(char **p, size_t x)
 {
 	while (x > 0)
 		free (p[--x]);
