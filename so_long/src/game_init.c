@@ -6,7 +6,7 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 12:05:20 by abenajib          #+#    #+#             */
-/*   Updated: 2025/01/26 18:30:21 by abenajib         ###   ########.fr       */
+/*   Updated: 2025/01/26 20:54:53 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,22 +174,27 @@ bool ft_textures_so_long(t_game *game, t_map_data *map)
 
 void ft_move_up(t_game *game)
 {
-	game->img.player_image->instances[0].y -= 5;
+	int y = game->img.player_image->instances[0].y / 64;
+	int x = game->img.player_image->instances[0].x / 64;
+	ft_printf("x: %d\n", x);
+	ft_printf("y: %d\n", y);
+	if (game->map->map[y - 1][x] != '1')
+		game->img.player_image->instances[0].y -= 64;
 }
 
 void ft_move_down(t_game *game)
 {
-	game->img.player_image->instances[0].y += 5;
+	game->img.player_image->instances[0].y += 64;
 }
 
 void ft_move_left(t_game *game)
 {
-	game->img.player_image->instances[0].x -= 5;
+	game->img.player_image->instances[0].x -= 64;
 }
 
 void ft_move_right(t_game *game)
 {
-	game->img.player_image->instances[0].x += 5;
+	game->img.player_image->instances[0].x += 64;
 }
 
 void ft_hook(void* param)
