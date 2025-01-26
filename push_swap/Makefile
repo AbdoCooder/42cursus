@@ -37,9 +37,8 @@ HEADER = ./push_swap.h
 
 all: push_swap
 
-push_swap: $(NAME)
+push_swap: $(NAME) $(HEADER)
 	@${CC} ${CFLAGS} -o push_swap push_swap.c $(NAME)
-	@$(RM) $(NAME)
 
 $(NAME): $(OBJS)
 	@ar rcs $(NAME) $^
@@ -59,3 +58,5 @@ fclean: clean
 	@make -C checker_bonus fclean
 
 re: fclean all
+
+.PHONY: clean bonus

@@ -27,13 +27,12 @@ SRCS=	checker_bonus.c \
 RM = rm -rf
 NAME = checker_bonus.a
 OBJS = $(SRCS:.c=.o)
-HEADER = ./checker_bonus.h
+HEADER = checker_bonus.h
 
-all: checker
+all: ../checker
 
-checker: $(NAME)
+../checker: $(NAME)
 	@${CC} ${CFLAGS} -o ../checker checker_bonus.c $(NAME)
-	@$(RM) $(NAME)
 
 $(NAME): $(OBJS)
 	@ar rcs $(NAME) $^
@@ -48,3 +47,5 @@ fclean: clean
 	@$(RM) $(NAME) ../checker
 
 re: fclean all
+
+.PHONY: clean
