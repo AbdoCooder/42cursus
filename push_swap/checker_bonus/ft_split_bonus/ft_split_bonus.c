@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_split.c                                         :+:      :+:    :+:   */
+/*   ft_split_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 20:49:38 by abenajib          #+#    #+#             */
-/*   Updated: 2025/01/17 21:48:00 by abenajib         ###   ########.fr       */
+/*   Updated: 2025/01/26 12:58:22 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../checker_bonus.h"
 
-static size_t	countwords(const char *s, char *c)
+size_t	countwords(const char *s, char *c)
 {
 	size_t	i;
 	size_t	count;
@@ -29,7 +29,7 @@ static size_t	countwords(const char *s, char *c)
 	return (count);
 }
 
-static char	**freeall(char **p, size_t x)
+char	**freeall(char **p, size_t x)
 {
 	while (x > 0)
 		free (p[--x]);
