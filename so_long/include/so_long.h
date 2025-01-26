@@ -6,7 +6,7 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 16:34:15 by abenajib          #+#    #+#             */
-/*   Updated: 2025/01/25 12:23:34 by abenajib         ###   ########.fr       */
+/*   Updated: 2025/01/26 18:09:00 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ typedef struct s_pos
 {
 	int	x;
 	int	y;
-	int	collected;
 }		t_pos;
 
 typedef struct s_images
@@ -76,7 +75,16 @@ typedef struct s_images
 	mlx_image_t	*exit_image;
 }				t_images;
 
+typedef struct s_game
+{
+	mlx_t		*mlx;
+	t_map_data	*map;
+	t_images	img;
+	t_pos		player_pos;
+}				t_game;
+
 //MAP FUNCTIONS START--------------------------------------------
+void	print_map(t_map_data *map_data);
 void	ft_map_errors(int error);
 void	free_map(t_map_data *map);
 void	ft_read_map(t_map_data *map, char *file);

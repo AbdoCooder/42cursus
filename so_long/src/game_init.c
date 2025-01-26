@@ -6,7 +6,7 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 12:05:20 by abenajib          #+#    #+#             */
-/*   Updated: 2025/01/25 15:25:58 by abenajib         ###   ########.fr       */
+/*   Updated: 2025/01/26 18:30:21 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,34 +133,106 @@ bool	ft_check_textures(void)
 	return (true);
 }
 
-mlx_keyfunc my_mlx_key_hook(mlx_key_data_t keydata, void* param)
+void ft_put_player(t_game *game)
 {
+	void		*t;
 
+	t = mlx_load_png("textures/player.png");
+	game->img.player_image = mlx_texture_to_image(game->mlx, t);
+	mlx_image_to_window(game->mlx, game->img.player_image, game->player_pos.x * 64, game->player_pos.y * 64);
 }
 
-bool	ft_init_game(t_map_data *map)
+void ft_clone_map(t_game *game, t_map_data *map)
 {
-	mlx_t		*mlx;
+	game->map->collectables = map->collectables;
+	game->map->exits = map->exits;
+	game->map->height = map->height;
+	game->map->players = game->map->players;
+	game->map->map = ft_strdup_2d(map->map, map->height);
+	game->map->valid = true;
+	game->map->width = map->width;
+}
+
+bool ft_textures_so_long(t_game *game, t_map_data *map)
+{
 	t_textures	textures;
 
 	ft_fill_textures(&textures);
 	if (!ft_check_textures())
 		return (ft_printf("Error | Failed to load textures!\n"), false);
-	mlx = mlx_init(map->width * 64, map->height * 64, "so_long", false);
-	if (!ft_put_texture(mlx, map, &textures, GROUND_TEXTURE))
+	game->mlx = mlx_init(map->width * 64, map->height * 64, "so_long", false);
+	if (!ft_put_texture(game->mlx, map, &textures, GROUND_TEXTURE))
 		return (ft_printf("Error | Failed to put the GROUND_TEXTURE!\n"), false);
-	if (!ft_put_texture(mlx, map, &textures, WALLS_TEXTURE))
+	if (!ft_put_texture(game->mlx, map, &textures, WALLS_TEXTURE))
 		return (ft_printf("Error | Failed to put the WALLS_TEXTURE!\n"), false);
-	if (!ft_put_texture(mlx, map, &textures, COLECTABLES_TEXTURE))
-		return (ft_printf("Error | Failed to put the COLECTABLES_TEXTURE!\n"),
-			false);
-	if (!ft_put_texture(mlx, map, &textures, EXITS_TEXTURE))
+	if (!ft_put_texture(game->mlx, map, &textures, COLECTABLES_TEXTURE))
+		return (ft_printf("Error | Failed to put the COLECTABLES_TEXTURE!\n"), false);
+	if (!ft_put_texture(game->mlx, map, &textures, EXITS_TEXTURE))
 		return (ft_printf("Error | Failed to put the EXITS_TEXTURE!\n"), false);
-	if (!ft_put_texture(mlx, map, &textures, PLAYER_TEXTURE))
-		return (ft_printf("Error | Failed to put the PLAYER_TEXTURE!\n"), false);
-	mlx_key_hook(mlx, &my_mlx_key_hook, mlx);
-	mlx_loop(mlx);
-	mlx_terminate(mlx);
+	return (true);
+}
+
+void ft_move_up(t_game *game)
+{
+	game->img.player_image->instances[0].y -= 5;
+}
+
+void ft_move_down(t_game *game)
+{
+	game->img.player_image->instances[0].y += 5;
+}
+
+void ft_move_left(t_game *game)
+{
+	game->img.player_image->instances[0].x -= 5;
+}
+
+void ft_move_right(t_game *game)
+{
+	game->img.player_image->instances[0].x += 5;
+}
+
+void ft_hook(void* param)
+{
+	t_game *game;
+
+	game = (t_game *)param;
+	if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
+		mlx_close_window(game->mlx);
+	if (mlx_is_key_down(game->mlx, MLX_KEY_UP))
+		ft_move_up(game);
+	if (mlx_is_key_down(game->mlx, MLX_KEY_DOWN))
+		ft_move_down(game);
+	if (mlx_is_key_down(game->mlx, MLX_KEY_LEFT))
+		ft_move_left(game);
+	if (mlx_is_key_down(game->mlx, MLX_KEY_RIGHT))
+		ft_move_right(game);
+}
+
+bool	ft_init_game(t_map_data *map)
+{
+	t_game		game;
+
+
+	//set textures
+	if (!ft_textures_so_long(&game, map))
+		return (false);
+	//allocate space for game map
+	game.map = malloc(sizeof(t_map_data));
+	if (!game.map)
+		return (ft_printf("Error | Failed to allocate memory for game.map!\n"), false);
+	// clone all the infos to game map
+	ft_clone_map(&game, map);
+	//set the player pos to game->player_pos
+	ft_find_pos(map, &(game.player_pos), 'P');
+	//draw the initiale state of the player
+	ft_put_player(&game);
+	//move the player
+	mlx_loop_hook(game.mlx, ft_hook, &game);
+	mlx_loop(game.mlx);
+	ft_free_2d(game.map->map, game.map->height);
+	free(game.map);
+	mlx_terminate(game.mlx);
 	return (true);
 }
 
@@ -169,5 +241,4 @@ void	ft_start_game(t_map_data *map)
 	ft_printf("Game Start!\n");
 	ft_init_game(map);
 }
-
 // ft_printf("=============================================\n");
