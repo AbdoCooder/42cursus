@@ -6,7 +6,7 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 16:34:15 by abenajib          #+#    #+#             */
-/*   Updated: 2025/01/28 18:50:27 by abenajib         ###   ########.fr       */
+/*   Updated: 2025/01/28 20:13:14 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,8 @@ typedef struct s_game
 	t_map_data	*map;
 	t_images	img;
 	t_pos		player_pos;
-	t_textures *textures;
+	t_textures	*textures;
+	int			moves;
 }				t_game;
 
 //MAP FUNCTIONS START--------------------------------------------

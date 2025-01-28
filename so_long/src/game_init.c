@@ -6,7 +6,7 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 16:10:36 by abenajib          #+#    #+#             */
-/*   Updated: 2025/01/28 18:47:13 by abenajib         ###   ########.fr       */
+/*   Updated: 2025/01/28 20:22:56 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,8 @@ bool	ft_init_game(t_map_data *map)
 	ft_clone_map(&game, map);
 	ft_find_pos(map, &(game.player_pos), 'P');
 	ft_put_player(&game);
+	ft_printf("Game Start!\n");
+	game.moves = 0;
 	mlx_key_hook(game.mlx, &my_keyhook, &game);
 	mlx_loop(game.mlx);
 	ft_free_2d(game.map->map, game.map->height);
@@ -87,6 +89,6 @@ bool	ft_init_game(t_map_data *map)
 
 void	ft_start_game(t_map_data *map)
 {
-	ft_printf("Game Start!\n");
-	ft_init_game(map);
+	if (!ft_init_game(map))
+		exit(EXIT_FAILURE);
 }
