@@ -12,9 +12,6 @@ else ifeq ($(UNAME_S),Darwin)
 endif
 
 # export LIBRARY_PATH=/Users/abenajib/.brew/opt/glfw/lib
-# GLFW_PATH = $(shell brew --prefix glfw)
-# LDFLAGS = -L ./lib/MLX42/build -L $(GLFW_PATH)/lib -lmlx42 -lglfw -framework OpenGL -framework AppKit -ldl -pthread -lm
-# LINUX_LDFLAGS = -L ./lib/MLX42/build -lmlx42 -lX11 -lXext -lm -pthread -lglfw -ldl
 
 SRC = ./src/so_long.c \
 		./src/move.c \
@@ -35,6 +32,7 @@ SRC = ./src/so_long.c \
 		./get_next_line/get_next_line_utils.c
 
 OBJ = $(SRC:.c=.o)
+HEADER = include/so_long.h
 
 # Color codes for terminal output
 DEF_COLOR = \033[0;39m
@@ -51,10 +49,10 @@ TARGET = so_long
 
 all: $(TARGET)
 
-%.o: %.c
+%.o: %.c $(HEADER)
 	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
-$(TARGET): $(OBJ) libft ft_printf
+$(TARGET): $(OBJ) ./libft/libft.a ./ft_printf/libftprintf.a
 	@$(CC) $(OBJ) ./libft/libft.a ./ft_printf/libftprintf.a $(LDFLAGS) -o $(TARGET)
 	@echo "$(GREEN)______________	  ___   _____________________"
 	@echo "$(GREEN)|     ||     |	  |  |   |     ||     ||     |"
@@ -86,11 +84,11 @@ mlx42:
 	@cmake ./lib/MLX42 -B ./lib/MLX42/build
 	@make -C ./lib/MLX42/build -j4
 
-libft:
+./libft/libft.a:
 	@echo "$(CYAN) Compiling...Please wait!\n"
 	@make --silent -C libft
 
-ft_printf:
+./ft_printf/libftprintf.a:
 	@make --silent -C ft_printf
 
 .PHONY: all clean fclean re mlx42 libft ft_printf
