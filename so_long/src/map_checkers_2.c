@@ -6,7 +6,7 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 13:31:37 by abenajib          #+#    #+#             */
-/*   Updated: 2025/01/25 12:09:50 by abenajib         ###   ########.fr       */
+/*   Updated: 2025/01/28 18:30:26 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ bool	ft_check_requirements(t_map_data *map)
 	ft_calculate_elements(map);
 	if (map->players != 1)
 		return (ft_map_errors(ERROR_INVALID_NUMBER_OF_PLAYERS), false);
-	if (map->collectables < 1)
+	if (map->col < 1)
 		return (ft_map_errors(ERROR_INVALID_NUMBER_OF_COLLECTIBLES), false);
 	if (map->exits != 1)
 		return (ft_map_errors(ERROR_INVALID_NUMBER_OF_EXITS), false);

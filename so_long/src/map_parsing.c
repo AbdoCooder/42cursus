@@ -6,18 +6,11 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 17:13:19 by abenajib          #+#    #+#             */
-/*   Updated: 2025/01/25 12:25:57 by abenajib         ###   ########.fr       */
+/*   Updated: 2025/01/28 18:41:27 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
-
-void	ft_error(char *str)
-{
-	if (str)
-		ft_printf("%s", str);
-	exit(1);
-}
 
 void	ft_read_lines(char *line, t_map_data *map, int fd)
 {
@@ -103,7 +96,7 @@ void	ft_calculate_elements(t_map_data *map)
 
 	i = 0;
 	map->players = 0;
-	map->collectables = 0;
+	map->col = 0;
 	map->exits = 0;
 	while (i < map->height)
 	{
@@ -113,7 +106,7 @@ void	ft_calculate_elements(t_map_data *map)
 			if (map->map[i][j] == 'P')
 				map->players++;
 			else if (map->map[i][j] == 'C')
-				map->collectables++;
+				map->col++;
 			else if (map->map[i][j] == 'E')
 				map->exits++;
 			j++;

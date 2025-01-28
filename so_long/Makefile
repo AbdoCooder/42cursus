@@ -17,6 +17,9 @@ endif
 # LINUX_LDFLAGS = -L ./lib/MLX42/build -lmlx42 -lX11 -lXext -lm -pthread -lglfw -ldl
 
 SRC = ./src/so_long.c \
+		./src/move.c \
+		./src/textures_functions.c \
+		./src/move_utils.c \
 		./src/map_parsing.c \
 		./src/map_checkers.c \
 		./src/map_checkers_2.c \
