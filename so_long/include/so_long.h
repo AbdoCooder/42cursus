@@ -6,7 +6,7 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 16:34:15 by abenajib          #+#    #+#             */
-/*   Updated: 2025/01/28 20:13:14 by abenajib         ###   ########.fr       */
+/*   Updated: 2025/01/28 20:29:55 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,8 @@ void	ft_start_game(t_map_data *map);
 bool	ft_init_game(t_map_data *map);
 
 //Textures
-bool	ft_put_texture(mlx_t *mlx, t_map_data *map, t_textures *textures, int num);
+bool	ft_put_texture(mlx_t *mlx, t_map_data *map,
+			t_textures *textures, int num);
 void	ft_fill_textures(t_textures *textures);
 void	**ft_get_textures(void **texture);
 void	ft_remove_textures(void **texture);
