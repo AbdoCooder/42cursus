@@ -6,7 +6,7 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 16:34:15 by abenajib          #+#    #+#             */
-/*   Updated: 2025/01/29 13:17:18 by abenajib         ###   ########.fr       */
+/*   Updated: 2025/01/29 16:24:45 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ typedef struct s_map_data
 	int		height;
 	int		width;
 	int		players;
+	int		enemies;
 	int		col;
 	int		exits;
 	bool	valid;
@@ -62,6 +63,7 @@ typedef struct s_textures
 	char	*exit_path_0;
 	char	*exit_path_1;
 	char	*player_path;
+	char	*enemy_path;
 }			t_textures;
 
 typedef struct s_pos
@@ -73,6 +75,7 @@ typedef struct s_pos
 typedef struct s_images
 {
 	mlx_image_t	*player_image;
+	mlx_image_t	*enemy_image;
 	mlx_image_t	*wall_image;
 	mlx_image_t	*collectable_image;
 	mlx_image_t	*exit_image;

@@ -6,7 +6,7 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 11:06:55 by codespace         #+#    #+#             */
-/*   Updated: 2025/01/29 16:21:57 by abenajib         ###   ########.fr       */
+/*   Updated: 2025/01/29 19:45:53 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,16 +39,10 @@ bool	ft_check_extention(char *file)
 	return (true);
 }
 
-// void lll(void)
-// {
-// 	system("leaks -q so_long");
-// }
-
 int	main(int argc, char **argv)
 {
 	t_map_data	map_data;
 
-	// atexit(lll);
 	if (argc != 2)
 	{
 		ft_printf("Error\nUsage: %s <map.ber>\n", argv[0]);

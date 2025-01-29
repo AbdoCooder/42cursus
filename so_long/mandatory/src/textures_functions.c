@@ -6,7 +6,7 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 18:43:17 by abenajib          #+#    #+#             */
-/*   Updated: 2025/01/29 14:22:00 by abenajib         ###   ########.fr       */
+/*   Updated: 2025/01/29 19:47:50 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,12 @@ bool	ft_put_texture(mlx_t *mlx, t_map_data *map,
 
 void	ft_fill_textures(t_game **game, t_textures *textures)
 {
-
 	textures->ground_path = "textures/ground.png";
 	textures->walls_path = "textures/wall.png";
 	textures->colectables_path = "textures/colectable.png";
 	textures->exit_path_0 = "textures/exit0.png";
 	textures->player_path = "textures/player.png";
 	textures->exit_path_1 = "textures/exit1.png";
-	// ft_printf("=================================\n");
 	(*game)->textures = malloc(sizeof(t_textures));
 	(*game)->textures->ground_path = "textures/ground.png";
 	(*game)->textures->walls_path = "textures/wall.png";

@@ -74,7 +74,7 @@ all: $(TARGET)
 	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 $(TARGET): $(OBJ) ./mandatory/libft/libft.a ./mandatory/ft_printf/libftprintf.a
-	@$(CC) $(OBJ) ./mandatory/libft/libft.a ./mandatory/ft_printf/libftprintf.a $(LDFLAGS) -o $(TARGET) -fsanitize=address -g
+	@$(CC) $(OBJ) ./mandatory/libft/libft.a ./mandatory/ft_printf/libftprintf.a $(LDFLAGS) -o $(TARGET)
 	@echo "$(GREEN)______________	  ___   _____________________"
 	@echo "$(GREEN)|     ||     |	  |  |   |     ||     ||     |"
 	@echo "$(GREEN)|  ___!|  |  |	  |  |   |  |  ||     ||   __!"
@@ -107,7 +107,7 @@ re: fclean all
 
 # Build MLX42 library
 clone_mlx42:
-	@git clone https://github.com/codam-coding-college/MLX42.git /mandatorylib/MLX42
+	@git clone https://github.com/codam-coding-college/MLX42.git ./mandatorylib/MLX42
 
 mlx42:
 	@echo "$(YELLOW)Building MLX42 library...$(DEF_COLOR)"
@@ -116,9 +116,9 @@ mlx42:
 
 ./mandatory/libft/libft.a:
 	@echo "$(CYAN) Compiling...Please wait!\n"
-	@make --silent -C mandatory/libft
+	@make --silent -C ./mandatory/libft
 
 ./mandatory/ft_printf/libftprintf.a:
-	@make --silent -C mandatory/ft_printf
+	@make --silent -C ./mandatory/ft_printf
 
 .PHONY: all clean fclean re mlx42 libft ft_printf
