@@ -6,11 +6,33 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 18:21:09 by abenajib          #+#    #+#             */
-/*   Updated: 2025/01/29 11:13:42 by abenajib         ###   ########.fr       */
+/*   Updated: 2025/01/29 21:46:15 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include_bonus/so_long_bonus.h"
+
+void	ft_finish(t_game *game, int x, int y)
+{
+	if (game->map->map[y][x] == 'E' && game->map->col == 0)
+	{
+		ft_free_2d(game->map->map, game->map->height);
+		free(game->map);
+		free(game->textures);
+		mlx_terminate(game->mlx);
+		ft_printf("Congratulation! You found your exit\n");
+		exit(EXIT_SUCCESS);
+	}
+	else if (game->map->map[y][x] == 'M')
+	{
+		ft_free_2d(game->map->map, game->map->height);
+		free(game->map);
+		free(game->textures);
+		mlx_terminate(game->mlx);
+		ft_printf("Oops! You've touched an enemy!\n");
+		exit(EXIT_SUCCESS);
+	}
+}
 
 void	take_coin(t_game *game, int x, int y)
 {
@@ -28,27 +50,10 @@ void	take_coin(t_game *game, int x, int y)
 		mlx_delete_texture(texture);
 		if (game->map->col == 0)
 			ft_open_door(game, game->mlx);
-		mlx_image_to_window(game->mlx, game->img.player_image,
-			x * P, y * P);
+		mlx_image_to_window(game->mlx, game->img.player_image, x * P, y * P);
 	}
-	else if (game->map->map[y][x] == 'E' && game->map->col == 0)
-	{
-		ft_free_2d(game->map->map, game->map->height);
-		free(game->map);
-		mlx_terminate(game->mlx);
-		ft_printf("Congratulation! You found your exit\n");
-		exit(EXIT_SUCCESS);
-	}
-}
-
-bool	ft_check_x_y(t_game *game, int x, int y)
-{
-	char	**ptr;
-
-	ptr = game->map->map;
-	return (ptr[y][x] == '0' || ptr[y][x] == 'C' ||
-			ptr[y][x] == 'P' || (ptr[y][x] == 'E' &&
-			game->map->col == 0));
+	else
+		ft_finish(game, x, y);
 }
 
 void	horizontal(mlx_key_data_t keydata, t_game *game, int x, int y)
@@ -61,7 +66,8 @@ void	horizontal(mlx_key_data_t keydata, t_game *game, int x, int y)
 		if (ft_check_x_y(game, x - 1, y))
 		{
 			game->img.player_image->instances->x -= P;
-			my_put_player(game, "textures/player.png", (x - 1) * P, y * P);
+			my_put_player(game, game->textures->player_path,
+				(x - 1) * P, y * P);
 			take_coin(game, x - 1, y);
 		}
 	}
@@ -71,7 +77,8 @@ void	horizontal(mlx_key_data_t keydata, t_game *game, int x, int y)
 		if (ft_check_x_y(game, x + 1, y))
 		{
 			game->img.player_image->instances->x += P;
-			my_put_player(game, "textures/player.png", (x + 1) * P, y * P);
+			my_put_player(game, game->textures->player_path,
+				(x + 1) * P, y * P);
 			take_coin(game, x + 1, y);
 		}
 	}
@@ -87,7 +94,8 @@ void	vertical(mlx_key_data_t keydata, t_game *game, int x, int y)
 		if (ft_check_x_y(game, x, y - 1))
 		{
 			game->img.player_image->instances->y -= P;
-			my_put_player(game, "textures/player.png", (x) * P, (y -1) * P);
+			my_put_player(game, game->textures->player_path,
+				(x) * P, (y -1) * P);
 			take_coin(game, x, y - 1);
 		}
 	}
@@ -97,7 +105,8 @@ void	vertical(mlx_key_data_t keydata, t_game *game, int x, int y)
 		if (ft_check_x_y(game, x, y + 1))
 		{
 			game->img.player_image->instances->y += P;
-			my_put_player(game, "textures/player.png", (x) * P, (y + 1) * P);
+			my_put_player(game, game->textures->player_path,
+				(x) * P, (y + 1) * P);
 			take_coin(game, x, y + 1);
 		}
 	}

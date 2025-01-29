@@ -6,7 +6,7 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 13:33:44 by abenajib          #+#    #+#             */
-/*   Updated: 2025/01/29 11:13:42 by abenajib         ###   ########.fr       */
+/*   Updated: 2025/01/29 21:05:29 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	ft_find_pos(t_map_data *map, t_pos *position, char c)
 
 void	flood_fill(char **map_copy, int x, int y)
 {
-	if (map_copy[y][x] == '1')
+	if (map_copy[y][x] == '1' || map_copy[y][x] == 'M')
 		return ;
 	if (map_copy[y][x] == '0' || map_copy[y][x] == 'C' || map_copy[y][x] == 'E')
 		map_copy[y][x] = '1';

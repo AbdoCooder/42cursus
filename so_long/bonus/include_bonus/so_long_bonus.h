@@ -6,12 +6,12 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 16:34:15 by abenajib          #+#    #+#             */
-/*   Updated: 2025/01/29 16:24:45 by abenajib         ###   ########.fr       */
+/*   Updated: 2025/01/29 21:46:55 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#ifndef SO_LONG_BONUS_H
+# define SO_LONG_BONUS_H
 
 # include "../../mandatory/lib/MLX42/include/MLX42/MLX42.h"
 # include "../../mandatory/ft_printf/ft_printf.h"
@@ -33,6 +33,7 @@
 # define ERROR_MAP_FILE_EMPTY 8
 # define ERROR_FAILED_TO_OPEN_MAP_FILE 9
 # define ERROR_SIZE_MAP 11
+# define ERROR_INVALID_NUMBER_OF_ENEMIES 12
 # define P 64
 
 //TEXTURES
@@ -40,8 +41,9 @@
 # define WALLS_TEXTURE 1
 # define PLAYER_TEXTURE 2
 # define COLECTABLES_TEXTURE 3
-# define EXITS_TEXTURE 4
-# define PLAYER_PNG "../../textures/player.png"
+# define EXITS0_TEXTURE 4
+# define ENEMY_TEXTURE 5
+# define EXITS1_TEXTURE 6
 
 typedef struct s_map_data
 {
@@ -92,13 +94,13 @@ typedef struct s_game
 }				t_game;
 
 //MAP FUNCTIONS START--------------------------------------------
-
 void	ft_open_door(t_game *game, mlx_t *mlx);
 void	my_put_player(t_game *game, char *str, int x, int y);
 void	my_keyhook(mlx_key_data_t keydata, void *param);
 
 void	print_map(t_map_data *map_data);
 void	ft_map_errors(int error);
+void	ft_continue(int error);
 void	free_map(t_map_data *map);
 void	ft_read_map(t_map_data *map, char *file);
 bool	ft_validate_map(t_map_data *map_data);
@@ -127,10 +129,11 @@ bool	ft_init_game(t_map_data *map);
 //Textures
 bool	ft_put_texture(mlx_t *mlx, t_map_data *map,
 			t_textures *textures, int num);
-void	ft_fill_textures(t_textures *textures);
+void	ft_fill_textures(t_game **game, t_textures *textures);
 void	**ft_get_textures(void **texture);
 void	ft_remove_textures(void **texture);
 bool	ft_check_textures(void);
 void	ft_clone_map(t_game *game, t_map_data *map);
 void	ft_put_player(t_game *game);
+bool	ft_check_x_y(t_game *game, int x, int y);
 #endif // SO_LONG_H

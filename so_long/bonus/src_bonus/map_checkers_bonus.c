@@ -6,7 +6,7 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 11:34:22 by abenajib          #+#    #+#             */
-/*   Updated: 2025/01/29 11:13:42 by abenajib         ###   ########.fr       */
+/*   Updated: 2025/01/29 21:06:07 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ bool	ft_check_chars(t_map_data *map)
 				&& map->map[i][j] != '0'
 				&& map->map[i][j] != 'P'
 				&& map->map[i][j] != 'E'
+				&& map->map[i][j] != 'M'
 				&& map->map[i][j] != 'C')
 			{
 				return (false);

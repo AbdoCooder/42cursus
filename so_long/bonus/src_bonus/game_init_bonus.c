@@ -6,7 +6,7 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 16:10:36 by abenajib          #+#    #+#             */
-/*   Updated: 2025/01/29 11:13:42 by abenajib         ###   ########.fr       */
+/*   Updated: 2025/01/29 21:43:31 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,12 @@ bool	ft_check_char(t_map_data *map, int x, int y, int num)
 		return (map->map[y][x] == '1');
 	if (num == COLECTABLES_TEXTURE)
 		return (map->map[y][x] == 'C');
-	if (num == EXITS_TEXTURE)
+	if (num == EXITS0_TEXTURE)
 		return (map->map[y][x] == 'E');
 	if (num == PLAYER_TEXTURE)
 		return (map->map[y][x] == 'P');
+	if (num == ENEMY_TEXTURE)
+		return (map->map[y][x] == 'M');
 	return (false);
 }
 
@@ -37,10 +39,12 @@ char	*ft_write_path(t_textures *textures, int num)
 		return (textures->walls_path);
 	if (num == COLECTABLES_TEXTURE)
 		return (textures->colectables_path);
-	if (num == EXITS_TEXTURE)
+	if (num == EXITS0_TEXTURE)
 		return (textures->exit_path_0);
 	if (num == PLAYER_TEXTURE)
 		return (textures->player_path);
+	if (num == ENEMY_TEXTURE)
+		return (textures->enemy_path);
 	return (NULL);
 }
 
@@ -48,9 +52,11 @@ bool	ft_textures_so_long(t_game *game, t_map_data *map)
 {
 	t_textures	textures;
 
-	ft_fill_textures(&textures);
+	ft_fill_textures(&game, &textures);
 	if (!ft_check_textures())
-		return (ft_printf("Error | Failed to load textures!\n"), false);
+		return (free(game->textures),
+			ft_printf("Error | Failed to load textures!\n"),
+			false);
 	game->mlx = mlx_init(map->width * P, map->height * P, "so_long", false);
 	if (!ft_put_texture(game->mlx, map, &textures, GROUND_TEXTURE))
 		return (ft_printf("Error | Failed to put the GROUND_TEXTURE!\n"), false);
@@ -59,8 +65,10 @@ bool	ft_textures_so_long(t_game *game, t_map_data *map)
 	if (!ft_put_texture(game->mlx, map, &textures, COLECTABLES_TEXTURE))
 		return (ft_printf("Error | Failed to put the COLECTABLES_TEXTURE!\n"),
 			false);
-	if (!ft_put_texture(game->mlx, map, &textures, EXITS_TEXTURE))
+	if (!ft_put_texture(game->mlx, map, &textures, EXITS0_TEXTURE))
 		return (ft_printf("Error | Failed to put the EXITS_TEXTURE!\n"), false);
+	if (!ft_put_texture(game->mlx, map, &textures, ENEMY_TEXTURE))
+		return (ft_printf("Error | Failed to put the ENEMY_TEXTURE!\n"), false);
 	return (true);
 }
 
@@ -82,6 +90,7 @@ bool	ft_init_game(t_map_data *map)
 	mlx_key_hook(game.mlx, &my_keyhook, &game);
 	mlx_loop(game.mlx);
 	ft_free_2d(game.map->map, game.map->height);
+	free(game.textures);
 	free(game.map);
 	mlx_terminate(game.mlx);
 	return (true);

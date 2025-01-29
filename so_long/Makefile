@@ -36,6 +36,7 @@ BONUS_SRC = ./bonus/src_bonus/so_long_bonus.c \
 		./bonus/src_bonus/textures_functions_bonus.c \
 		./bonus/src_bonus/move_utils_bonus.c \
 		./bonus/src_bonus/map_parsing_bonus.c \
+		./bonus/src_bonus/map_parsing_2_bonus.c \
 		./bonus/src_bonus/map_checkers_bonus.c \
 		./bonus/src_bonus/map_checkers_2_bonus.c \
 		./bonus/src_bonus/map_checkers_3_bonus.c \
@@ -107,7 +108,7 @@ re: fclean all
 
 # Build MLX42 library
 clone_mlx42:
-	@git clone https://github.com/codam-coding-college/MLX42.git ./mandatorylib/MLX42
+	@git clone https://github.com/codam-coding-college/MLX42.git ./mandatory/lib/MLX42
 
 mlx42:
 	@echo "$(YELLOW)Building MLX42 library...$(DEF_COLOR)"
