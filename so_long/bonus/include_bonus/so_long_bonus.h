@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   so_long_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 16:34:15 by abenajib          #+#    #+#             */
-/*   Updated: 2025/01/28 20:29:55 by abenajib         ###   ########.fr       */
+/*   Updated: 2025/01/29 13:17:18 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# include "MLX42/MLX42.h"
-# include "../ft_printf/ft_printf.h"
-# include "../libft/libft.h"
-# include "../get_next_line/get_next_line.h"
+# include "../../mandatory/lib/MLX42/include/MLX42/MLX42.h"
+# include "../../mandatory/ft_printf/ft_printf.h"
+# include "../../mandatory/libft/libft.h"
+# include "../../mandatory/get_next_line/get_next_line.h"
 # include <stdlib.h>
 # include <stdbool.h>
 # include <stdio.h>
@@ -41,7 +41,7 @@
 # define PLAYER_TEXTURE 2
 # define COLECTABLES_TEXTURE 3
 # define EXITS_TEXTURE 4
-# define PLAYER_PNG "textures/player.png"
+# define PLAYER_PNG "../../textures/player.png"
 
 typedef struct s_map_data
 {

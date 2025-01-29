@@ -6,7 +6,7 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 13:08:13 by yagame            #+#    #+#             */
-/*   Updated: 2025/01/28 18:46:38 by abenajib         ###   ########.fr       */
+/*   Updated: 2025/01/29 13:43:59 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ void	ft_error(char *str)
 	exit(1);
 }
 
-void	my_put_player(t_game *game, char *str, int x, int y)
+void	my_put_player(t_game *game, char *path, int x, int y)
 {
 	void	*texture;
 
 	mlx_delete_image(game->mlx, game->img.player_image);
-	texture = mlx_load_png(str);
+	texture = mlx_load_png(path);
 	game->img.player_image = mlx_texture_to_image(game->mlx, texture);
 	mlx_image_to_window(game->mlx, game->img.player_image, x, y);
 	mlx_delete_texture(texture);

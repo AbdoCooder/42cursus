@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   textures_functions.c                               :+:      :+:    :+:   */
+/*   textures_functions_bonus.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 18:43:17 by abenajib          #+#    #+#             */
-/*   Updated: 2025/01/28 18:46:43 by abenajib         ###   ########.fr       */
+/*   Updated: 2025/01/29 11:13:42 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/so_long.h"
+#include "../include_bonus/so_long_bonus.h"
 
 bool	ft_put_texture(mlx_t *mlx, t_map_data *map,
 						t_textures *textures, int num)

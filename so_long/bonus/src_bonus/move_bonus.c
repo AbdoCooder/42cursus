@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   move.c                                             :+:      :+:    :+:   */
+/*   move_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 18:21:09 by abenajib          #+#    #+#             */
-/*   Updated: 2025/01/28 20:18:56 by abenajib         ###   ########.fr       */
+/*   Updated: 2025/01/29 11:13:42 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/so_long.h"
+#include "../include_bonus/so_long_bonus.h"
 
 void	take_coin(t_game *game, int x, int y)
 {

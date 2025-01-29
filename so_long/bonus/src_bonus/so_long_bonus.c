@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.c                                          :+:      :+:    :+:   */
+/*   so_long_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 11:06:55 by codespace         #+#    #+#             */
-/*   Updated: 2025/01/26 17:34:14 by abenajib         ###   ########.fr       */
+/*   Updated: 2025/01/29 11:13:42 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/so_long.h"
+#include "../include_bonus/so_long_bonus.h"
 
 void	print_map(t_map_data *map_data)
 {

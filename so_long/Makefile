@@ -1,38 +1,58 @@
 CC = cc
 CFLAGS = -Wextra -Wall -Werror -Wunreachable-code
-INCLUDES = -I ./include -I ./lib/MLX42/include
+INCLUDES = -I ./mandatory/include -I ./mandatory/lib/MLX42/include
 
 UNAME_S := $(shell uname -s)
 
 ifeq ($(UNAME_S),Linux)
-	LDFLAGS = -L ./lib/MLX42/build -lmlx42 -lX11 -lXext -lm -pthread -lglfw -ldl
+	LDFLAGS = -L ./mandatory/lib/MLX42/build -lmlx42 -lX11 -lXext -lm -pthread -lglfw -ldl
 else ifeq ($(UNAME_S),Darwin)
 	GLFW_PATH = $(shell brew --prefix glfw)
-	LDFLAGS = -L ./lib/MLX42/build -L $(GLFW_PATH)/lib -lmlx42 -lglfw -framework OpenGL -framework AppKit -ldl -pthread -lm
+	LDFLAGS = -L ./mandatory/lib/MLX42/build -L $(GLFW_PATH)/lib -lmlx42 -lglfw -framework OpenGL -framework AppKit -ldl -pthread -lm
 endif
 
 # export LIBRARY_PATH=/Users/abenajib/.brew/opt/glfw/lib
 
-SRC = ./src/so_long.c \
-		./src/move.c \
-		./src/textures_functions.c \
-		./src/move_utils.c \
-		./src/map_parsing.c \
-		./src/map_checkers.c \
-		./src/map_checkers_2.c \
-		./src/map_checkers_3.c \
-		./src/game_init.c \
-		./ft_printf/ft_printf.c \
-		./ft_printf/ft_putchar_fd_p.c \
-		./ft_printf/ft_putnbr_fd_p.c \
-		./ft_printf/ft_putstr_fd_p.c \
-		./ft_printf/ft_puthex_fd_p.c \
-		./ft_printf/ft_putunint_fd_p.c \
-		./get_next_line/get_next_line.c \
-		./get_next_line/get_next_line_utils.c
+SRC = ./mandatory/src/so_long.c \
+		./mandatory/src/move.c \
+		./mandatory/src/textures_functions.c \
+		./mandatory/src/move_utils.c \
+		./mandatory/src/map_parsing.c \
+		./mandatory/src/map_checkers.c \
+		./mandatory/src/map_checkers_2.c \
+		./mandatory/src/map_checkers_3.c \
+		./mandatory/src/game_init.c \
+		./mandatory/ft_printf/ft_printf.c \
+		./mandatory/ft_printf/ft_putchar_fd_p.c \
+		./mandatory/ft_printf/ft_putnbr_fd_p.c \
+		./mandatory/ft_printf/ft_putstr_fd_p.c \
+		./mandatory/ft_printf/ft_puthex_fd_p.c \
+		./mandatory/ft_printf/ft_putunint_fd_p.c \
+		./mandatory/get_next_line/get_next_line.c \
+		./mandatory/get_next_line/get_next_line_utils.c
+
+BONUS_SRC = ./bonus/src_bonus/so_long_bonus.c \
+		./bonus/src_bonus/move_bonus.c \
+		./bonus/src_bonus/textures_functions_bonus.c \
+		./bonus/src_bonus/move_utils_bonus.c \
+		./bonus/src_bonus/map_parsing_bonus.c \
+		./bonus/src_bonus/map_checkers_bonus.c \
+		./bonus/src_bonus/map_checkers_2_bonus.c \
+		./bonus/src_bonus/map_checkers_3_bonus.c \
+		./bonus/src_bonus/game_init_bonus.c \
+		./mandatory/ft_printf/ft_printf.c \
+		./mandatory/ft_printf/ft_putchar_fd_p.c \
+		./mandatory/ft_printf/ft_putnbr_fd_p.c \
+		./mandatory/ft_printf/ft_putstr_fd_p.c \
+		./mandatory/ft_printf/ft_puthex_fd_p.c \
+		./mandatory/ft_printf/ft_putunint_fd_p.c \
+		./mandatory/get_next_line/get_next_line.c \
+		./mandatory/get_next_line/get_next_line_utils.c
 
 OBJ = $(SRC:.c=.o)
-HEADER = include/so_long.h
+BONUS_OBJ = $(BONUS_SRC:.c=.o)
+HEADER = ./mandatory/include/so_long.h
+BONUS_HEADER = ./bonus/include_bonus/so_long_bonus.h
 
 # Color codes for terminal output
 DEF_COLOR = \033[0;39m
@@ -46,14 +66,15 @@ CYAN = \033[0;96m
 WHITE = \033[0;97m
 
 TARGET = so_long
+BONUS_TARGET = so_long_bonus
 
 all: $(TARGET)
 
-%.o: %.c $(HEADER)
+%.o: %.c $(HEADER) $(BONUS_HEADER)
 	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
-$(TARGET): $(OBJ) ./libft/libft.a ./ft_printf/libftprintf.a
-	@$(CC) $(OBJ) ./libft/libft.a ./ft_printf/libftprintf.a $(LDFLAGS) -o $(TARGET)
+$(TARGET): $(OBJ) ./mandatory/libft/libft.a ./mandatory/ft_printf/libftprintf.a
+	@$(CC) $(OBJ) ./mandatory/libft/libft.a ./mandatory/ft_printf/libftprintf.a $(LDFLAGS) -o $(TARGET) -fsanitize=address -g
 	@echo "$(GREEN)______________	  ___   _____________________"
 	@echo "$(GREEN)|     ||     |	  |  |   |     ||     ||     |"
 	@echo "$(GREEN)|  ___!|  |  |	  |  |   |  |  ||     ||   __!"
@@ -63,32 +84,41 @@ $(TARGET): $(OBJ) ./libft/libft.a ./ft_printf/libftprintf.a
 	@echo "$(GREEN)\n==The Makefile of [SO_LONG] has been compiled!==\n$(DEF_COLOR)"
 	@echo "$(YELLOW)\n=> Usage: ./so_long <map.ber>\n$(DEF_COLOR)"
 
+bonus: $(BONUS_TARGET)
+
+$(BONUS_TARGET): $(BONUS_OBJ) ./mandatory/libft/libft.a ./mandatory/ft_printf/libftprintf.a
+	@$(CC) $(BONUS_OBJ) ./mandatory/libft/libft.a ./mandatory/ft_printf/libftprintf.a $(LDFLAGS) -o $(BONUS_TARGET)
+	@echo "$(GREEN)\n==The Makefile of [SO_LONG_BONUS] has been compiled!==\n$(DEF_COLOR)"
+	@echo "$(YELLOW)\n=> Usage: ./so_long_bonus <map.ber>\n$(DEF_COLOR)"
+
 clean:
 	@rm -f $(OBJ)
-	@make --silent -C ./libft clean
-	@make --silent -C ./ft_printf clean
+	@rm -f $(BONUS_OBJ)
+	@make --silent -C ./mandatory/libft clean
+	@make --silent -C ./mandatory/ft_printf clean
 
 fclean: clean
 	@rm -f $(TARGET)
-	@make --silent -C ./libft fclean
-	@make --silent -C ./ft_printf fclean
+	@rm -f $(BONUS_TARGET)
+	@make --silent -C ./mandatory/libft fclean
+	@make --silent -C ./mandatory/ft_printf fclean
 
 re: fclean all
 
 # Build MLX42 library
 clone_mlx42:
-	@git clone https://github.com/codam-coding-college/MLX42.git lib/MLX42
+	@git clone https://github.com/codam-coding-college/MLX42.git /mandatorylib/MLX42
 
 mlx42:
 	@echo "$(YELLOW)Building MLX42 library...$(DEF_COLOR)"
-	@cmake ./lib/MLX42 -B ./lib/MLX42/build
-	@make -C ./lib/MLX42/build -j4
+	@cmake ./mandatory/lib/MLX42 -B ./mandatory/lib/MLX42/build
+	@make -C ./mandatory/lib/MLX42/build -j4
 
-./libft/libft.a:
+./mandatory/libft/libft.a:
 	@echo "$(CYAN) Compiling...Please wait!\n"
-	@make --silent -C libft
+	@make --silent -C mandatory/libft
 
-./ft_printf/libftprintf.a:
-	@make --silent -C ft_printf
+./mandatory/ft_printf/libftprintf.a:
+	@make --silent -C mandatory/ft_printf
 
 .PHONY: all clean fclean re mlx42 libft ft_printf
