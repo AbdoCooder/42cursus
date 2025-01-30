@@ -6,7 +6,7 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 18:21:09 by abenajib          #+#    #+#             */
-/*   Updated: 2025/01/29 21:46:15 by abenajib         ###   ########.fr       */
+/*   Updated: 2025/01/30 17:55:22 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	take_coin(t_game *game, int x, int y)
 	void	*texture;
 	void	*img;
 
-	ft_printf("move: %d\n", game->moves++);
+	ft_print_moves(game);
 	if (game->map->map[y][x] == 'C')
 	{
 		game->map->col -= 1;

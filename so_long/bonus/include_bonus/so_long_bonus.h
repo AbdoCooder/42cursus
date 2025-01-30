@@ -6,7 +6,7 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 16:34:15 by abenajib          #+#    #+#             */
-/*   Updated: 2025/01/29 21:46:55 by abenajib         ###   ########.fr       */
+/*   Updated: 2025/01/30 17:55:55 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ typedef struct s_pos
 typedef struct s_images
 {
 	mlx_image_t	*player_image;
+	mlx_image_t	*move_image;
 	mlx_image_t	*enemy_image;
 	mlx_image_t	*wall_image;
 	mlx_image_t	*collectable_image;
@@ -122,6 +123,7 @@ bool	ft_check_path(t_map_data *map);
 bool	ft_validate_map(t_map_data *map);
 //MAP FUNCTIONS END----------------------------------------------
 
+void	ft_print_moves(t_game *game);
 void	ft_error(char *str);
 void	ft_start_game(t_map_data *map);
 bool	ft_init_game(t_map_data *map);

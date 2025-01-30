@@ -6,11 +6,37 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 11:06:55 by codespace         #+#    #+#             */
-/*   Updated: 2025/01/29 11:13:42 by abenajib         ###   ########.fr       */
+/*   Updated: 2025/01/30 17:55:41 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include_bonus/so_long_bonus.h"
+
+void	ft_print_moves(t_game *game)
+{
+	char	*move;
+	int		x;
+	int		y;
+
+	x = 0;
+	y = 0;
+	move = ft_itoa(game->moves++);
+	mlx_delete_image(game->mlx, game->img.move_image);
+	game->img.move_image = mlx_new_image(game->mlx, P, P);
+	while (y < P / 2)
+	{
+		x = 0;
+		while (x < P)
+		{
+			mlx_put_pixel(game->img.move_image, x, y, 0xFF);
+			x++;
+		}
+		y++;
+	}
+	mlx_image_to_window(game->mlx, game->img.move_image, 0, 0);
+	game->img.move_image = mlx_put_string(game->mlx, move, 10, 5);
+	free(move);
+}
 
 void	print_map(t_map_data *map_data)
 {
