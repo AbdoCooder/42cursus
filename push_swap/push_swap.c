@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 10:44:19 by abenajib          #+#    #+#             */
-/*   Updated: 2025/01/26 12:33:46 by abenajib         ###   ########.fr       */
+/*   Updated: 2025/01/30 21:12:21 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	ft_create_stack(char **argv[], t_list **stack_a, int i, int len)
 	words = countwords(*(*argv + i), " \t");
 	split = ft_split(*(*argv + i), " \t");
 	if (!split || !*split)
-		return (ft_error(NULL), 1);
+		return (free(split), ft_error(NULL), 1);
 	while (split[len])
 	{
 		new = malloc(sizeof(long long));
