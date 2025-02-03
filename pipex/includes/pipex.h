@@ -6,7 +6,7 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 16:22:22 by abenajib          #+#    #+#             */
-/*   Updated: 2025/02/02 16:35:26 by abenajib         ###   ########.fr       */
+/*   Updated: 2025/02/03 18:31:30 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ char	*ft_strcpy(char *dest, const char *src);
 char	*ft_strdup(const char *src);
 size_t	ft_strlen(const char *s);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
-
+char	*ft_strjoin(char *s1, char *s2);
 
 
 #endif //PIPEX_H

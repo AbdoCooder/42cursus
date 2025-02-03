@@ -1,6 +1,12 @@
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -Wunreachable-code
+CFLAGS = -Wall -Wextra -Werror
 SRCS=	./mandatory/pipex.c \
+		./utils/ft_split/ft_split.c \
+		./utils/ft_split/ft_strchr.c \
+		./utils/ft_split/ft_strdup.c \
+		./utils/ft_split/ft_strlen.c \
+		./utils/ft_split/ft_substr.c \
+		./utils/ft_strjoin/ft_strjoin.c \
 
 RM = rm -rf
 NAME = pipex.a
