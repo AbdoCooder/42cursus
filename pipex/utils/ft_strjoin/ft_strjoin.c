@@ -12,6 +12,58 @@
 
 #include "../../includes/pipex.h"
 
+char	*ft_check_path(char	**paths, char *cmd)
+{
+	char	*full_path;
+	char	*path;
+
+	path = ft_strjoin(*paths, "/");
+	full_path = ft_strjoin(path, cmd);
+	free(path);
+	if (access(full_path, X_OK) == 0)
+		return (full_path);
+	free(full_path);
+	return (NULL);
+}
+
+char	*ft_find_path(char *cmd, char *envp[])
+{
+	char	**paths;
+	int		i;
+
+	i = 0;
+	while (envp[i])
+	{
+		if (ft_strncmp(envp[i], "PATH=", 5) == 0)
+		{
+			paths = ft_split(envp[i] + 5, ":");
+			while (*paths)
+			{
+				if (ft_check_path(paths, cmd))
+					return (ft_check_path(paths, cmd));
+				paths++;
+			}
+			freeall(paths, countwords(envp[i] + 5, ":"));
+		}
+		i++;
+	}
+	return (NULL);
+}
+
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < n && (s1[i] || s2[i]))
+	{
+		if (s1[i] != s2[i])
+			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+		i++;
+	}
+	return (0);
+}
+
 char	*ft_strjoin(char *s1, char *s2)
 {
 	char	*str;

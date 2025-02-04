@@ -23,7 +23,6 @@
 # include <errno.h>
 # include <stdarg.h>
 
-
 //INCLUDES
 # include "../utils/ft_printf/ft_printf.h"
 
@@ -37,7 +36,8 @@ char	*ft_strdup(const char *src);
 size_t	ft_strlen(const char *s);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strjoin(char *s1, char *s2);
-
+int		ft_strncmp(const char *s1, const char *s2, size_t n);
+char	*ft_check_path(char	**paths, char *cmd);
+char	*ft_find_path(char *cmd, char *envp[]);
 
 #endif //PIPEX_H
-
