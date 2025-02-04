@@ -23,7 +23,19 @@ size_t	countwords(const char *s, char *c)
 	{
 		if (ft_strchr(c, s[i]) == NULL
 			&& (i == 0 || ft_strchr(c, s[i - 1]) != NULL))
+		{
+			if (s[i++] == '\'')
+			{
+				while (s[i] && s[i] != '\'')
+					i++;
+			}
+			else if (s[i++] == '\"')
+			{
+				while (s[i] && s[i] != '\"')
+					i++;
+			}
 			count++;
+		}
 		i++;
 	}
 	return (count);
@@ -35,6 +47,24 @@ char	**freeall(char **p, size_t x)
 		free (p[--x]);
 	free (p);
 	return (NULL);
+}
+
+void	ft_quote(const char *s, size_t *i, size_t *start)
+{
+	if (s[*i] == '\'')
+	{
+		(*i)++;
+		(*start)++;
+		while (s[*i] && s[*i] != '\'')
+			(*i)++;
+	}
+	else if (s[*i] == '\"')
+	{
+		(*i)++;
+		(*start)++;
+		while (s[*i] && s[*i] != '\"')
+			(*i)++;
+	}
 }
 
 static char	**copywords(char **p, const char *s, char *c)
@@ -50,7 +80,9 @@ static char	**copywords(char **p, const char *s, char *c)
 		while (ft_strchr(c, s[i]) != NULL)
 			i++;
 		start = i;
-		while (s[i] && ft_strchr(c, s[i]) == NULL)
+		ft_quote(s, &i, &start);
+		while (s[i] && ft_strchr(c, s[i]) == NULL
+			&& s[i] != '\'' && s[i] != '\"')
 			i++;
 		p[x++] = ft_substr(s, start, i - start);
 		if (!p[x - 1])
