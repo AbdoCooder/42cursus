@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 18:28:38 by abenajib          #+#    #+#             */
-/*   Updated: 2025/02/06 13:37:43 by abenajib         ###   ########.fr       */
+/*   Updated: 2025/02/06 18:36:25 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ char	*ft_find_path(char *cmd, char *envp[])
 {
 	char	**paths;
 	int		i;
+	char	*checker;
+	char	**holder;
 
 	i = 0;
 	while (envp[i])
@@ -37,12 +39,15 @@ char	*ft_find_path(char *cmd, char *envp[])
 		if (ft_strncmp(envp[i], "PATH=", 5) == 0)
 		{
 			paths = ft_split(envp[i] + 5, ":");
+			holder = paths;
 			while (*paths)
 			{
-				if (ft_check_path(paths, cmd))
-					return (ft_check_path(paths, cmd));
+				checker = ft_check_path(paths, cmd);
+				if (checker)
+					return (checker);
 				paths++;
 			}
+			freeall(holder, countwords(envp[i] + 5, ":"));
 			break ;
 		}
 		i++;
