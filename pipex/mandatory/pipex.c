@@ -6,7 +6,7 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 16:22:18 by abenajib          #+#    #+#             */
-/*   Updated: 2025/02/03 19:58:34 by abenajib         ###   ########.fr       */
+/*   Updated: 2025/02/06 13:36:24 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,20 @@ pid_t	ft_excute_1(char **split, char *argv[], int fd[2], char *envp[])
 	int		n;
 
 	split = ft_split(argv[2], " \t");
+	if (!split[0])
+		return (perror("Error: command not found"), -1);
 	dup2(fd[1], 1);
 	n = open(argv[1], O_RDONLY);
 	if (n == -1 || dup2(n, 0) == -1)
-		return (perror("Error: input file not found\n"), -1);
+		return (perror("Error: input file not found"), -1);
+	close(n);
+	close(fd[0]);
+	close(fd[1]);
 	cmd_path = ft_find_path(split[0], envp);
 	if (cmd_path == NULL)
-		return (perror("Error: command path\n"), -1);
-	close(fd[0]);
-	close(n);
-	close(fd[1]);
+		return (perror("Error: command path"), -1);
 	if (execve(cmd_path, split, envp) == -1)
-		return (perror("Error: execution\n"), -1);
+		return (perror("Error: execution"), -1);
 	return (0);
 }
 
@@ -39,17 +41,20 @@ pid_t	ft_excute_2(char **split, char *argv[], int fd[2], char *envp[])
 	int		n;
 
 	split = ft_split(argv[3], " \t");
+	if (!split[0])
+		return (perror("Error: command not found"), -1);
 	dup2(fd[0], 0);
 	n = open(argv[4], O_CREAT | O_WRONLY | O_TRUNC, 0644);
 	if (n == -1 || dup2(n, 1) == -1)
-		return (perror("Error: output file not found\n"), -1);
+		return (perror("Error: output file not found"), -1);
 	close(n);
 	close(fd[0]);
 	close(fd[1]);
 	cmd_path = ft_find_path(split[0], envp);
 	if (cmd_path == NULL)
-		return (perror("Error: command not found\n"), -1);
-	execve(cmd_path, split, envp);
+		return (perror("Error: command path"), -1);
+	if (execve(cmd_path, split, envp) == -1)
+		return (perror("Error: execution"), -1);
 	return (0);
 }
 
@@ -60,6 +65,8 @@ pid_t	child_process(int fd[2], char *argv[], char *envp[], int process)
 
 	split = NULL;
 	pid = fork();
+	if (pid == -1)
+		return (perror("Error: fork failed"), -1);
 	if (pid == 0)
 	{
 		if (process == 1)
@@ -83,16 +90,16 @@ int	main(int argc, char *argv[], char *envp[])
 	pid_t	pid2;
 
 	if (argc != 5)
-		return (perror("Error: wrong number of arguments\n"), 1);
+		return (perror("Error: wrong number of arguments "), 1);
 	else
 	{
 		pipe(fd);
 		pid1 = child_process(fd, argv, envp, 1);
 		if (pid1 == -1)
-			return (perror("Error: fork failed\n"), 1);
+			return (1);
 		pid2 = child_process(fd, argv, envp, 2);
 		if (pid2 == -1)
-			return (perror("Error: fork failed\n"), 1);
+			return (1);
 		close(fd[0]);
 		close(fd[1]);
 		waitpid(pid1, NULL, 0);

@@ -6,7 +6,7 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 18:28:38 by abenajib          #+#    #+#             */
-/*   Updated: 2025/02/03 19:37:40 by abenajib         ###   ########.fr       */
+/*   Updated: 2025/02/06 13:37:43 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ char	*ft_find_path(char *cmd, char *envp[])
 					return (ft_check_path(paths, cmd));
 				paths++;
 			}
-			freeall(paths, countwords(envp[i] + 5, ":"));
+			break ;
 		}
 		i++;
 	}
@@ -91,3 +91,4 @@ char	*ft_strjoin(char *s1, char *s2)
 	str[i] = '\0';
 	return (str);
 }
+// freeall(paths, countwords(envp[i] + 5, ":"));
