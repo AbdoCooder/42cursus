@@ -6,7 +6,7 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 16:22:18 by abenajib          #+#    #+#             */
-/*   Updated: 2025/02/06 13:36:24 by abenajib         ###   ########.fr       */
+/*   Updated: 2025/02/06 17:17:27 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ pid_t	ft_excute_1(char **split, char *argv[], int fd[2], char *envp[])
 	close(fd[1]);
 	cmd_path = ft_find_path(split[0], envp);
 	if (cmd_path == NULL)
-		return (perror("Error: command path"), -1);
+		return (free(cmd_path), perror("Error: command path"), -1);
 	if (execve(cmd_path, split, envp) == -1)
-		return (perror("Error: execution"), -1);
+		return (free(cmd_path), perror("Error: execution"), -1);
 	return (0);
 }
 
@@ -52,9 +52,9 @@ pid_t	ft_excute_2(char **split, char *argv[], int fd[2], char *envp[])
 	close(fd[1]);
 	cmd_path = ft_find_path(split[0], envp);
 	if (cmd_path == NULL)
-		return (perror("Error: command path"), -1);
+		return (free(cmd_path), perror("Error: command path"), -1);
 	if (execve(cmd_path, split, envp) == -1)
-		return (perror("Error: execution"), -1);
+		return (free(cmd_path), perror("Error: execution"), -1);
 	return (0);
 }
 
@@ -83,8 +83,14 @@ pid_t	child_process(int fd[2], char *argv[], char *envp[], int process)
 	return (pid);
 }
 
+void ll()
+{
+	system("leaks -q pipex");
+}
+
 int	main(int argc, char *argv[], char *envp[])
 {
+	atexit(ll);
 	int		fd[2];
 	pid_t	pid1;
 	pid_t	pid2;
