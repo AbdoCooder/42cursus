@@ -26,6 +26,13 @@ char	*ft_check_path(char	**paths, char *cmd)
 	return (NULL);
 }
 
+char	*ft_path_checker(char *cmd)
+{
+	if (access(cmd, X_OK) == 0)
+		return (ft_strdup(cmd));
+	return (NULL);
+}
+
 char	*ft_find_path(char *cmd, char *envp[])
 {
 	char	**paths;
@@ -35,7 +42,7 @@ char	*ft_find_path(char *cmd, char *envp[])
 
 	i = -1;
 	if (ft_strchr(cmd, '/'))
-		return (ft_strdup(cmd));
+		return (ft_path_checker(cmd));
 	while (envp[++i])
 	{
 		if (ft_strncmp(envp[i], "PATH=", 5) == 0)
@@ -44,10 +51,9 @@ char	*ft_find_path(char *cmd, char *envp[])
 			holder = paths;
 			while (*paths)
 			{
-				checker = ft_check_path(paths, cmd);
+				checker = ft_check_path(paths++, cmd);
 				if (checker)
 					return (checker);
-				paths++;
 			}
 			freeall(holder, countwords(envp[i] + 5, ":"));
 			break ;
