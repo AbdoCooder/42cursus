@@ -1,34 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.h                                            :+:      :+:    :+:   */
+/*   ft_error.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/08 20:59:26 by codespace         #+#    #+#             */
-/*   Updated: 2025/02/08 21:17:13 by codespace        ###   ########.fr       */
+/*   Created: 2025/02/08 21:15:09 by codespace         #+#    #+#             */
+/*   Updated: 2025/02/08 21:15:21 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILO_H
-# define PHILO_H
+#include "../includes/philo.h"
 
-//colors
-# define DEF_COLOR "\033[0;39m"
-# define GRAY "\033[0;90m"
-# define RED "\033[0;91m"
-# define GREEN "\033[0;92m"
-# define YELLOW "\033[0;93m"
-# define BLUE "\033[0;94m"
-# define MAGENTA "\033[0;95m"
-# define CYAN "\033[0;96m"
-# define WHITE "\033[0;97m"
-
-//includes
-# include <pthread.h>
-# include <stdio.h>
-
-//functions
-void	ft_error(char *msg);
-
-#endif
+void	ft_error(char *msg)
+{
+	printf("%sError: %s%s\n", RED, msg, DEF_COLOR);
+}

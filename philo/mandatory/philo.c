@@ -3,37 +3,47 @@
 /*                                                        :::      ::::::::   */
 /*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 18:41:53 by abenajib          #+#    #+#             */
-/*   Updated: 2025/02/08 20:21:10 by abenajib         ###   ########.fr       */
+/*   Updated: 2025/02/08 21:33:49 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <pthread.h>
-#include <stdio.h>
+#include "../includes/philo.h"
+
+size_t	g_i;
 
 void	*routine()
 {
-	for (size_t i = 0; i < 9999999/3; i++)
-		printf("");
+	while (g_i < 10000)
+		g_i++;
 	return (NULL);
 }
 
 int	main(int ac, char **av)
 {
+	pthread_t	t;
+	pthread_t	t2;
+
 	(void)ac;
 	(void)av;
-	pthread_t thread;
-	pthread_t thread2;
-	pthread_t thread3;
-	pthread_create(&thread, NULL, &routine, NULL);
-	pthread_create(&thread2, NULL, &routine, NULL);
-	pthread_create(&thread3, NULL, &routine, NULL);
-	pthread_join(thread, NULL);
-	pthread_join(thread2, NULL);
-	pthread_join(thread3, NULL);
-	// for (int i = 0; i < 99999999; i++)
-	// 	printf("");
+	g_i = 0;
+	printf("before t1 | i = %zu\n\n\n", g_i);
+	if (pthread_create(&t, NULL, &routine, NULL) != 0)
+		return (ft_error("pthread_create failed"), 1);
+
+	printf("before t2 | i = %zu\n\n\n", g_i);
+	if (pthread_create(&t2, NULL, &routine, NULL) != 0)
+		return (ft_error("pthread_create failed"), 1);
+
+	if (pthread_join(t, NULL) != 0)
+		return (ft_error("pthread_join failed"), 1);
+
+	printf("after t1 | i = %zu\n\n\n", g_i);
+	if (pthread_join(t2, NULL) != 0)
+		return (ft_error("pthread_join failed"), 1);
+
+	printf("after t2 | i = %zu\n\n\n", g_i);
 	return (0);
 }

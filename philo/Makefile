@@ -1,7 +1,8 @@
 TARGET = philo
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
-SRCS=	./mandatory/$(TARGET).c
+SRCS=	./mandatory/$(TARGET).c \
+		./utils/ft_error.c \
 
 RM = rm -rf
 NAME = $(TARGET).a
@@ -23,7 +24,7 @@ all: $(TARGET)
 $(TARGET): $(NAME) $(HEADER)
 	@echo "$(BLUE)Making $(TARGET) ...$(DEF_COLOR)"
 # @sleep 1
-	@${CC} ${CFLAGS} -o $(TARGET) ./mandatory/$(TARGET).c $(NAME)
+	@${CC} ${CFLAGS} -o $(TARGET) ./mandatory/$(TARGET).c $(NAME) -lpthread
 	@echo "$(GREEN)  _____  _     _   _                       _               "
 	@echo "$(GREEN) |  __ \| |   |_| | |                     | |              "
 	@echo "$(GREEN) | |__\ | |__  _  | | ___  ___  ___  _ __ | |__   ___ _ __ "
