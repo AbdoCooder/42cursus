@@ -1,33 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.c                                            :+:      :+:    :+:   */
+/*   ft_mutex.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/08 18:41:53 by abenajib          #+#    #+#             */
-/*   Updated: 2025/02/11 20:57:12 by abenajib         ###   ########.fr       */
+/*   Created: 2025/02/11 20:17:07 by abenajib          #+#    #+#             */
+/*   Updated: 2025/02/11 20:18:26 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-bool	ft_init(t_table *table, int ac, char **av)
+void	ft_mutex_mode(t_mtx *mtx, int mode)
 {
-	ft_init_table(table, ac, av);
-	return (true);
+	if (mode == LOCK)
+		ft_mutex_errors(pthread_mutex_lock(mtx), mode);
+	else if (mode == UNLOCK)
+		ft_mutex_errors(pthread_mutex_unlock(mtx), mode);
+	else if (mode == DESTROY)
+		ft_mutex_errors(pthread_mutex_destroy(mtx), mode);
+	else if (mode == INIT)
+		ft_mutex_errors(pthread_mutex_init(mtx, NULL), mode);
+	else
+		ft_error("Error: invalid mode\n", NULL);
 }
-
-int	main(int ac, char **av)
-{
-	t_table	table;
-
-	if (!ft_check_args(ac, av))
-		return (FAILURE);
-	if (!ft_init(&table, ac, av))
-		return (FAILURE);
-	return (SUCCESS);
-}
-// philos	die		eat		sleep	times_to_eat
-// 5		800		200		200		7
-// av[1]	av[2]	av[3]	av[4]	av[5]

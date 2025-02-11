@@ -6,18 +6,30 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 13:43:19 by abenajib          #+#    #+#             */
-/*   Updated: 2025/02/10 15:40:42 by abenajib         ###   ########.fr       */
+/*   Updated: 2025/02/11 20:52:41 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
+void	ft_init_table(t_table *table, int ac, char **av)
+{
+	table->nbr_of_philos = ft_atoi(av[NBR_OF_PHILOS_ARG]);
+	table->time_to_die = ft_atoi(av[TIME_TO_DIE_ARG]) * 1e3;
+	table->time_to_eat = ft_atoi(av[TIME_TO_EAT_ARG]) * 1e3;
+	table->time_to_sleep = ft_atoi(av[TIME_TO_SLEEP_ARG]) * 1e3;
+	if (ac == 6)
+		table->nbr_of_times_to_eat = ft_atoi(av[NBR_OF_TIMES_TO_EAT_ARG]);
+	else
+		table->nbr_of_times_to_eat = ERROR;
+}
+
 bool	fancy_typing(int ac)
 {
 	if (ac == 1)
-		return (ft_error("Invalid Arguments", "\nNo Args? Really!"), false);
+		return (ft_error("Invalid Arguments", "\nNo Args? Really!"), FALSE);
 	return (ft_error("Invalid Arguments", "\nHint! : five Arguments"),
-		false);
+		FALSE);
 }
 
 bool	ft_check_args(int ac, char **av)
@@ -28,22 +40,22 @@ bool	ft_check_args(int ac, char **av)
 		|| ft_atoi(av[NBR_OF_PHILOS_ARG]) > 200)
 		return (ft_error("Invalid Arguments", "\nHint! :number_of_philosophers \
 [2~200]"),
-			false);
+			FALSE);
 	if (ft_atoi(av[TIME_TO_DIE_ARG]) < 60
 		|| ft_atoi(av[TIME_TO_DIE_ARG]) > INT_MAX)
 		return (ft_error("Invalid Arguments", "\nHint! : time_to_die [>60]"),
-			false);
+			FALSE);
 	if (ft_atoi(av[TIME_TO_EAT_ARG]) < 60
 		|| ft_atoi(av[TIME_TO_EAT_ARG]) > INT_MAX)
 		return (ft_error("Invalid Arguments", "\nHint! : time_to_eat [>60]"),
-			false);
+			FALSE);
 	if (ft_atoi(av[TIME_TO_SLEEP_ARG]) < 60
 		|| ft_atoi(av[TIME_TO_SLEEP_ARG]) > INT_MAX)
 		return (ft_error("Invalid Arguments", "\nHint! : time_to_sleep [>60]"),
-			false);
+			FALSE);
 	if (ac == 6 && (ft_atoi(av[NBR_OF_TIMES_TO_EAT_ARG]) < 1
 			|| ft_atoi(av[NBR_OF_TIMES_TO_EAT_ARG]) > INT_MAX))
 		return (ft_error("Invalid Arguments", "\nHint! : number_of_times_each_\
-philosopher_must_eat [>1]"), false);
+philosopher_must_eat [>1]"), FALSE);
 	return (TRUE);
 }

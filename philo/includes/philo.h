@@ -6,12 +6,21 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 20:59:26 by codespace         #+#    #+#             */
-/*   Updated: 2025/02/10 13:44:17 by abenajib         ###   ########.fr       */
+/*   Updated: 2025/02/11 20:51:34 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_H
 # define PHILO_H
+
+//includes
+# include <pthread.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <stdbool.h>
+# include <sys/time.h>
+# include <limits.h>
 
 //colors
 # define DEF_COLOR "\033[0;39m"
@@ -24,10 +33,20 @@
 # define CYAN "\033[0;96m"
 # define WHITE "\033[0;97m"
 
+//Enums
+typedef enum e_mode
+{
+	LOCK,
+	UNLOCK,
+	DESTROY,
+	INIT
+}	t_mode;
+
 //Macros
 # define TRUE 1
 # define FALSE 0
 # define ERROR -1
+# define FAILURE 1
 # define SUCCESS 0
 # define PROGRAM_ARG 0
 # define NBR_OF_PHILOS_ARG 1
@@ -35,15 +54,6 @@
 # define TIME_TO_EAT_ARG 3
 # define TIME_TO_SLEEP_ARG 4
 # define NBR_OF_TIMES_TO_EAT_ARG 5
-
-//includes
-# include <pthread.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <stdbool.h>
-# include <sys/time.h>
-# include <limits.h>
 
 //aliases
 typedef pthread_mutex_t	t_mtx;
@@ -72,7 +82,7 @@ typedef struct s_philo
 	int				id;
 	t_trd			t;
 	t_table			*table;
-	t_fork			*l_fork;
+	t_fork			*fork;
 	t_fork			*r_fork;
 	long			eaten_m;
 	long			last_m;
@@ -81,8 +91,23 @@ typedef struct s_philo
 }					t_philo;
 
 //functions
-void		ft_error(char *error, char *warning);
-long long	ft_atoi(const char *str);
+
+//checkers
 bool		ft_check_args(int ac, char **av);
+bool		fancy_typing(int ac);
+
+//error
+void		ft_error(char *error, char *warning);
+void		ft_mutex_errors(int status, t_mode mode);
+
+//mutex
+void		ft_mutex_mode(t_mtx *mtx, int mode);
+
+//initiation
+void		ft_init_table(t_table *table, int ac, char **av);
+bool		ft_init(t_table *table, int ac, char **av);
+
+//utils
+long long	ft_atoi(const char *str);
 
 #endif
