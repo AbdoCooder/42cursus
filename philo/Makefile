@@ -5,6 +5,9 @@ SRCS=	./mandatory/$(TARGET).c \
 		./utils/ft_error.c \
 		./utils/ft_atoi.c \
 		./utils/ft_check_args.c \
+		./utils/ft_mutex.c \
+		./utils/my_malloc.c \
+		./utils/ft_init.c \
 
 RM = rm -rf
 NAME = $(TARGET).a

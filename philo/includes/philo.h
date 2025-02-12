@@ -6,7 +6,7 @@
 /*   By: abenajib <abenajib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 20:59:26 by codespace         #+#    #+#             */
-/*   Updated: 2025/02/11 20:51:34 by abenajib         ###   ########.fr       */
+/*   Updated: 2025/02/12 18:03:52 by abenajib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@
 //Enums
 typedef enum e_mode
 {
+	CREATE,
 	LOCK,
 	UNLOCK,
 	DESTROY,
@@ -58,6 +59,7 @@ typedef enum e_mode
 //aliases
 typedef pthread_mutex_t	t_mtx;
 typedef pthread_t		t_trd;
+typedef struct s_philo	t_philo;
 
 //structures
 typedef struct s_fork
@@ -68,6 +70,8 @@ typedef struct s_fork
 
 typedef struct s_table
 {
+	t_fork	*forks;
+	t_philo	*philos;
 	long	start;
 	long	end;
 	long	nbr_of_philos;
@@ -75,20 +79,22 @@ typedef struct s_table
 	long	time_to_eat;
 	long	time_to_sleep;
 	long	nbr_of_times_to_eat;
+	bool	all_threads_ready;
+	t_mtx	table_mutex;
 }			t_table;
 
-typedef struct s_philo
+struct s_philo
 {
 	int				id;
 	t_trd			t;
 	t_table			*table;
-	t_fork			*fork;
-	t_fork			*r_fork;
+	t_fork			*first_fork;
+	t_fork			*second_fork;
 	long			eaten_m;
 	long			last_m;
 	bool			is_full;
 	struct s_philo	*next;
-}					t_philo;
+};
 
 //functions
 
@@ -101,13 +107,22 @@ void		ft_error(char *error, char *warning);
 void		ft_mutex_errors(int status, t_mode mode);
 
 //mutex
-void		ft_mutex_mode(t_mtx *mtx, int mode);
+void		ft_mutex_mode(t_mtx *mtx, t_mode mode);
 
 //initiation
 void		ft_init_table(t_table *table, int ac, char **av);
-bool		ft_init(t_table *table, int ac, char **av);
+void		ft_init(t_table *table, int ac, char **av);
+void		ft_init_philos(t_table *table);
+void		ft_assign_forks(t_philo *philo, t_fork *forks, int i);
 
 //utils
 long long	ft_atoi(const char *str);
+void		*ft_malloc(size_t bytes);
+
+//setters_getters
+void		set_bool(t_mtx *mutex, bool *dest, bool value);
+bool		get_bool(t_mtx *mutex, bool *dest);
+void		set_long(t_mtx *mutex, long *dest, long value);
+long		get_long(t_mtx *mutex, long *dest);
 
 #endif
